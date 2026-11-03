@@ -1,0 +1,20 @@
+{
+  "models/common.py": "6aaff2b0cee33073739586e4b416b030d338ab4b9ffb5261b2db14414dc3112b",
+  "models/ema.py": "41f92b2ec89a53ebcd69ced5903ccc4519a199ec2208d9694dd49ec398379ece",
+  "models/layers.py": "3d3c635eae200854982bd13fd6998a28fa7a7a9987084f3e47586e73add98099",
+  "models/losses.py": "7aa324db1556f0e715f71a6e14b01b25b44fb12fbe862352cb4651b52bb75e72",
+  "models/sparse_embedding.py": "54aec93a6f4a296b6081314a62522ca9e8e3e4ba4e83c168bf64b22befd4949f",
+  "models/recursive_reasoning/hrm.py": "1337f64f061930022a7cb4c019454b3e3b2e95adb9737277fec2c7368420df2d",
+  "models/recursive_reasoning/transformers_baseline.py": "8685c407406e445d1dd7cd33f6aff4b867d196a86a2dd42b6ec54b28cfb2bd03",
+  "models/recursive_reasoning/trm.py": "05d37524062ac6b7d958dbd7a173f3f7c99eaaa0b60cf78c57638a82ad185b46",
+  "models/recursive_reasoning/trm_hier6.py": "ed9793deb8a4a5ebfcda26c0bbcd99e397406719af4b96bf2959c3f44cf620dc",
+  "models/recursive_reasoning/trm_plastic.py": "05250a6ffaced4c88f92304e7bb7fefe1e2f7ee8fea8a38ba2906fe6d35e0ca9",
+  "models/recursive_reasoning/trm_singlez.py": "4d66c54475f6dd19774c973d00204c329ffb8c3a1449239388d8dcb2a4560cfe",
+  "local_lab/adam_atan2.py": "b8db63d29d7257686228d491352ec00168e41d15d9ded11bb0b3d402fd43e5c2",
+  "local_lab/benchmark.py": "3791eb25d5f76155190060dfc8f4ba465079d40493c0c94200127c839f7a2039",
+  "local_lab/data.py": "792bb63699ef45a490c0385dbaad8bb737b7ce43769bffcb943ceb47147c4baf",
+  "local_lab/report.py": "a76dc91411051f0902d42e8d71e13dddf29718ba396d642ad07c61f0c57074cc",
+  "local_lab/settings.py": "891d8a72f6f546b3a7f1d3a5b2400bc519fd4856bbed745dfad362bb843f9199",
+  "local_lab/smoke.py": "c05012630aa0c52ea85257f86fe2b44f9dffb7f09f4a5cc89be93463d03ad9bc",
+  "local_lab/train.py": "0d8b270c497c568c0ed02b990b6b2327c9e5198846bf4c7e3237b78f912954bc"
+}

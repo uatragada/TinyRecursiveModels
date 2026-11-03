@@ -1,0 +1,71 @@
+{
+  "dataset_manifest_sha256": "dc57678ebbb518d604493a5e6f154ab44bdb1c63e9098d6f91194538fb752cb3",
+  "panels": {
+    "train": {
+      "n": 16,
+      "base_ids": [
+        66560,
+        66561,
+        66562,
+        66563,
+        66564,
+        66565,
+        66566,
+        66567,
+        66568,
+        66569,
+        66570,
+        66571,
+        66572,
+        66573,
+        66574,
+        66575
+      ],
+      "inputs_sha256": "adc6bb3e16f4591cec03a13c72dc28dbe4016828826c48d8432dafea50c4b62d",
+      "labels_sha256": "a0e7920a9da3bea5779536e3c7ddd02499169943db0531f224c37389e4d02ebc"
+    },
+    "dev": {
+      "n": 8,
+      "base_ids": [
+        67328,
+        67329,
+        67330,
+        67331,
+        67332,
+        67333,
+        67334,
+        67335
+      ],
+      "inputs_sha256": "3754bf254e4e0329030eb0d4ca69ab0a46c3c98beab4fff3be6e43b64e682f8b",
+      "labels_sha256": "6dfc15e1c137f81170abbd6c06b8c5d693438b494b48221051f540e75b753a4c"
+    },
+    "oracle": {
+      "n": 4,
+      "base_ids": [
+        67456,
+        67457,
+        67458,
+        67459
+      ],
+      "inputs_sha256": "f622605e1263a31563f6ffb69168d096ea2d7dea0bb5628584482148d6d359b0",
+      "labels_sha256": "5dbaac77cea19357d4b5150dd07bae19bfebb53955df3dfc84cccc347b147986"
+    },
+    "test": {
+      "n": 8,
+      "base_ids": [
+        1000000000,
+        1000000001,
+        1000000002,
+        1000000003,
+        1000000004,
+        1000000005,
+        1000000006,
+        1000000007
+      ],
+      "inputs_sha256": "f59e73db54bc6d5efbb717213e8f0e6fff89665f7db2dc080db7c1c03dbd6f6a",
+      "labels_sha256": "1d87d32823ea35f5bbee4ecf8e5c5bd0895a9778478b529ee1f266d41de101a1"
+    }
+  },
+  "exact_base_ids_disjoint": true,
+  "provenance": "All controller training and development/oracle panels are from source-A-untrained validation data; official test is separate. Whole expanded cache is hash-validated and puzzle/solution disjoint."
+}

@@ -1,0 +1,18 @@
+{
+  "channel_rms": [
+    [
+      0.6244658827781677,
+      1.6866806745529175,
+      1.0657893419265747,
+      1.4135301113128662
+    ],
+    [
+      1.8926647901535034,
+      2.050579071044922,
+      1.1880981922149658,
+      1.450379490852356
+    ]
+  ],
+  "training_examples": 32,
+  "scope": "Activation-control direction amplitudes calibrated once on label-free training activations; frozen for all arms. This is a calibration match, not guaranteed identical realized delta norms."
+}

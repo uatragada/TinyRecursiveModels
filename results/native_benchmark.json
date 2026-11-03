@@ -1,0 +1,34 @@
+{
+  "rows": [
+    {
+      "batch_size": 32,
+      "forward_backward_seconds": [
+        16.5256403000094,
+        0.2606654000701383
+      ],
+      "peak_allocated_bytes": 1516575744,
+      "native_A_parameters": 6828034,
+      "B_parameters": 809736
+    },
+    {
+      "batch_size": 64,
+      "forward_backward_seconds": [
+        0.514432099997066,
+        0.3239261999260634
+      ],
+      "peak_allocated_bytes": 2826697728,
+      "native_A_parameters": 6828034,
+      "B_parameters": 809736
+    },
+    {
+      "batch_size": 128,
+      "forward_backward_seconds": [
+        2.766908499994315,
+        0.7395713999867439
+      ],
+      "peak_allocated_bytes": 5455068160,
+      "native_A_parameters": 6828034,
+      "B_parameters": 809736
+    }
+  ]
+}

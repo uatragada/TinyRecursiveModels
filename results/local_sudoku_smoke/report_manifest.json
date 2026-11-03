@@ -1,0 +1,16 @@
+{
+  "reporter_sha256": "868bdf6219ad35e683d1bebe0b7c80f4f5a39938290113957f8b815a418be974",
+  "inputs_sha256": {
+    "config.json": "c6f656cb71bceb8f34cfd521cb040f3c7f2d028447d2893f32026d83eeefdf3f",
+    "summary.json": "01ac277e81e37f87e7580ab2be8cb96318b946a494cb166dd05f1b6a4f8745b0",
+    "evaluations.json": "4c1ad8d7d81c642a8c6db5a158c3d146d787cd2a35ba6540c042d204ad54a4ea",
+    "history.jsonl": "7b7ad517af786565fe64087845306ff602a97411acd25c4754dce0b6b406eda2",
+    "data_audit.json": "f1652b7c8ffb7674cb178326416e4af00584524909b31ed3c10f4fbbd1aa1e24",
+    "verification.json": "e76543fa58897c8a9d198863e09f5b5114645f374e149f6fe54b06bcee5f92fd",
+    "source_manifest.json": "1f196eba08b9dfd294f936bcd1b7d3e8bd1ce58041aab394fed9d89af6bb311e"
+  },
+  "plots": [
+    "plots/sudoku_endpoints.png",
+    "plots/sudoku_training.png"
+  ]
+}

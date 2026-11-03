@@ -1,0 +1,33 @@
+{
+  "results_dir": "results/frozen_A_pilot_20261029",
+  "source_checkpoint": "checkpoints/longer_sudoku/joint.pt",
+  "data_dir": "data/local-expanded-sudoku",
+  "seeds": [
+    29,
+    43
+  ],
+  "batch_size": 64,
+  "steps": 300,
+  "learning_rate": 0.001,
+  "warmup_steps": 20,
+  "controller_width": 96,
+  "controller_heads": 4,
+  "controller_layers": 2,
+  "train_offset": 1024,
+  "train_size": 768,
+  "dev_offset": 1792,
+  "dev_size": 128,
+  "oracle_offset": 1920,
+  "oracle_size": 32,
+  "test_size": 256,
+  "calibration_size": 32,
+  "oracle_steps": 20,
+  "oracle_lr": 0.15,
+  "teacher_every": 17,
+  "teacher_steps": 4,
+  "teacher_weight": 0.01,
+  "log_every": 50,
+  "eval_batch_size": 64,
+  "max_seconds": 1500,
+  "training_cutoff_seconds": 1100
+}

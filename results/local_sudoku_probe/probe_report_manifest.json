@@ -1,0 +1,16 @@
+{
+  "reporter_sha256": "7fbd777587ee793ca567fa220beeb0b4c195eead4688e16bde1c0172b211e3a0",
+  "inputs_sha256": {
+    "config.json": "267d297cb07b195f3927286ed56abf2dac0cdfa8d0353a236b8520db9131f2ac",
+    "summary.json": "db55ed8277cd18b61ffe4ed4eb411a8644abf0076fb81b1e4204813b4d3e9e67",
+    "evaluations.json": "ad94243a5a3d4476ea503fff3096767928ba4047b561a3f42324b8f0aa552ae6",
+    "history.jsonl": "1008898f94ede881298ec807a3e202e57bfd9111509f66372bd226f5e9910923",
+    "verification.json": "33ac8a4eaf828775bac666559b57d1e26f77c0148f2044f84f647c06eb40d732",
+    "tensor_verification.json": "310155ad54ab4cc3b28edaa039cb38e019254e7f8da0e63a839a7665f6945e5e",
+    "source_manifest.json": "205c1dae810146df7270b49b575a93c8d0c82cb1e61b9af345a9d320e3fb2ff1"
+  },
+  "plots": [
+    "plots/isolated_A_probe.png"
+  ],
+  "shared_local_checks_sha256": "d71a85a19bf0a1d28d5c64a59dfaa9d8bbb90d065d14b25808813d420f7333b2"
+}

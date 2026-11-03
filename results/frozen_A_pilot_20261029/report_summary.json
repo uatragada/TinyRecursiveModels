@@ -1,0 +1,227 @@
+{
+  "means": [
+    {
+      "kind": "off",
+      "name": "Frozen A, no adjustments",
+      "seeds": [
+        29
+      ],
+      "blank_accuracy": 0.39256832124930285,
+      "exact_accuracy": 0.0,
+      "loss": 1.0224993553522626,
+      "task_loss": 1.4677331447601318,
+      "given_agreement": 1.0,
+      "valid_grid_fraction": 0.0,
+      "gate_rms": 0.0,
+      "between_puzzle_gate_variance_fraction": 0.0,
+      "delta_to_base_rms_ratio": 0.0
+    },
+    {
+      "kind": "phase",
+      "name": "Learned ACT-step schedule",
+      "seeds": [
+        29,
+        43
+      ],
+      "blank_accuracy": 0.39302147239263807,
+      "exact_accuracy": 0.0,
+      "loss": 1.0224673763302738,
+      "task_loss": 1.467682421207428,
+      "given_agreement": 1.0,
+      "valid_grid_fraction": 0.0,
+      "gate_rms": 0.19758165627717972,
+      "between_puzzle_gate_variance_fraction": 2.917921980427618e-12,
+      "delta_to_base_rms_ratio": 0.0029613018268719316
+    },
+    {
+      "kind": "pooled",
+      "name": "Matched pooled-reader B",
+      "seeds": [
+        29,
+        43
+      ],
+      "blank_accuracy": 0.3935791968767429,
+      "exact_accuracy": 0.0,
+      "loss": 1.0212763900930408,
+      "task_loss": 1.465947449207306,
+      "given_agreement": 1.0,
+      "valid_grid_fraction": 0.0,
+      "gate_rms": 0.8683509826660156,
+      "between_puzzle_gate_variance_fraction": 0.010099655322846957,
+      "delta_to_base_rms_ratio": 0.013386629987508059
+    },
+    {
+      "kind": "revised",
+      "name": "Cell-aware B with persistent memory",
+      "seeds": [
+        29,
+        43
+      ],
+      "blank_accuracy": 0.3924637479085332,
+      "exact_accuracy": 0.0,
+      "loss": 1.021624746528512,
+      "task_loss": 1.4664620161056519,
+      "given_agreement": 1.0,
+      "valid_grid_fraction": 0.0,
+      "gate_rms": 0.5934965312480927,
+      "between_puzzle_gate_variance_fraction": 0.16600601840764284,
+      "delta_to_base_rms_ratio": 0.009240933926776052
+    },
+    {
+      "kind": "activation",
+      "name": "Matched activation controller",
+      "seeds": [
+        29,
+        43
+      ],
+      "blank_accuracy": 0.39263803680981596,
+      "exact_accuracy": 0.0,
+      "loss": 1.0216289651858101,
+      "task_loss": 1.466482162475586,
+      "given_agreement": 1.0,
+      "valid_grid_fraction": 0.0,
+      "gate_rms": 0.8876101672649384,
+      "between_puzzle_gate_variance_fraction": 0.12339473236352205,
+      "delta_to_base_rms_ratio": 0.013816784601658583
+    }
+  ],
+  "paired": {
+    "rows": [
+      {
+        "comparison": "revised-minus-off",
+        "primary": false,
+        "gain_pp": -0.01045733407696598,
+        "per_seed": [
+          {
+            "seed": 29,
+            "gain_pp": -0.006971556051310652
+          },
+          {
+            "seed": 43,
+            "gain_pp": -0.013943112102621304
+          }
+        ],
+        "conditional_paired_puzzle_interval_95_pp": [
+          -0.1011677929723519,
+          0.08022268259084663
+        ]
+      },
+      {
+        "comparison": "revised-minus-phase",
+        "primary": true,
+        "gain_pp": -0.05577244841048522,
+        "per_seed": [
+          {
+            "seed": 29,
+            "gain_pp": -0.1324595649749024
+          },
+          {
+            "seed": 43,
+            "gain_pp": 0.02091466815393196
+          }
+        ],
+        "conditional_paired_puzzle_interval_95_pp": [
+          -0.13612090976004634,
+          0.024550174094934554
+        ]
+      },
+      {
+        "comparison": "revised-minus-pooled",
+        "primary": false,
+        "gain_pp": -0.11154489682097044,
+        "per_seed": [
+          {
+            "seed": 29,
+            "gain_pp": -0.11154489682097044
+          },
+          {
+            "seed": 43,
+            "gain_pp": -0.11154489682097044
+          }
+        ],
+        "conditional_paired_puzzle_interval_95_pp": [
+          -0.21666390077008776,
+          -0.0068677547229243786
+        ]
+      },
+      {
+        "comparison": "revised-minus-activation",
+        "primary": false,
+        "gain_pp": -0.01742889012827663,
+        "per_seed": [
+          {
+            "seed": 29,
+            "gain_pp": -0.06971556051310653
+          },
+          {
+            "seed": 43,
+            "gain_pp": 0.03485778025655326
+          }
+        ],
+        "conditional_paired_puzzle_interval_95_pp": [
+          -0.13628786799847933,
+          0.09775459029660113
+        ]
+      },
+      {
+        "comparison": "revised-minus-shuffle",
+        "primary": false,
+        "gain_pp": 0.006971556051310652,
+        "per_seed": [
+          {
+            "seed": 29,
+            "gain_pp": 0.02091466815393196
+          },
+          {
+            "seed": 43,
+            "gain_pp": -0.006971556051310652
+          }
+        ],
+        "conditional_paired_puzzle_interval_95_pp": [
+          -0.06267507733390994,
+          0.08048712206047033
+        ]
+      },
+      {
+        "comparison": "revised-minus-phase_only",
+        "primary": false,
+        "gain_pp": -0.04880089235917457,
+        "per_seed": [
+          {
+            "seed": 29,
+            "gain_pp": -0.04182933630786392
+          },
+          {
+            "seed": 43,
+            "gain_pp": -0.05577244841048522
+          }
+        ],
+        "conditional_paired_puzzle_interval_95_pp": [
+          -0.13560760222008608,
+          0.04180048635813494
+        ]
+      },
+      {
+        "comparison": "revised-minus-reset_memory",
+        "primary": false,
+        "gain_pp": 0.02091466815393196,
+        "per_seed": [
+          {
+            "seed": 29,
+            "gain_pp": 0.0
+          },
+          {
+            "seed": 43,
+            "gain_pp": 0.04182933630786392
+          }
+        ],
+        "conditional_paired_puzzle_interval_95_pp": [
+          -0.034853467644631306,
+          0.07659673740864957
+        ]
+      }
+    ],
+    "scope": "Descriptive paired bootstrap over test puzzles, averaging these fixed controller seeds before resampling. No independent A-training replicates or controller-training uncertainty; secondary intervals have no multiple-comparison adjustment."
+  },
+  "status": "complete"
+}

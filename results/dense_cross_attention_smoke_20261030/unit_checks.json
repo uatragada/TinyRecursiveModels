@@ -1,0 +1,7 @@
+{
+  "status": "passed",
+  "command": "..\\plastic-latent-lab\\.venv\\Scripts\\python.exe -m pytest -q",
+  "passed": 105,
+  "pytest_reported_seconds": 13.45,
+  "scope": "Full local suite, including structured inter-model cross-attention, per-head normalization, answer-loss gradient flow, distinguishable B state parts with unchanged pooled summary, label boundaries, puzzle isolation, partial resets and exact C-off recovery."
+}

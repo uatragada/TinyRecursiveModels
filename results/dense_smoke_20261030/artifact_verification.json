@@ -1,0 +1,31 @@
+{
+  "status": "passed",
+  "passed": 23,
+  "a_tensors_compared": 15,
+  "checks": {
+    "all_A_tensors_match_native_donor": true,
+    "no_factor_parameters_in_checkpoint": true,
+    "source_checkpoint_hash_matches": true,
+    "all_checkpoint_tensors_finite": true,
+    "projection_0_norm_bounded": true,
+    "projection_0_full_rank": true,
+    "projection_1_norm_bounded": true,
+    "projection_1_full_rank": true,
+    "initial_accuracy_recomputed": true,
+    "final_accuracy_recomputed": true,
+    "baseline_accuracy_recomputed": true,
+    "snapshot_hash:models/recursive_reasoning/trm.py": true,
+    "snapshot_hash:models/recursive_reasoning/trm_dense.py": true,
+    "snapshot_hash:models/layers.py": true,
+    "snapshot_hash:models/losses.py": true,
+    "snapshot_hash:models/sparse_embedding.py": true,
+    "snapshot_hash:local_lab/dense_smoke.py": true,
+    "snapshot_hash:local_lab/adam_atan2.py": true,
+    "snapshot_hash:local_lab/settings.py": true,
+    "snapshot_hash:local_lab/data.py": true,
+    "snapshot_hash:local_lab/train.py": true,
+    "runtime_within_cap": true,
+    "all_requested_updates_completed": true
+  },
+  "scope": "Saved checkpoint tensors, source identity, sampled matrix norms/ranks, snapshot hashes and prediction-derived accuracy; no optimizer replay."
+}

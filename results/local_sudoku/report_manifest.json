@@ -1,0 +1,18 @@
+{
+  "reporter_sha256": "7fbd777587ee793ca567fa220beeb0b4c195eead4688e16bde1c0172b211e3a0",
+  "inputs_sha256": {
+    "config.json": "d53f419184807bb641aa29b51ccc152a4a52b92fdd74dbc2cbd338f39a61a18f",
+    "summary.json": "a03eee90a686a2da0cfcb11335c25c03665bfeea6be4d2d16e311208090d756c",
+    "evaluations.json": "02280abdd3ff2d5ee0d0d6845763f7f0677707205bc3f97b6fa5b5fd1abdb5e1",
+    "history.jsonl": "5e29f57f5c0a563bef102919834d49d02a1255a80b4571f200614b4af034d70e",
+    "data_audit.json": "f1652b7c8ffb7674cb178326416e4af00584524909b31ed3c10f4fbbd1aa1e24",
+    "verification.json": "003f27773ea6774d8823c670edab518db11385583c4b05056b23e292952577ba",
+    "tensor_verification.json": "fac9b0d881af0d9a2a198f95bc0f286c0d74b3e3e03b2a0e596100db76c05429",
+    "source_manifest.json": "5038decee09eeae166ae83b846b3fbf62b3d6e3281ee4a181dbc769b1d807b7f"
+  },
+  "plots": [
+    "plots/sudoku_endpoints.png",
+    "plots/sudoku_training.png"
+  ],
+  "shared_local_checks_sha256": "d71a85a19bf0a1d28d5c64a59dfaa9d8bbb90d065d14b25808813d420f7333b2"
+}

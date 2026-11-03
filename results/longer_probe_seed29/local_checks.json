@@ -1,0 +1,23 @@
+{
+  "integration_preflight": {
+    "complete": true,
+    "actual_tensor_checks": 694,
+    "results_dir": "../longer_probe_preflight"
+  },
+  "unit_tests": {
+    "elapsed_seconds": 6.13,
+    "passed": 56,
+    "command": "python -m pytest -q"
+  },
+  "source_run": "../longer_sudoku",
+  "probe_actual_tensors": {
+    "total": 940,
+    "passed": 940,
+    "path": "tensor_verification.json"
+  },
+  "probe_protocol": {
+    "passed": 233,
+    "path": "verification.json",
+    "total": 233
+  }
+}

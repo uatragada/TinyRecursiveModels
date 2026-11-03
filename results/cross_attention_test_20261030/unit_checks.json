@@ -1,0 +1,8 @@
+{
+  "status": "passed",
+  "command": "..\\plastic-latent-lab\\.venv\\Scripts\\python.exe -m pytest -q",
+  "passed": 108,
+  "pytest_reported_seconds": 12.78,
+  "new_matched_control_cases": 3,
+  "scope": "Full local suite before the controlled run, including inter-model attention and exact parameter matching, active larger-B gradients, atomic common-initialization loading, frozen A, head gradient flow and information boundaries."
+}

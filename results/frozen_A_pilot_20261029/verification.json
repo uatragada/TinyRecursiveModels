@@ -1,0 +1,5864 @@
+{
+  "passed": true,
+  "checks_passed": 1464,
+  "checks_total": 1464,
+  "scope": "Independent saved-tensor equality, frozen buffers, actor learning, oracle accounting, training-only teacher IDs/budgets, source/data hashes, ZIP CRCs and metrics recomputed from saved predictions. Does not independently rerun model inference or reconstruct every optimizer step.",
+  "checks": [
+    {
+      "name": "run complete",
+      "passed": true
+    },
+    {
+      "name": "budget respected",
+      "passed": true
+    },
+    {
+      "name": "source checkpoint hash",
+      "passed": true
+    },
+    {
+      "name": "common substrate equals complete source checkpoint",
+      "passed": true
+    },
+    {
+      "name": "common buffers digest",
+      "passed": true
+    },
+    {
+      "name": "oracle_sources:models/common.py",
+      "passed": true
+    },
+    {
+      "name": "oracle_sources:models/ema.py",
+      "passed": true
+    },
+    {
+      "name": "oracle_sources:models/layers.py",
+      "passed": true
+    },
+    {
+      "name": "oracle_sources:models/losses.py",
+      "passed": true
+    },
+    {
+      "name": "oracle_sources:models/sparse_embedding.py",
+      "passed": true
+    },
+    {
+      "name": "oracle_sources:models/recursive_reasoning/hrm.py",
+      "passed": true
+    },
+    {
+      "name": "oracle_sources:models/recursive_reasoning/transformers_baseline.py",
+      "passed": true
+    },
+    {
+      "name": "oracle_sources:models/recursive_reasoning/trm.py",
+      "passed": true
+    },
+    {
+      "name": "oracle_sources:models/recursive_reasoning/trm_hier6.py",
+      "passed": true
+    },
+    {
+      "name": "oracle_sources:models/recursive_reasoning/trm_plastic.py",
+      "passed": true
+    },
+    {
+      "name": "oracle_sources:models/recursive_reasoning/trm_singlez.py",
+      "passed": true
+    },
+    {
+      "name": "oracle_sources:local_lab/adam_atan2.py",
+      "passed": true
+    },
+    {
+      "name": "oracle_sources:local_lab/benchmark.py",
+      "passed": true
+    },
+    {
+      "name": "oracle_sources:local_lab/data.py",
+      "passed": true
+    },
+    {
+      "name": "oracle_sources:local_lab/frozen_control.py",
+      "passed": true
+    },
+    {
+      "name": "oracle_sources:local_lab/frozen_run.py",
+      "passed": true
+    },
+    {
+      "name": "oracle_sources:local_lab/probe.py",
+      "passed": true
+    },
+    {
+      "name": "oracle_sources:local_lab/report.py",
+      "passed": true
+    },
+    {
+      "name": "oracle_sources:local_lab/settings.py",
+      "passed": true
+    },
+    {
+      "name": "oracle_sources:local_lab/smoke.py",
+      "passed": true
+    },
+    {
+      "name": "oracle_sources:local_lab/train.py",
+      "passed": true
+    },
+    {
+      "name": "controller_sources:models/common.py",
+      "passed": true
+    },
+    {
+      "name": "controller_sources:models/ema.py",
+      "passed": true
+    },
+    {
+      "name": "controller_sources:models/layers.py",
+      "passed": true
+    },
+    {
+      "name": "controller_sources:models/losses.py",
+      "passed": true
+    },
+    {
+      "name": "controller_sources:models/sparse_embedding.py",
+      "passed": true
+    },
+    {
+      "name": "controller_sources:models/recursive_reasoning/hrm.py",
+      "passed": true
+    },
+    {
+      "name": "controller_sources:models/recursive_reasoning/transformers_baseline.py",
+      "passed": true
+    },
+    {
+      "name": "controller_sources:models/recursive_reasoning/trm.py",
+      "passed": true
+    },
+    {
+      "name": "controller_sources:models/recursive_reasoning/trm_hier6.py",
+      "passed": true
+    },
+    {
+      "name": "controller_sources:models/recursive_reasoning/trm_plastic.py",
+      "passed": true
+    },
+    {
+      "name": "controller_sources:models/recursive_reasoning/trm_singlez.py",
+      "passed": true
+    },
+    {
+      "name": "controller_sources:local_lab/adam_atan2.py",
+      "passed": true
+    },
+    {
+      "name": "controller_sources:local_lab/benchmark.py",
+      "passed": true
+    },
+    {
+      "name": "controller_sources:local_lab/data.py",
+      "passed": true
+    },
+    {
+      "name": "controller_sources:local_lab/frozen_control.py",
+      "passed": true
+    },
+    {
+      "name": "controller_sources:local_lab/frozen_run.py",
+      "passed": true
+    },
+    {
+      "name": "controller_sources:local_lab/probe.py",
+      "passed": true
+    },
+    {
+      "name": "controller_sources:local_lab/report.py",
+      "passed": true
+    },
+    {
+      "name": "controller_sources:local_lab/settings.py",
+      "passed": true
+    },
+    {
+      "name": "controller_sources:local_lab/smoke.py",
+      "passed": true
+    },
+    {
+      "name": "controller_sources:local_lab/train.py",
+      "passed": true
+    },
+    {
+      "name": "disjoint:dev/train",
+      "passed": true
+    },
+    {
+      "name": "disjoint:dev/oracle",
+      "passed": true
+    },
+    {
+      "name": "disjoint:dev/test",
+      "passed": true
+    },
+    {
+      "name": "disjoint:oracle/train",
+      "passed": true
+    },
+    {
+      "name": "disjoint:oracle/test",
+      "passed": true
+    },
+    {
+      "name": "disjoint:test/train",
+      "passed": true
+    },
+    {
+      "name": "dataset manifest hash",
+      "passed": true
+    },
+    {
+      "name": "cache hash:val",
+      "passed": true
+    },
+    {
+      "name": "panel IDs:train",
+      "passed": true
+    },
+    {
+      "name": "panel bytes:train/inputs",
+      "passed": true
+    },
+    {
+      "name": "panel bytes:train/labels",
+      "passed": true
+    },
+    {
+      "name": "panel IDs:dev",
+      "passed": true
+    },
+    {
+      "name": "panel bytes:dev/inputs",
+      "passed": true
+    },
+    {
+      "name": "panel bytes:dev/labels",
+      "passed": true
+    },
+    {
+      "name": "panel IDs:oracle",
+      "passed": true
+    },
+    {
+      "name": "panel bytes:oracle/inputs",
+      "passed": true
+    },
+    {
+      "name": "panel bytes:oracle/labels",
+      "passed": true
+    },
+    {
+      "name": "cache hash:test",
+      "passed": true
+    },
+    {
+      "name": "panel IDs:test",
+      "passed": true
+    },
+    {
+      "name": "panel bytes:test/inputs",
+      "passed": true
+    },
+    {
+      "name": "panel bytes:test/labels",
+      "passed": true
+    },
+    {
+      "name": "oracle:weight:privileged",
+      "passed": true
+    },
+    {
+      "name": "oracle:weight:finite",
+      "passed": true
+    },
+    {
+      "name": "oracle:weight:bounded gates",
+      "passed": true
+    },
+    {
+      "name": "oracle:weight:nonworsening objective per example",
+      "passed": true
+    },
+    {
+      "name": "oracle:weight:objective arithmetic",
+      "passed": true
+    },
+    {
+      "name": "oracle:weight:search budget",
+      "passed": true
+    },
+    {
+      "name": "oracle:weight:monotone incumbent",
+      "passed": true
+    },
+    {
+      "name": "oracle:weight:baseline/blank_accuracy",
+      "passed": true
+    },
+    {
+      "name": "oracle:weight:baseline/all_accuracy",
+      "passed": true
+    },
+    {
+      "name": "oracle:weight:baseline/given_agreement",
+      "passed": true
+    },
+    {
+      "name": "oracle:weight:baseline/exact_accuracy",
+      "passed": true
+    },
+    {
+      "name": "oracle:weight:baseline/valid_grid_fraction",
+      "passed": true
+    },
+    {
+      "name": "oracle:weight:baseline/blank_cells",
+      "passed": true
+    },
+    {
+      "name": "oracle:weight:baseline/given_cells",
+      "passed": true
+    },
+    {
+      "name": "oracle:weight:optimized/blank_accuracy",
+      "passed": true
+    },
+    {
+      "name": "oracle:weight:optimized/all_accuracy",
+      "passed": true
+    },
+    {
+      "name": "oracle:weight:optimized/given_agreement",
+      "passed": true
+    },
+    {
+      "name": "oracle:weight:optimized/exact_accuracy",
+      "passed": true
+    },
+    {
+      "name": "oracle:weight:optimized/valid_grid_fraction",
+      "passed": true
+    },
+    {
+      "name": "oracle:weight:optimized/blank_cells",
+      "passed": true
+    },
+    {
+      "name": "oracle:weight:optimized/given_cells",
+      "passed": true
+    },
+    {
+      "name": "oracle:activation:privileged",
+      "passed": true
+    },
+    {
+      "name": "oracle:activation:finite",
+      "passed": true
+    },
+    {
+      "name": "oracle:activation:bounded gates",
+      "passed": true
+    },
+    {
+      "name": "oracle:activation:nonworsening objective per example",
+      "passed": true
+    },
+    {
+      "name": "oracle:activation:objective arithmetic",
+      "passed": true
+    },
+    {
+      "name": "oracle:activation:search budget",
+      "passed": true
+    },
+    {
+      "name": "oracle:activation:monotone incumbent",
+      "passed": true
+    },
+    {
+      "name": "oracle:activation:baseline/blank_accuracy",
+      "passed": true
+    },
+    {
+      "name": "oracle:activation:baseline/all_accuracy",
+      "passed": true
+    },
+    {
+      "name": "oracle:activation:baseline/given_agreement",
+      "passed": true
+    },
+    {
+      "name": "oracle:activation:baseline/exact_accuracy",
+      "passed": true
+    },
+    {
+      "name": "oracle:activation:baseline/valid_grid_fraction",
+      "passed": true
+    },
+    {
+      "name": "oracle:activation:baseline/blank_cells",
+      "passed": true
+    },
+    {
+      "name": "oracle:activation:baseline/given_cells",
+      "passed": true
+    },
+    {
+      "name": "oracle:activation:optimized/blank_accuracy",
+      "passed": true
+    },
+    {
+      "name": "oracle:activation:optimized/all_accuracy",
+      "passed": true
+    },
+    {
+      "name": "oracle:activation:optimized/given_agreement",
+      "passed": true
+    },
+    {
+      "name": "oracle:activation:optimized/exact_accuracy",
+      "passed": true
+    },
+    {
+      "name": "oracle:activation:optimized/valid_grid_fraction",
+      "passed": true
+    },
+    {
+      "name": "oracle:activation:optimized/blank_cells",
+      "passed": true
+    },
+    {
+      "name": "oracle:activation:optimized/given_cells",
+      "passed": true
+    },
+    {
+      "name": "all arms",
+      "passed": true
+    },
+    {
+      "name": "29:four controls",
+      "passed": true
+    },
+    {
+      "name": "29:candidate stream matched",
+      "passed": true
+    },
+    {
+      "name": "29:admitted stream matched",
+      "passed": true
+    },
+    {
+      "name": "29:controller initial tensors matched",
+      "passed": true
+    },
+    {
+      "name": "29:controller parameter counts matched",
+      "passed": true
+    },
+    {
+      "name": "29/phase:checkpoint ZIP CRC",
+      "passed": true
+    },
+    {
+      "name": "29/phase:metadata exact",
+      "passed": true
+    },
+    {
+      "name": "29/phase:fixed training budget",
+      "passed": true
+    },
+    {
+      "name": "29/phase:admissions fixed ACT16",
+      "passed": true
+    },
+    {
+      "name": "29/phase:unique coverage bounded",
+      "passed": true
+    },
+    {
+      "name": "29/phase:full frozen state",
+      "passed": true
+    },
+    {
+      "name": "29/phase:all frozen buffers",
+      "passed": true
+    },
+    {
+      "name": "29/phase:actor initial digest",
+      "passed": true
+    },
+    {
+      "name": "29/phase:actor final digest",
+      "passed": true
+    },
+    {
+      "name": "29/phase:actor learned",
+      "passed": true
+    },
+    {
+      "name": "29/phase:actor parameter count",
+      "passed": true
+    },
+    {
+      "name": "29/phase:teacher budget",
+      "passed": true
+    },
+    {
+      "name": "29/phase:teacher1:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "29/phase:teacher1:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "29/phase:teacher1:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "29/phase:teacher1:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "29/phase:teacher17:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "29/phase:teacher17:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "29/phase:teacher17:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "29/phase:teacher17:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "29/phase:teacher34:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "29/phase:teacher34:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "29/phase:teacher34:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "29/phase:teacher34:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "29/phase:teacher51:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "29/phase:teacher51:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "29/phase:teacher51:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "29/phase:teacher51:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "29/phase:teacher68:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "29/phase:teacher68:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "29/phase:teacher68:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "29/phase:teacher68:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "29/phase:teacher85:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "29/phase:teacher85:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "29/phase:teacher85:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "29/phase:teacher85:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "29/phase:teacher102:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "29/phase:teacher102:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "29/phase:teacher102:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "29/phase:teacher102:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "29/phase:teacher119:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "29/phase:teacher119:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "29/phase:teacher119:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "29/phase:teacher119:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "29/phase:teacher136:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "29/phase:teacher136:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "29/phase:teacher136:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "29/phase:teacher136:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "29/phase:teacher153:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "29/phase:teacher153:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "29/phase:teacher153:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "29/phase:teacher153:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "29/phase:teacher170:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "29/phase:teacher170:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "29/phase:teacher170:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "29/phase:teacher170:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "29/phase:teacher187:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "29/phase:teacher187:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "29/phase:teacher187:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "29/phase:teacher187:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "29/phase:teacher204:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "29/phase:teacher204:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "29/phase:teacher204:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "29/phase:teacher204:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "29/phase:teacher221:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "29/phase:teacher221:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "29/phase:teacher221:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "29/phase:teacher221:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "29/phase:teacher238:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "29/phase:teacher238:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "29/phase:teacher238:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "29/phase:teacher238:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "29/phase:teacher255:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "29/phase:teacher255:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "29/phase:teacher255:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "29/phase:teacher255:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "29/phase:teacher272:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "29/phase:teacher272:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "29/phase:teacher272:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "29/phase:teacher272:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "29/phase:teacher289:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "29/phase:teacher289:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "29/phase:teacher289:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "29/phase:teacher289:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "29/phase:finite global_logits",
+      "passed": true
+    },
+    {
+      "name": "29/phase:finite phase_logits",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:checkpoint ZIP CRC",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:metadata exact",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:fixed training budget",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:admissions fixed ACT16",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:unique coverage bounded",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:full frozen state",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:all frozen buffers",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:actor initial digest",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:actor final digest",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:actor learned",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:actor parameter count",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:teacher budget",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:teacher1:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:teacher1:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:teacher1:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:teacher1:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:teacher17:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:teacher17:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:teacher17:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:teacher17:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:teacher34:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:teacher34:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:teacher34:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:teacher34:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:teacher51:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:teacher51:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:teacher51:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:teacher51:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:teacher68:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:teacher68:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:teacher68:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:teacher68:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:teacher85:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:teacher85:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:teacher85:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:teacher85:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:teacher102:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:teacher102:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:teacher102:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:teacher102:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:teacher119:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:teacher119:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:teacher119:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:teacher119:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:teacher136:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:teacher136:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:teacher136:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:teacher136:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:teacher153:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:teacher153:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:teacher153:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:teacher153:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:teacher170:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:teacher170:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:teacher170:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:teacher170:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:teacher187:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:teacher187:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:teacher187:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:teacher187:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:teacher204:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:teacher204:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:teacher204:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:teacher204:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:teacher221:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:teacher221:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:teacher221:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:teacher221:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:teacher238:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:teacher238:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:teacher238:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:teacher238:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:teacher255:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:teacher255:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:teacher255:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:teacher255:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:teacher272:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:teacher272:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:teacher272:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:teacher272:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:teacher289:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:teacher289:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:teacher289:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:teacher289:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:finite queries",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:finite global_logits",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:finite phase_logits",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:finite project.weight",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:finite project.bias",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:finite cell_norm.weight",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:finite cell_norm.bias",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:finite row_position.weight",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:finite column_position.weight",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:finite box_position.weight",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:finite phase.weight",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:finite read.in_proj_weight",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:finite read.in_proj_bias",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:finite read.out_proj.weight",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:finite read.out_proj.bias",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:finite transformer.layers.0.self_attn.in_proj_weight",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:finite transformer.layers.0.self_attn.in_proj_bias",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:finite transformer.layers.0.self_attn.out_proj.weight",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:finite transformer.layers.0.self_attn.out_proj.bias",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:finite transformer.layers.0.linear1.weight",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:finite transformer.layers.0.linear1.bias",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:finite transformer.layers.0.linear2.weight",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:finite transformer.layers.0.linear2.bias",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:finite transformer.layers.0.norm1.weight",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:finite transformer.layers.0.norm1.bias",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:finite transformer.layers.0.norm2.weight",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:finite transformer.layers.0.norm2.bias",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:finite transformer.layers.1.self_attn.in_proj_weight",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:finite transformer.layers.1.self_attn.in_proj_bias",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:finite transformer.layers.1.self_attn.out_proj.weight",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:finite transformer.layers.1.self_attn.out_proj.bias",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:finite transformer.layers.1.linear1.weight",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:finite transformer.layers.1.linear1.bias",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:finite transformer.layers.1.linear2.weight",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:finite transformer.layers.1.linear2.bias",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:finite transformer.layers.1.norm1.weight",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:finite transformer.layers.1.norm1.bias",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:finite transformer.layers.1.norm2.weight",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:finite transformer.layers.1.norm2.bias",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:finite memory_cell.weight_ih",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:finite memory_cell.weight_hh",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:finite memory_cell.bias_ih",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:finite memory_cell.bias_hh",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:finite output_norm.weight",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:finite output_norm.bias",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:finite head.weight",
+      "passed": true
+    },
+    {
+      "name": "29/pooled:finite head.bias",
+      "passed": true
+    },
+    {
+      "name": "29/revised:checkpoint ZIP CRC",
+      "passed": true
+    },
+    {
+      "name": "29/revised:metadata exact",
+      "passed": true
+    },
+    {
+      "name": "29/revised:fixed training budget",
+      "passed": true
+    },
+    {
+      "name": "29/revised:admissions fixed ACT16",
+      "passed": true
+    },
+    {
+      "name": "29/revised:unique coverage bounded",
+      "passed": true
+    },
+    {
+      "name": "29/revised:full frozen state",
+      "passed": true
+    },
+    {
+      "name": "29/revised:all frozen buffers",
+      "passed": true
+    },
+    {
+      "name": "29/revised:actor initial digest",
+      "passed": true
+    },
+    {
+      "name": "29/revised:actor final digest",
+      "passed": true
+    },
+    {
+      "name": "29/revised:actor learned",
+      "passed": true
+    },
+    {
+      "name": "29/revised:actor parameter count",
+      "passed": true
+    },
+    {
+      "name": "29/revised:teacher budget",
+      "passed": true
+    },
+    {
+      "name": "29/revised:teacher1:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "29/revised:teacher1:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "29/revised:teacher1:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "29/revised:teacher1:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "29/revised:teacher17:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "29/revised:teacher17:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "29/revised:teacher17:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "29/revised:teacher17:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "29/revised:teacher34:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "29/revised:teacher34:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "29/revised:teacher34:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "29/revised:teacher34:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "29/revised:teacher51:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "29/revised:teacher51:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "29/revised:teacher51:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "29/revised:teacher51:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "29/revised:teacher68:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "29/revised:teacher68:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "29/revised:teacher68:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "29/revised:teacher68:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "29/revised:teacher85:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "29/revised:teacher85:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "29/revised:teacher85:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "29/revised:teacher85:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "29/revised:teacher102:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "29/revised:teacher102:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "29/revised:teacher102:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "29/revised:teacher102:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "29/revised:teacher119:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "29/revised:teacher119:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "29/revised:teacher119:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "29/revised:teacher119:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "29/revised:teacher136:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "29/revised:teacher136:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "29/revised:teacher136:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "29/revised:teacher136:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "29/revised:teacher153:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "29/revised:teacher153:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "29/revised:teacher153:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "29/revised:teacher153:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "29/revised:teacher170:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "29/revised:teacher170:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "29/revised:teacher170:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "29/revised:teacher170:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "29/revised:teacher187:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "29/revised:teacher187:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "29/revised:teacher187:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "29/revised:teacher187:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "29/revised:teacher204:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "29/revised:teacher204:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "29/revised:teacher204:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "29/revised:teacher204:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "29/revised:teacher221:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "29/revised:teacher221:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "29/revised:teacher221:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "29/revised:teacher221:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "29/revised:teacher238:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "29/revised:teacher238:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "29/revised:teacher238:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "29/revised:teacher238:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "29/revised:teacher255:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "29/revised:teacher255:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "29/revised:teacher255:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "29/revised:teacher255:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "29/revised:teacher272:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "29/revised:teacher272:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "29/revised:teacher272:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "29/revised:teacher272:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "29/revised:teacher289:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "29/revised:teacher289:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "29/revised:teacher289:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "29/revised:teacher289:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "29/revised:finite queries",
+      "passed": true
+    },
+    {
+      "name": "29/revised:finite global_logits",
+      "passed": true
+    },
+    {
+      "name": "29/revised:finite phase_logits",
+      "passed": true
+    },
+    {
+      "name": "29/revised:finite project.weight",
+      "passed": true
+    },
+    {
+      "name": "29/revised:finite project.bias",
+      "passed": true
+    },
+    {
+      "name": "29/revised:finite cell_norm.weight",
+      "passed": true
+    },
+    {
+      "name": "29/revised:finite cell_norm.bias",
+      "passed": true
+    },
+    {
+      "name": "29/revised:finite row_position.weight",
+      "passed": true
+    },
+    {
+      "name": "29/revised:finite column_position.weight",
+      "passed": true
+    },
+    {
+      "name": "29/revised:finite box_position.weight",
+      "passed": true
+    },
+    {
+      "name": "29/revised:finite phase.weight",
+      "passed": true
+    },
+    {
+      "name": "29/revised:finite read.in_proj_weight",
+      "passed": true
+    },
+    {
+      "name": "29/revised:finite read.in_proj_bias",
+      "passed": true
+    },
+    {
+      "name": "29/revised:finite read.out_proj.weight",
+      "passed": true
+    },
+    {
+      "name": "29/revised:finite read.out_proj.bias",
+      "passed": true
+    },
+    {
+      "name": "29/revised:finite transformer.layers.0.self_attn.in_proj_weight",
+      "passed": true
+    },
+    {
+      "name": "29/revised:finite transformer.layers.0.self_attn.in_proj_bias",
+      "passed": true
+    },
+    {
+      "name": "29/revised:finite transformer.layers.0.self_attn.out_proj.weight",
+      "passed": true
+    },
+    {
+      "name": "29/revised:finite transformer.layers.0.self_attn.out_proj.bias",
+      "passed": true
+    },
+    {
+      "name": "29/revised:finite transformer.layers.0.linear1.weight",
+      "passed": true
+    },
+    {
+      "name": "29/revised:finite transformer.layers.0.linear1.bias",
+      "passed": true
+    },
+    {
+      "name": "29/revised:finite transformer.layers.0.linear2.weight",
+      "passed": true
+    },
+    {
+      "name": "29/revised:finite transformer.layers.0.linear2.bias",
+      "passed": true
+    },
+    {
+      "name": "29/revised:finite transformer.layers.0.norm1.weight",
+      "passed": true
+    },
+    {
+      "name": "29/revised:finite transformer.layers.0.norm1.bias",
+      "passed": true
+    },
+    {
+      "name": "29/revised:finite transformer.layers.0.norm2.weight",
+      "passed": true
+    },
+    {
+      "name": "29/revised:finite transformer.layers.0.norm2.bias",
+      "passed": true
+    },
+    {
+      "name": "29/revised:finite transformer.layers.1.self_attn.in_proj_weight",
+      "passed": true
+    },
+    {
+      "name": "29/revised:finite transformer.layers.1.self_attn.in_proj_bias",
+      "passed": true
+    },
+    {
+      "name": "29/revised:finite transformer.layers.1.self_attn.out_proj.weight",
+      "passed": true
+    },
+    {
+      "name": "29/revised:finite transformer.layers.1.self_attn.out_proj.bias",
+      "passed": true
+    },
+    {
+      "name": "29/revised:finite transformer.layers.1.linear1.weight",
+      "passed": true
+    },
+    {
+      "name": "29/revised:finite transformer.layers.1.linear1.bias",
+      "passed": true
+    },
+    {
+      "name": "29/revised:finite transformer.layers.1.linear2.weight",
+      "passed": true
+    },
+    {
+      "name": "29/revised:finite transformer.layers.1.linear2.bias",
+      "passed": true
+    },
+    {
+      "name": "29/revised:finite transformer.layers.1.norm1.weight",
+      "passed": true
+    },
+    {
+      "name": "29/revised:finite transformer.layers.1.norm1.bias",
+      "passed": true
+    },
+    {
+      "name": "29/revised:finite transformer.layers.1.norm2.weight",
+      "passed": true
+    },
+    {
+      "name": "29/revised:finite transformer.layers.1.norm2.bias",
+      "passed": true
+    },
+    {
+      "name": "29/revised:finite memory_cell.weight_ih",
+      "passed": true
+    },
+    {
+      "name": "29/revised:finite memory_cell.weight_hh",
+      "passed": true
+    },
+    {
+      "name": "29/revised:finite memory_cell.bias_ih",
+      "passed": true
+    },
+    {
+      "name": "29/revised:finite memory_cell.bias_hh",
+      "passed": true
+    },
+    {
+      "name": "29/revised:finite output_norm.weight",
+      "passed": true
+    },
+    {
+      "name": "29/revised:finite output_norm.bias",
+      "passed": true
+    },
+    {
+      "name": "29/revised:finite head.weight",
+      "passed": true
+    },
+    {
+      "name": "29/revised:finite head.bias",
+      "passed": true
+    },
+    {
+      "name": "29/activation:checkpoint ZIP CRC",
+      "passed": true
+    },
+    {
+      "name": "29/activation:metadata exact",
+      "passed": true
+    },
+    {
+      "name": "29/activation:fixed training budget",
+      "passed": true
+    },
+    {
+      "name": "29/activation:admissions fixed ACT16",
+      "passed": true
+    },
+    {
+      "name": "29/activation:unique coverage bounded",
+      "passed": true
+    },
+    {
+      "name": "29/activation:full frozen state",
+      "passed": true
+    },
+    {
+      "name": "29/activation:all frozen buffers",
+      "passed": true
+    },
+    {
+      "name": "29/activation:actor initial digest",
+      "passed": true
+    },
+    {
+      "name": "29/activation:actor final digest",
+      "passed": true
+    },
+    {
+      "name": "29/activation:actor learned",
+      "passed": true
+    },
+    {
+      "name": "29/activation:actor parameter count",
+      "passed": true
+    },
+    {
+      "name": "29/activation:teacher budget",
+      "passed": true
+    },
+    {
+      "name": "29/activation:teacher1:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "29/activation:teacher1:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "29/activation:teacher1:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "29/activation:teacher1:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "29/activation:teacher17:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "29/activation:teacher17:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "29/activation:teacher17:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "29/activation:teacher17:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "29/activation:teacher34:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "29/activation:teacher34:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "29/activation:teacher34:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "29/activation:teacher34:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "29/activation:teacher51:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "29/activation:teacher51:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "29/activation:teacher51:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "29/activation:teacher51:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "29/activation:teacher68:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "29/activation:teacher68:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "29/activation:teacher68:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "29/activation:teacher68:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "29/activation:teacher85:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "29/activation:teacher85:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "29/activation:teacher85:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "29/activation:teacher85:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "29/activation:teacher102:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "29/activation:teacher102:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "29/activation:teacher102:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "29/activation:teacher102:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "29/activation:teacher119:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "29/activation:teacher119:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "29/activation:teacher119:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "29/activation:teacher119:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "29/activation:teacher136:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "29/activation:teacher136:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "29/activation:teacher136:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "29/activation:teacher136:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "29/activation:teacher153:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "29/activation:teacher153:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "29/activation:teacher153:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "29/activation:teacher153:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "29/activation:teacher170:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "29/activation:teacher170:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "29/activation:teacher170:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "29/activation:teacher170:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "29/activation:teacher187:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "29/activation:teacher187:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "29/activation:teacher187:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "29/activation:teacher187:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "29/activation:teacher204:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "29/activation:teacher204:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "29/activation:teacher204:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "29/activation:teacher204:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "29/activation:teacher221:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "29/activation:teacher221:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "29/activation:teacher221:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "29/activation:teacher221:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "29/activation:teacher238:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "29/activation:teacher238:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "29/activation:teacher238:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "29/activation:teacher238:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "29/activation:teacher255:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "29/activation:teacher255:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "29/activation:teacher255:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "29/activation:teacher255:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "29/activation:teacher272:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "29/activation:teacher272:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "29/activation:teacher272:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "29/activation:teacher272:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "29/activation:teacher289:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "29/activation:teacher289:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "29/activation:teacher289:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "29/activation:teacher289:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "29/activation:finite queries",
+      "passed": true
+    },
+    {
+      "name": "29/activation:finite global_logits",
+      "passed": true
+    },
+    {
+      "name": "29/activation:finite phase_logits",
+      "passed": true
+    },
+    {
+      "name": "29/activation:finite project.weight",
+      "passed": true
+    },
+    {
+      "name": "29/activation:finite project.bias",
+      "passed": true
+    },
+    {
+      "name": "29/activation:finite cell_norm.weight",
+      "passed": true
+    },
+    {
+      "name": "29/activation:finite cell_norm.bias",
+      "passed": true
+    },
+    {
+      "name": "29/activation:finite row_position.weight",
+      "passed": true
+    },
+    {
+      "name": "29/activation:finite column_position.weight",
+      "passed": true
+    },
+    {
+      "name": "29/activation:finite box_position.weight",
+      "passed": true
+    },
+    {
+      "name": "29/activation:finite phase.weight",
+      "passed": true
+    },
+    {
+      "name": "29/activation:finite read.in_proj_weight",
+      "passed": true
+    },
+    {
+      "name": "29/activation:finite read.in_proj_bias",
+      "passed": true
+    },
+    {
+      "name": "29/activation:finite read.out_proj.weight",
+      "passed": true
+    },
+    {
+      "name": "29/activation:finite read.out_proj.bias",
+      "passed": true
+    },
+    {
+      "name": "29/activation:finite transformer.layers.0.self_attn.in_proj_weight",
+      "passed": true
+    },
+    {
+      "name": "29/activation:finite transformer.layers.0.self_attn.in_proj_bias",
+      "passed": true
+    },
+    {
+      "name": "29/activation:finite transformer.layers.0.self_attn.out_proj.weight",
+      "passed": true
+    },
+    {
+      "name": "29/activation:finite transformer.layers.0.self_attn.out_proj.bias",
+      "passed": true
+    },
+    {
+      "name": "29/activation:finite transformer.layers.0.linear1.weight",
+      "passed": true
+    },
+    {
+      "name": "29/activation:finite transformer.layers.0.linear1.bias",
+      "passed": true
+    },
+    {
+      "name": "29/activation:finite transformer.layers.0.linear2.weight",
+      "passed": true
+    },
+    {
+      "name": "29/activation:finite transformer.layers.0.linear2.bias",
+      "passed": true
+    },
+    {
+      "name": "29/activation:finite transformer.layers.0.norm1.weight",
+      "passed": true
+    },
+    {
+      "name": "29/activation:finite transformer.layers.0.norm1.bias",
+      "passed": true
+    },
+    {
+      "name": "29/activation:finite transformer.layers.0.norm2.weight",
+      "passed": true
+    },
+    {
+      "name": "29/activation:finite transformer.layers.0.norm2.bias",
+      "passed": true
+    },
+    {
+      "name": "29/activation:finite transformer.layers.1.self_attn.in_proj_weight",
+      "passed": true
+    },
+    {
+      "name": "29/activation:finite transformer.layers.1.self_attn.in_proj_bias",
+      "passed": true
+    },
+    {
+      "name": "29/activation:finite transformer.layers.1.self_attn.out_proj.weight",
+      "passed": true
+    },
+    {
+      "name": "29/activation:finite transformer.layers.1.self_attn.out_proj.bias",
+      "passed": true
+    },
+    {
+      "name": "29/activation:finite transformer.layers.1.linear1.weight",
+      "passed": true
+    },
+    {
+      "name": "29/activation:finite transformer.layers.1.linear1.bias",
+      "passed": true
+    },
+    {
+      "name": "29/activation:finite transformer.layers.1.linear2.weight",
+      "passed": true
+    },
+    {
+      "name": "29/activation:finite transformer.layers.1.linear2.bias",
+      "passed": true
+    },
+    {
+      "name": "29/activation:finite transformer.layers.1.norm1.weight",
+      "passed": true
+    },
+    {
+      "name": "29/activation:finite transformer.layers.1.norm1.bias",
+      "passed": true
+    },
+    {
+      "name": "29/activation:finite transformer.layers.1.norm2.weight",
+      "passed": true
+    },
+    {
+      "name": "29/activation:finite transformer.layers.1.norm2.bias",
+      "passed": true
+    },
+    {
+      "name": "29/activation:finite memory_cell.weight_ih",
+      "passed": true
+    },
+    {
+      "name": "29/activation:finite memory_cell.weight_hh",
+      "passed": true
+    },
+    {
+      "name": "29/activation:finite memory_cell.bias_ih",
+      "passed": true
+    },
+    {
+      "name": "29/activation:finite memory_cell.bias_hh",
+      "passed": true
+    },
+    {
+      "name": "29/activation:finite output_norm.weight",
+      "passed": true
+    },
+    {
+      "name": "29/activation:finite output_norm.bias",
+      "passed": true
+    },
+    {
+      "name": "29/activation:finite head.weight",
+      "passed": true
+    },
+    {
+      "name": "29/activation:finite head.bias",
+      "passed": true
+    },
+    {
+      "name": "43:four controls",
+      "passed": true
+    },
+    {
+      "name": "43:candidate stream matched",
+      "passed": true
+    },
+    {
+      "name": "43:admitted stream matched",
+      "passed": true
+    },
+    {
+      "name": "43:controller initial tensors matched",
+      "passed": true
+    },
+    {
+      "name": "43:controller parameter counts matched",
+      "passed": true
+    },
+    {
+      "name": "43/phase:checkpoint ZIP CRC",
+      "passed": true
+    },
+    {
+      "name": "43/phase:metadata exact",
+      "passed": true
+    },
+    {
+      "name": "43/phase:fixed training budget",
+      "passed": true
+    },
+    {
+      "name": "43/phase:admissions fixed ACT16",
+      "passed": true
+    },
+    {
+      "name": "43/phase:unique coverage bounded",
+      "passed": true
+    },
+    {
+      "name": "43/phase:full frozen state",
+      "passed": true
+    },
+    {
+      "name": "43/phase:all frozen buffers",
+      "passed": true
+    },
+    {
+      "name": "43/phase:actor initial digest",
+      "passed": true
+    },
+    {
+      "name": "43/phase:actor final digest",
+      "passed": true
+    },
+    {
+      "name": "43/phase:actor learned",
+      "passed": true
+    },
+    {
+      "name": "43/phase:actor parameter count",
+      "passed": true
+    },
+    {
+      "name": "43/phase:teacher budget",
+      "passed": true
+    },
+    {
+      "name": "43/phase:teacher1:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "43/phase:teacher1:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "43/phase:teacher1:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "43/phase:teacher1:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "43/phase:teacher17:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "43/phase:teacher17:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "43/phase:teacher17:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "43/phase:teacher17:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "43/phase:teacher34:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "43/phase:teacher34:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "43/phase:teacher34:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "43/phase:teacher34:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "43/phase:teacher51:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "43/phase:teacher51:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "43/phase:teacher51:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "43/phase:teacher51:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "43/phase:teacher68:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "43/phase:teacher68:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "43/phase:teacher68:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "43/phase:teacher68:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "43/phase:teacher85:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "43/phase:teacher85:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "43/phase:teacher85:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "43/phase:teacher85:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "43/phase:teacher102:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "43/phase:teacher102:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "43/phase:teacher102:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "43/phase:teacher102:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "43/phase:teacher119:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "43/phase:teacher119:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "43/phase:teacher119:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "43/phase:teacher119:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "43/phase:teacher136:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "43/phase:teacher136:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "43/phase:teacher136:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "43/phase:teacher136:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "43/phase:teacher153:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "43/phase:teacher153:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "43/phase:teacher153:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "43/phase:teacher153:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "43/phase:teacher170:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "43/phase:teacher170:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "43/phase:teacher170:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "43/phase:teacher170:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "43/phase:teacher187:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "43/phase:teacher187:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "43/phase:teacher187:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "43/phase:teacher187:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "43/phase:teacher204:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "43/phase:teacher204:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "43/phase:teacher204:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "43/phase:teacher204:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "43/phase:teacher221:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "43/phase:teacher221:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "43/phase:teacher221:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "43/phase:teacher221:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "43/phase:teacher238:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "43/phase:teacher238:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "43/phase:teacher238:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "43/phase:teacher238:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "43/phase:teacher255:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "43/phase:teacher255:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "43/phase:teacher255:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "43/phase:teacher255:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "43/phase:teacher272:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "43/phase:teacher272:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "43/phase:teacher272:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "43/phase:teacher272:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "43/phase:teacher289:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "43/phase:teacher289:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "43/phase:teacher289:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "43/phase:teacher289:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "43/phase:finite global_logits",
+      "passed": true
+    },
+    {
+      "name": "43/phase:finite phase_logits",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:checkpoint ZIP CRC",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:metadata exact",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:fixed training budget",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:admissions fixed ACT16",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:unique coverage bounded",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:full frozen state",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:all frozen buffers",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:actor initial digest",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:actor final digest",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:actor learned",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:actor parameter count",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:teacher budget",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:teacher1:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:teacher1:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:teacher1:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:teacher1:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:teacher17:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:teacher17:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:teacher17:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:teacher17:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:teacher34:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:teacher34:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:teacher34:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:teacher34:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:teacher51:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:teacher51:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:teacher51:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:teacher51:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:teacher68:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:teacher68:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:teacher68:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:teacher68:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:teacher85:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:teacher85:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:teacher85:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:teacher85:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:teacher102:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:teacher102:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:teacher102:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:teacher102:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:teacher119:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:teacher119:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:teacher119:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:teacher119:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:teacher136:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:teacher136:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:teacher136:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:teacher136:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:teacher153:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:teacher153:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:teacher153:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:teacher153:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:teacher170:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:teacher170:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:teacher170:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:teacher170:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:teacher187:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:teacher187:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:teacher187:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:teacher187:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:teacher204:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:teacher204:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:teacher204:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:teacher204:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:teacher221:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:teacher221:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:teacher221:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:teacher221:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:teacher238:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:teacher238:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:teacher238:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:teacher238:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:teacher255:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:teacher255:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:teacher255:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:teacher255:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:teacher272:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:teacher272:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:teacher272:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:teacher272:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:teacher289:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:teacher289:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:teacher289:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:teacher289:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:finite queries",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:finite global_logits",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:finite phase_logits",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:finite project.weight",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:finite project.bias",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:finite cell_norm.weight",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:finite cell_norm.bias",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:finite row_position.weight",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:finite column_position.weight",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:finite box_position.weight",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:finite phase.weight",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:finite read.in_proj_weight",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:finite read.in_proj_bias",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:finite read.out_proj.weight",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:finite read.out_proj.bias",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:finite transformer.layers.0.self_attn.in_proj_weight",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:finite transformer.layers.0.self_attn.in_proj_bias",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:finite transformer.layers.0.self_attn.out_proj.weight",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:finite transformer.layers.0.self_attn.out_proj.bias",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:finite transformer.layers.0.linear1.weight",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:finite transformer.layers.0.linear1.bias",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:finite transformer.layers.0.linear2.weight",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:finite transformer.layers.0.linear2.bias",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:finite transformer.layers.0.norm1.weight",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:finite transformer.layers.0.norm1.bias",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:finite transformer.layers.0.norm2.weight",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:finite transformer.layers.0.norm2.bias",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:finite transformer.layers.1.self_attn.in_proj_weight",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:finite transformer.layers.1.self_attn.in_proj_bias",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:finite transformer.layers.1.self_attn.out_proj.weight",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:finite transformer.layers.1.self_attn.out_proj.bias",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:finite transformer.layers.1.linear1.weight",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:finite transformer.layers.1.linear1.bias",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:finite transformer.layers.1.linear2.weight",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:finite transformer.layers.1.linear2.bias",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:finite transformer.layers.1.norm1.weight",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:finite transformer.layers.1.norm1.bias",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:finite transformer.layers.1.norm2.weight",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:finite transformer.layers.1.norm2.bias",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:finite memory_cell.weight_ih",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:finite memory_cell.weight_hh",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:finite memory_cell.bias_ih",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:finite memory_cell.bias_hh",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:finite output_norm.weight",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:finite output_norm.bias",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:finite head.weight",
+      "passed": true
+    },
+    {
+      "name": "43/pooled:finite head.bias",
+      "passed": true
+    },
+    {
+      "name": "43/revised:checkpoint ZIP CRC",
+      "passed": true
+    },
+    {
+      "name": "43/revised:metadata exact",
+      "passed": true
+    },
+    {
+      "name": "43/revised:fixed training budget",
+      "passed": true
+    },
+    {
+      "name": "43/revised:admissions fixed ACT16",
+      "passed": true
+    },
+    {
+      "name": "43/revised:unique coverage bounded",
+      "passed": true
+    },
+    {
+      "name": "43/revised:full frozen state",
+      "passed": true
+    },
+    {
+      "name": "43/revised:all frozen buffers",
+      "passed": true
+    },
+    {
+      "name": "43/revised:actor initial digest",
+      "passed": true
+    },
+    {
+      "name": "43/revised:actor final digest",
+      "passed": true
+    },
+    {
+      "name": "43/revised:actor learned",
+      "passed": true
+    },
+    {
+      "name": "43/revised:actor parameter count",
+      "passed": true
+    },
+    {
+      "name": "43/revised:teacher budget",
+      "passed": true
+    },
+    {
+      "name": "43/revised:teacher1:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "43/revised:teacher1:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "43/revised:teacher1:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "43/revised:teacher1:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "43/revised:teacher17:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "43/revised:teacher17:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "43/revised:teacher17:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "43/revised:teacher17:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "43/revised:teacher34:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "43/revised:teacher34:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "43/revised:teacher34:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "43/revised:teacher34:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "43/revised:teacher51:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "43/revised:teacher51:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "43/revised:teacher51:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "43/revised:teacher51:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "43/revised:teacher68:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "43/revised:teacher68:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "43/revised:teacher68:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "43/revised:teacher68:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "43/revised:teacher85:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "43/revised:teacher85:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "43/revised:teacher85:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "43/revised:teacher85:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "43/revised:teacher102:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "43/revised:teacher102:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "43/revised:teacher102:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "43/revised:teacher102:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "43/revised:teacher119:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "43/revised:teacher119:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "43/revised:teacher119:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "43/revised:teacher119:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "43/revised:teacher136:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "43/revised:teacher136:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "43/revised:teacher136:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "43/revised:teacher136:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "43/revised:teacher153:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "43/revised:teacher153:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "43/revised:teacher153:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "43/revised:teacher153:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "43/revised:teacher170:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "43/revised:teacher170:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "43/revised:teacher170:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "43/revised:teacher170:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "43/revised:teacher187:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "43/revised:teacher187:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "43/revised:teacher187:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "43/revised:teacher187:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "43/revised:teacher204:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "43/revised:teacher204:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "43/revised:teacher204:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "43/revised:teacher204:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "43/revised:teacher221:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "43/revised:teacher221:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "43/revised:teacher221:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "43/revised:teacher221:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "43/revised:teacher238:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "43/revised:teacher238:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "43/revised:teacher238:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "43/revised:teacher238:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "43/revised:teacher255:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "43/revised:teacher255:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "43/revised:teacher255:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "43/revised:teacher255:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "43/revised:teacher272:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "43/revised:teacher272:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "43/revised:teacher272:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "43/revised:teacher272:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "43/revised:teacher289:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "43/revised:teacher289:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "43/revised:teacher289:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "43/revised:teacher289:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "43/revised:finite queries",
+      "passed": true
+    },
+    {
+      "name": "43/revised:finite global_logits",
+      "passed": true
+    },
+    {
+      "name": "43/revised:finite phase_logits",
+      "passed": true
+    },
+    {
+      "name": "43/revised:finite project.weight",
+      "passed": true
+    },
+    {
+      "name": "43/revised:finite project.bias",
+      "passed": true
+    },
+    {
+      "name": "43/revised:finite cell_norm.weight",
+      "passed": true
+    },
+    {
+      "name": "43/revised:finite cell_norm.bias",
+      "passed": true
+    },
+    {
+      "name": "43/revised:finite row_position.weight",
+      "passed": true
+    },
+    {
+      "name": "43/revised:finite column_position.weight",
+      "passed": true
+    },
+    {
+      "name": "43/revised:finite box_position.weight",
+      "passed": true
+    },
+    {
+      "name": "43/revised:finite phase.weight",
+      "passed": true
+    },
+    {
+      "name": "43/revised:finite read.in_proj_weight",
+      "passed": true
+    },
+    {
+      "name": "43/revised:finite read.in_proj_bias",
+      "passed": true
+    },
+    {
+      "name": "43/revised:finite read.out_proj.weight",
+      "passed": true
+    },
+    {
+      "name": "43/revised:finite read.out_proj.bias",
+      "passed": true
+    },
+    {
+      "name": "43/revised:finite transformer.layers.0.self_attn.in_proj_weight",
+      "passed": true
+    },
+    {
+      "name": "43/revised:finite transformer.layers.0.self_attn.in_proj_bias",
+      "passed": true
+    },
+    {
+      "name": "43/revised:finite transformer.layers.0.self_attn.out_proj.weight",
+      "passed": true
+    },
+    {
+      "name": "43/revised:finite transformer.layers.0.self_attn.out_proj.bias",
+      "passed": true
+    },
+    {
+      "name": "43/revised:finite transformer.layers.0.linear1.weight",
+      "passed": true
+    },
+    {
+      "name": "43/revised:finite transformer.layers.0.linear1.bias",
+      "passed": true
+    },
+    {
+      "name": "43/revised:finite transformer.layers.0.linear2.weight",
+      "passed": true
+    },
+    {
+      "name": "43/revised:finite transformer.layers.0.linear2.bias",
+      "passed": true
+    },
+    {
+      "name": "43/revised:finite transformer.layers.0.norm1.weight",
+      "passed": true
+    },
+    {
+      "name": "43/revised:finite transformer.layers.0.norm1.bias",
+      "passed": true
+    },
+    {
+      "name": "43/revised:finite transformer.layers.0.norm2.weight",
+      "passed": true
+    },
+    {
+      "name": "43/revised:finite transformer.layers.0.norm2.bias",
+      "passed": true
+    },
+    {
+      "name": "43/revised:finite transformer.layers.1.self_attn.in_proj_weight",
+      "passed": true
+    },
+    {
+      "name": "43/revised:finite transformer.layers.1.self_attn.in_proj_bias",
+      "passed": true
+    },
+    {
+      "name": "43/revised:finite transformer.layers.1.self_attn.out_proj.weight",
+      "passed": true
+    },
+    {
+      "name": "43/revised:finite transformer.layers.1.self_attn.out_proj.bias",
+      "passed": true
+    },
+    {
+      "name": "43/revised:finite transformer.layers.1.linear1.weight",
+      "passed": true
+    },
+    {
+      "name": "43/revised:finite transformer.layers.1.linear1.bias",
+      "passed": true
+    },
+    {
+      "name": "43/revised:finite transformer.layers.1.linear2.weight",
+      "passed": true
+    },
+    {
+      "name": "43/revised:finite transformer.layers.1.linear2.bias",
+      "passed": true
+    },
+    {
+      "name": "43/revised:finite transformer.layers.1.norm1.weight",
+      "passed": true
+    },
+    {
+      "name": "43/revised:finite transformer.layers.1.norm1.bias",
+      "passed": true
+    },
+    {
+      "name": "43/revised:finite transformer.layers.1.norm2.weight",
+      "passed": true
+    },
+    {
+      "name": "43/revised:finite transformer.layers.1.norm2.bias",
+      "passed": true
+    },
+    {
+      "name": "43/revised:finite memory_cell.weight_ih",
+      "passed": true
+    },
+    {
+      "name": "43/revised:finite memory_cell.weight_hh",
+      "passed": true
+    },
+    {
+      "name": "43/revised:finite memory_cell.bias_ih",
+      "passed": true
+    },
+    {
+      "name": "43/revised:finite memory_cell.bias_hh",
+      "passed": true
+    },
+    {
+      "name": "43/revised:finite output_norm.weight",
+      "passed": true
+    },
+    {
+      "name": "43/revised:finite output_norm.bias",
+      "passed": true
+    },
+    {
+      "name": "43/revised:finite head.weight",
+      "passed": true
+    },
+    {
+      "name": "43/revised:finite head.bias",
+      "passed": true
+    },
+    {
+      "name": "43/activation:checkpoint ZIP CRC",
+      "passed": true
+    },
+    {
+      "name": "43/activation:metadata exact",
+      "passed": true
+    },
+    {
+      "name": "43/activation:fixed training budget",
+      "passed": true
+    },
+    {
+      "name": "43/activation:admissions fixed ACT16",
+      "passed": true
+    },
+    {
+      "name": "43/activation:unique coverage bounded",
+      "passed": true
+    },
+    {
+      "name": "43/activation:full frozen state",
+      "passed": true
+    },
+    {
+      "name": "43/activation:all frozen buffers",
+      "passed": true
+    },
+    {
+      "name": "43/activation:actor initial digest",
+      "passed": true
+    },
+    {
+      "name": "43/activation:actor final digest",
+      "passed": true
+    },
+    {
+      "name": "43/activation:actor learned",
+      "passed": true
+    },
+    {
+      "name": "43/activation:actor parameter count",
+      "passed": true
+    },
+    {
+      "name": "43/activation:teacher budget",
+      "passed": true
+    },
+    {
+      "name": "43/activation:teacher1:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "43/activation:teacher1:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "43/activation:teacher1:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "43/activation:teacher1:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "43/activation:teacher17:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "43/activation:teacher17:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "43/activation:teacher17:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "43/activation:teacher17:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "43/activation:teacher34:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "43/activation:teacher34:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "43/activation:teacher34:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "43/activation:teacher34:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "43/activation:teacher51:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "43/activation:teacher51:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "43/activation:teacher51:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "43/activation:teacher51:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "43/activation:teacher68:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "43/activation:teacher68:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "43/activation:teacher68:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "43/activation:teacher68:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "43/activation:teacher85:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "43/activation:teacher85:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "43/activation:teacher85:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "43/activation:teacher85:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "43/activation:teacher102:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "43/activation:teacher102:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "43/activation:teacher102:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "43/activation:teacher102:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "43/activation:teacher119:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "43/activation:teacher119:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "43/activation:teacher119:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "43/activation:teacher119:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "43/activation:teacher136:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "43/activation:teacher136:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "43/activation:teacher136:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "43/activation:teacher136:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "43/activation:teacher153:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "43/activation:teacher153:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "43/activation:teacher153:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "43/activation:teacher153:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "43/activation:teacher170:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "43/activation:teacher170:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "43/activation:teacher170:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "43/activation:teacher170:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "43/activation:teacher187:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "43/activation:teacher187:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "43/activation:teacher187:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "43/activation:teacher187:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "43/activation:teacher204:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "43/activation:teacher204:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "43/activation:teacher204:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "43/activation:teacher204:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "43/activation:teacher221:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "43/activation:teacher221:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "43/activation:teacher221:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "43/activation:teacher221:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "43/activation:teacher238:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "43/activation:teacher238:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "43/activation:teacher238:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "43/activation:teacher238:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "43/activation:teacher255:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "43/activation:teacher255:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "43/activation:teacher255:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "43/activation:teacher255:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "43/activation:teacher272:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "43/activation:teacher272:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "43/activation:teacher272:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "43/activation:teacher272:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "43/activation:teacher289:training-only IDs",
+      "passed": true
+    },
+    {
+      "name": "43/activation:teacher289:bounded target gates",
+      "passed": true
+    },
+    {
+      "name": "43/activation:teacher289:not worse than proposal",
+      "passed": true
+    },
+    {
+      "name": "43/activation:teacher289:zero candidate available",
+      "passed": true
+    },
+    {
+      "name": "43/activation:finite queries",
+      "passed": true
+    },
+    {
+      "name": "43/activation:finite global_logits",
+      "passed": true
+    },
+    {
+      "name": "43/activation:finite phase_logits",
+      "passed": true
+    },
+    {
+      "name": "43/activation:finite project.weight",
+      "passed": true
+    },
+    {
+      "name": "43/activation:finite project.bias",
+      "passed": true
+    },
+    {
+      "name": "43/activation:finite cell_norm.weight",
+      "passed": true
+    },
+    {
+      "name": "43/activation:finite cell_norm.bias",
+      "passed": true
+    },
+    {
+      "name": "43/activation:finite row_position.weight",
+      "passed": true
+    },
+    {
+      "name": "43/activation:finite column_position.weight",
+      "passed": true
+    },
+    {
+      "name": "43/activation:finite box_position.weight",
+      "passed": true
+    },
+    {
+      "name": "43/activation:finite phase.weight",
+      "passed": true
+    },
+    {
+      "name": "43/activation:finite read.in_proj_weight",
+      "passed": true
+    },
+    {
+      "name": "43/activation:finite read.in_proj_bias",
+      "passed": true
+    },
+    {
+      "name": "43/activation:finite read.out_proj.weight",
+      "passed": true
+    },
+    {
+      "name": "43/activation:finite read.out_proj.bias",
+      "passed": true
+    },
+    {
+      "name": "43/activation:finite transformer.layers.0.self_attn.in_proj_weight",
+      "passed": true
+    },
+    {
+      "name": "43/activation:finite transformer.layers.0.self_attn.in_proj_bias",
+      "passed": true
+    },
+    {
+      "name": "43/activation:finite transformer.layers.0.self_attn.out_proj.weight",
+      "passed": true
+    },
+    {
+      "name": "43/activation:finite transformer.layers.0.self_attn.out_proj.bias",
+      "passed": true
+    },
+    {
+      "name": "43/activation:finite transformer.layers.0.linear1.weight",
+      "passed": true
+    },
+    {
+      "name": "43/activation:finite transformer.layers.0.linear1.bias",
+      "passed": true
+    },
+    {
+      "name": "43/activation:finite transformer.layers.0.linear2.weight",
+      "passed": true
+    },
+    {
+      "name": "43/activation:finite transformer.layers.0.linear2.bias",
+      "passed": true
+    },
+    {
+      "name": "43/activation:finite transformer.layers.0.norm1.weight",
+      "passed": true
+    },
+    {
+      "name": "43/activation:finite transformer.layers.0.norm1.bias",
+      "passed": true
+    },
+    {
+      "name": "43/activation:finite transformer.layers.0.norm2.weight",
+      "passed": true
+    },
+    {
+      "name": "43/activation:finite transformer.layers.0.norm2.bias",
+      "passed": true
+    },
+    {
+      "name": "43/activation:finite transformer.layers.1.self_attn.in_proj_weight",
+      "passed": true
+    },
+    {
+      "name": "43/activation:finite transformer.layers.1.self_attn.in_proj_bias",
+      "passed": true
+    },
+    {
+      "name": "43/activation:finite transformer.layers.1.self_attn.out_proj.weight",
+      "passed": true
+    },
+    {
+      "name": "43/activation:finite transformer.layers.1.self_attn.out_proj.bias",
+      "passed": true
+    },
+    {
+      "name": "43/activation:finite transformer.layers.1.linear1.weight",
+      "passed": true
+    },
+    {
+      "name": "43/activation:finite transformer.layers.1.linear1.bias",
+      "passed": true
+    },
+    {
+      "name": "43/activation:finite transformer.layers.1.linear2.weight",
+      "passed": true
+    },
+    {
+      "name": "43/activation:finite transformer.layers.1.linear2.bias",
+      "passed": true
+    },
+    {
+      "name": "43/activation:finite transformer.layers.1.norm1.weight",
+      "passed": true
+    },
+    {
+      "name": "43/activation:finite transformer.layers.1.norm1.bias",
+      "passed": true
+    },
+    {
+      "name": "43/activation:finite transformer.layers.1.norm2.weight",
+      "passed": true
+    },
+    {
+      "name": "43/activation:finite transformer.layers.1.norm2.bias",
+      "passed": true
+    },
+    {
+      "name": "43/activation:finite memory_cell.weight_ih",
+      "passed": true
+    },
+    {
+      "name": "43/activation:finite memory_cell.weight_hh",
+      "passed": true
+    },
+    {
+      "name": "43/activation:finite memory_cell.bias_ih",
+      "passed": true
+    },
+    {
+      "name": "43/activation:finite memory_cell.bias_hh",
+      "passed": true
+    },
+    {
+      "name": "43/activation:finite output_norm.weight",
+      "passed": true
+    },
+    {
+      "name": "43/activation:finite output_norm.bias",
+      "passed": true
+    },
+    {
+      "name": "43/activation:finite head.weight",
+      "passed": true
+    },
+    {
+      "name": "43/activation:finite head.bias",
+      "passed": true
+    },
+    {
+      "name": "evaluation coverage",
+      "passed": true
+    },
+    {
+      "name": "off_29_off_dev:nonprivileged evaluation",
+      "passed": true
+    },
+    {
+      "name": "off_29_off_dev:same evaluation IDs",
+      "passed": true
+    },
+    {
+      "name": "off_29_off_dev:same evaluation inputs",
+      "passed": true
+    },
+    {
+      "name": "off_29_off_dev:same evaluation labels",
+      "passed": true
+    },
+    {
+      "name": "off_29_off_dev:recomputed blank_accuracy",
+      "passed": true
+    },
+    {
+      "name": "off_29_off_dev:recomputed all_accuracy",
+      "passed": true
+    },
+    {
+      "name": "off_29_off_dev:recomputed given_agreement",
+      "passed": true
+    },
+    {
+      "name": "off_29_off_dev:recomputed exact_accuracy",
+      "passed": true
+    },
+    {
+      "name": "off_29_off_dev:recomputed valid_grid_fraction",
+      "passed": true
+    },
+    {
+      "name": "off_29_off_dev:recomputed blank_cells",
+      "passed": true
+    },
+    {
+      "name": "off_29_off_dev:recomputed given_cells",
+      "passed": true
+    },
+    {
+      "name": "off_29_off_dev:recorded frozen_state_unchanged",
+      "passed": true
+    },
+    {
+      "name": "off_29_off_dev:recorded frozen_buffers_unchanged",
+      "passed": true
+    },
+    {
+      "name": "off_29_off_dev:recorded actor_parameters_unchanged",
+      "passed": true
+    },
+    {
+      "name": "off_29_off_dev:recorded runtime_gates_cleared",
+      "passed": true
+    },
+    {
+      "name": "off_29_off_dev:16ACT",
+      "passed": true
+    },
+    {
+      "name": "off_29_off_test:nonprivileged evaluation",
+      "passed": true
+    },
+    {
+      "name": "off_29_off_test:same evaluation IDs",
+      "passed": true
+    },
+    {
+      "name": "off_29_off_test:same evaluation inputs",
+      "passed": true
+    },
+    {
+      "name": "off_29_off_test:same evaluation labels",
+      "passed": true
+    },
+    {
+      "name": "off_29_off_test:recomputed blank_accuracy",
+      "passed": true
+    },
+    {
+      "name": "off_29_off_test:recomputed all_accuracy",
+      "passed": true
+    },
+    {
+      "name": "off_29_off_test:recomputed given_agreement",
+      "passed": true
+    },
+    {
+      "name": "off_29_off_test:recomputed exact_accuracy",
+      "passed": true
+    },
+    {
+      "name": "off_29_off_test:recomputed valid_grid_fraction",
+      "passed": true
+    },
+    {
+      "name": "off_29_off_test:recomputed blank_cells",
+      "passed": true
+    },
+    {
+      "name": "off_29_off_test:recomputed given_cells",
+      "passed": true
+    },
+    {
+      "name": "off_29_off_test:recorded frozen_state_unchanged",
+      "passed": true
+    },
+    {
+      "name": "off_29_off_test:recorded frozen_buffers_unchanged",
+      "passed": true
+    },
+    {
+      "name": "off_29_off_test:recorded actor_parameters_unchanged",
+      "passed": true
+    },
+    {
+      "name": "off_29_off_test:recorded runtime_gates_cleared",
+      "passed": true
+    },
+    {
+      "name": "off_29_off_test:16ACT",
+      "passed": true
+    },
+    {
+      "name": "phase_29_normal_dev:nonprivileged evaluation",
+      "passed": true
+    },
+    {
+      "name": "phase_29_normal_dev:same evaluation IDs",
+      "passed": true
+    },
+    {
+      "name": "phase_29_normal_dev:same evaluation inputs",
+      "passed": true
+    },
+    {
+      "name": "phase_29_normal_dev:same evaluation labels",
+      "passed": true
+    },
+    {
+      "name": "phase_29_normal_dev:recomputed blank_accuracy",
+      "passed": true
+    },
+    {
+      "name": "phase_29_normal_dev:recomputed all_accuracy",
+      "passed": true
+    },
+    {
+      "name": "phase_29_normal_dev:recomputed given_agreement",
+      "passed": true
+    },
+    {
+      "name": "phase_29_normal_dev:recomputed exact_accuracy",
+      "passed": true
+    },
+    {
+      "name": "phase_29_normal_dev:recomputed valid_grid_fraction",
+      "passed": true
+    },
+    {
+      "name": "phase_29_normal_dev:recomputed blank_cells",
+      "passed": true
+    },
+    {
+      "name": "phase_29_normal_dev:recomputed given_cells",
+      "passed": true
+    },
+    {
+      "name": "phase_29_normal_dev:recorded frozen_state_unchanged",
+      "passed": true
+    },
+    {
+      "name": "phase_29_normal_dev:recorded frozen_buffers_unchanged",
+      "passed": true
+    },
+    {
+      "name": "phase_29_normal_dev:recorded actor_parameters_unchanged",
+      "passed": true
+    },
+    {
+      "name": "phase_29_normal_dev:recorded runtime_gates_cleared",
+      "passed": true
+    },
+    {
+      "name": "phase_29_normal_dev:16ACT",
+      "passed": true
+    },
+    {
+      "name": "phase_29_normal_test:nonprivileged evaluation",
+      "passed": true
+    },
+    {
+      "name": "phase_29_normal_test:same evaluation IDs",
+      "passed": true
+    },
+    {
+      "name": "phase_29_normal_test:same evaluation inputs",
+      "passed": true
+    },
+    {
+      "name": "phase_29_normal_test:same evaluation labels",
+      "passed": true
+    },
+    {
+      "name": "phase_29_normal_test:recomputed blank_accuracy",
+      "passed": true
+    },
+    {
+      "name": "phase_29_normal_test:recomputed all_accuracy",
+      "passed": true
+    },
+    {
+      "name": "phase_29_normal_test:recomputed given_agreement",
+      "passed": true
+    },
+    {
+      "name": "phase_29_normal_test:recomputed exact_accuracy",
+      "passed": true
+    },
+    {
+      "name": "phase_29_normal_test:recomputed valid_grid_fraction",
+      "passed": true
+    },
+    {
+      "name": "phase_29_normal_test:recomputed blank_cells",
+      "passed": true
+    },
+    {
+      "name": "phase_29_normal_test:recomputed given_cells",
+      "passed": true
+    },
+    {
+      "name": "phase_29_normal_test:recorded frozen_state_unchanged",
+      "passed": true
+    },
+    {
+      "name": "phase_29_normal_test:recorded frozen_buffers_unchanged",
+      "passed": true
+    },
+    {
+      "name": "phase_29_normal_test:recorded actor_parameters_unchanged",
+      "passed": true
+    },
+    {
+      "name": "phase_29_normal_test:recorded runtime_gates_cleared",
+      "passed": true
+    },
+    {
+      "name": "phase_29_normal_test:16ACT",
+      "passed": true
+    },
+    {
+      "name": "pooled_29_normal_dev:nonprivileged evaluation",
+      "passed": true
+    },
+    {
+      "name": "pooled_29_normal_dev:same evaluation IDs",
+      "passed": true
+    },
+    {
+      "name": "pooled_29_normal_dev:same evaluation inputs",
+      "passed": true
+    },
+    {
+      "name": "pooled_29_normal_dev:same evaluation labels",
+      "passed": true
+    },
+    {
+      "name": "pooled_29_normal_dev:recomputed blank_accuracy",
+      "passed": true
+    },
+    {
+      "name": "pooled_29_normal_dev:recomputed all_accuracy",
+      "passed": true
+    },
+    {
+      "name": "pooled_29_normal_dev:recomputed given_agreement",
+      "passed": true
+    },
+    {
+      "name": "pooled_29_normal_dev:recomputed exact_accuracy",
+      "passed": true
+    },
+    {
+      "name": "pooled_29_normal_dev:recomputed valid_grid_fraction",
+      "passed": true
+    },
+    {
+      "name": "pooled_29_normal_dev:recomputed blank_cells",
+      "passed": true
+    },
+    {
+      "name": "pooled_29_normal_dev:recomputed given_cells",
+      "passed": true
+    },
+    {
+      "name": "pooled_29_normal_dev:recorded frozen_state_unchanged",
+      "passed": true
+    },
+    {
+      "name": "pooled_29_normal_dev:recorded frozen_buffers_unchanged",
+      "passed": true
+    },
+    {
+      "name": "pooled_29_normal_dev:recorded actor_parameters_unchanged",
+      "passed": true
+    },
+    {
+      "name": "pooled_29_normal_dev:recorded runtime_gates_cleared",
+      "passed": true
+    },
+    {
+      "name": "pooled_29_normal_dev:16ACT",
+      "passed": true
+    },
+    {
+      "name": "pooled_29_normal_test:nonprivileged evaluation",
+      "passed": true
+    },
+    {
+      "name": "pooled_29_normal_test:same evaluation IDs",
+      "passed": true
+    },
+    {
+      "name": "pooled_29_normal_test:same evaluation inputs",
+      "passed": true
+    },
+    {
+      "name": "pooled_29_normal_test:same evaluation labels",
+      "passed": true
+    },
+    {
+      "name": "pooled_29_normal_test:recomputed blank_accuracy",
+      "passed": true
+    },
+    {
+      "name": "pooled_29_normal_test:recomputed all_accuracy",
+      "passed": true
+    },
+    {
+      "name": "pooled_29_normal_test:recomputed given_agreement",
+      "passed": true
+    },
+    {
+      "name": "pooled_29_normal_test:recomputed exact_accuracy",
+      "passed": true
+    },
+    {
+      "name": "pooled_29_normal_test:recomputed valid_grid_fraction",
+      "passed": true
+    },
+    {
+      "name": "pooled_29_normal_test:recomputed blank_cells",
+      "passed": true
+    },
+    {
+      "name": "pooled_29_normal_test:recomputed given_cells",
+      "passed": true
+    },
+    {
+      "name": "pooled_29_normal_test:recorded frozen_state_unchanged",
+      "passed": true
+    },
+    {
+      "name": "pooled_29_normal_test:recorded frozen_buffers_unchanged",
+      "passed": true
+    },
+    {
+      "name": "pooled_29_normal_test:recorded actor_parameters_unchanged",
+      "passed": true
+    },
+    {
+      "name": "pooled_29_normal_test:recorded runtime_gates_cleared",
+      "passed": true
+    },
+    {
+      "name": "pooled_29_normal_test:16ACT",
+      "passed": true
+    },
+    {
+      "name": "revised_29_normal_dev:nonprivileged evaluation",
+      "passed": true
+    },
+    {
+      "name": "revised_29_normal_dev:same evaluation IDs",
+      "passed": true
+    },
+    {
+      "name": "revised_29_normal_dev:same evaluation inputs",
+      "passed": true
+    },
+    {
+      "name": "revised_29_normal_dev:same evaluation labels",
+      "passed": true
+    },
+    {
+      "name": "revised_29_normal_dev:recomputed blank_accuracy",
+      "passed": true
+    },
+    {
+      "name": "revised_29_normal_dev:recomputed all_accuracy",
+      "passed": true
+    },
+    {
+      "name": "revised_29_normal_dev:recomputed given_agreement",
+      "passed": true
+    },
+    {
+      "name": "revised_29_normal_dev:recomputed exact_accuracy",
+      "passed": true
+    },
+    {
+      "name": "revised_29_normal_dev:recomputed valid_grid_fraction",
+      "passed": true
+    },
+    {
+      "name": "revised_29_normal_dev:recomputed blank_cells",
+      "passed": true
+    },
+    {
+      "name": "revised_29_normal_dev:recomputed given_cells",
+      "passed": true
+    },
+    {
+      "name": "revised_29_normal_dev:recorded frozen_state_unchanged",
+      "passed": true
+    },
+    {
+      "name": "revised_29_normal_dev:recorded frozen_buffers_unchanged",
+      "passed": true
+    },
+    {
+      "name": "revised_29_normal_dev:recorded actor_parameters_unchanged",
+      "passed": true
+    },
+    {
+      "name": "revised_29_normal_dev:recorded runtime_gates_cleared",
+      "passed": true
+    },
+    {
+      "name": "revised_29_normal_dev:16ACT",
+      "passed": true
+    },
+    {
+      "name": "revised_29_normal_test:nonprivileged evaluation",
+      "passed": true
+    },
+    {
+      "name": "revised_29_normal_test:same evaluation IDs",
+      "passed": true
+    },
+    {
+      "name": "revised_29_normal_test:same evaluation inputs",
+      "passed": true
+    },
+    {
+      "name": "revised_29_normal_test:same evaluation labels",
+      "passed": true
+    },
+    {
+      "name": "revised_29_normal_test:recomputed blank_accuracy",
+      "passed": true
+    },
+    {
+      "name": "revised_29_normal_test:recomputed all_accuracy",
+      "passed": true
+    },
+    {
+      "name": "revised_29_normal_test:recomputed given_agreement",
+      "passed": true
+    },
+    {
+      "name": "revised_29_normal_test:recomputed exact_accuracy",
+      "passed": true
+    },
+    {
+      "name": "revised_29_normal_test:recomputed valid_grid_fraction",
+      "passed": true
+    },
+    {
+      "name": "revised_29_normal_test:recomputed blank_cells",
+      "passed": true
+    },
+    {
+      "name": "revised_29_normal_test:recomputed given_cells",
+      "passed": true
+    },
+    {
+      "name": "revised_29_normal_test:recorded frozen_state_unchanged",
+      "passed": true
+    },
+    {
+      "name": "revised_29_normal_test:recorded frozen_buffers_unchanged",
+      "passed": true
+    },
+    {
+      "name": "revised_29_normal_test:recorded actor_parameters_unchanged",
+      "passed": true
+    },
+    {
+      "name": "revised_29_normal_test:recorded runtime_gates_cleared",
+      "passed": true
+    },
+    {
+      "name": "revised_29_normal_test:16ACT",
+      "passed": true
+    },
+    {
+      "name": "activation_29_normal_dev:nonprivileged evaluation",
+      "passed": true
+    },
+    {
+      "name": "activation_29_normal_dev:same evaluation IDs",
+      "passed": true
+    },
+    {
+      "name": "activation_29_normal_dev:same evaluation inputs",
+      "passed": true
+    },
+    {
+      "name": "activation_29_normal_dev:same evaluation labels",
+      "passed": true
+    },
+    {
+      "name": "activation_29_normal_dev:recomputed blank_accuracy",
+      "passed": true
+    },
+    {
+      "name": "activation_29_normal_dev:recomputed all_accuracy",
+      "passed": true
+    },
+    {
+      "name": "activation_29_normal_dev:recomputed given_agreement",
+      "passed": true
+    },
+    {
+      "name": "activation_29_normal_dev:recomputed exact_accuracy",
+      "passed": true
+    },
+    {
+      "name": "activation_29_normal_dev:recomputed valid_grid_fraction",
+      "passed": true
+    },
+    {
+      "name": "activation_29_normal_dev:recomputed blank_cells",
+      "passed": true
+    },
+    {
+      "name": "activation_29_normal_dev:recomputed given_cells",
+      "passed": true
+    },
+    {
+      "name": "activation_29_normal_dev:recorded frozen_state_unchanged",
+      "passed": true
+    },
+    {
+      "name": "activation_29_normal_dev:recorded frozen_buffers_unchanged",
+      "passed": true
+    },
+    {
+      "name": "activation_29_normal_dev:recorded actor_parameters_unchanged",
+      "passed": true
+    },
+    {
+      "name": "activation_29_normal_dev:recorded runtime_gates_cleared",
+      "passed": true
+    },
+    {
+      "name": "activation_29_normal_dev:16ACT",
+      "passed": true
+    },
+    {
+      "name": "activation_29_normal_test:nonprivileged evaluation",
+      "passed": true
+    },
+    {
+      "name": "activation_29_normal_test:same evaluation IDs",
+      "passed": true
+    },
+    {
+      "name": "activation_29_normal_test:same evaluation inputs",
+      "passed": true
+    },
+    {
+      "name": "activation_29_normal_test:same evaluation labels",
+      "passed": true
+    },
+    {
+      "name": "activation_29_normal_test:recomputed blank_accuracy",
+      "passed": true
+    },
+    {
+      "name": "activation_29_normal_test:recomputed all_accuracy",
+      "passed": true
+    },
+    {
+      "name": "activation_29_normal_test:recomputed given_agreement",
+      "passed": true
+    },
+    {
+      "name": "activation_29_normal_test:recomputed exact_accuracy",
+      "passed": true
+    },
+    {
+      "name": "activation_29_normal_test:recomputed valid_grid_fraction",
+      "passed": true
+    },
+    {
+      "name": "activation_29_normal_test:recomputed blank_cells",
+      "passed": true
+    },
+    {
+      "name": "activation_29_normal_test:recomputed given_cells",
+      "passed": true
+    },
+    {
+      "name": "activation_29_normal_test:recorded frozen_state_unchanged",
+      "passed": true
+    },
+    {
+      "name": "activation_29_normal_test:recorded frozen_buffers_unchanged",
+      "passed": true
+    },
+    {
+      "name": "activation_29_normal_test:recorded actor_parameters_unchanged",
+      "passed": true
+    },
+    {
+      "name": "activation_29_normal_test:recorded runtime_gates_cleared",
+      "passed": true
+    },
+    {
+      "name": "activation_29_normal_test:16ACT",
+      "passed": true
+    },
+    {
+      "name": "revised_29_shuffle_test:nonprivileged evaluation",
+      "passed": true
+    },
+    {
+      "name": "revised_29_shuffle_test:same evaluation IDs",
+      "passed": true
+    },
+    {
+      "name": "revised_29_shuffle_test:same evaluation inputs",
+      "passed": true
+    },
+    {
+      "name": "revised_29_shuffle_test:same evaluation labels",
+      "passed": true
+    },
+    {
+      "name": "revised_29_shuffle_test:recomputed blank_accuracy",
+      "passed": true
+    },
+    {
+      "name": "revised_29_shuffle_test:recomputed all_accuracy",
+      "passed": true
+    },
+    {
+      "name": "revised_29_shuffle_test:recomputed given_agreement",
+      "passed": true
+    },
+    {
+      "name": "revised_29_shuffle_test:recomputed exact_accuracy",
+      "passed": true
+    },
+    {
+      "name": "revised_29_shuffle_test:recomputed valid_grid_fraction",
+      "passed": true
+    },
+    {
+      "name": "revised_29_shuffle_test:recomputed blank_cells",
+      "passed": true
+    },
+    {
+      "name": "revised_29_shuffle_test:recomputed given_cells",
+      "passed": true
+    },
+    {
+      "name": "revised_29_shuffle_test:recorded frozen_state_unchanged",
+      "passed": true
+    },
+    {
+      "name": "revised_29_shuffle_test:recorded frozen_buffers_unchanged",
+      "passed": true
+    },
+    {
+      "name": "revised_29_shuffle_test:recorded actor_parameters_unchanged",
+      "passed": true
+    },
+    {
+      "name": "revised_29_shuffle_test:recorded runtime_gates_cleared",
+      "passed": true
+    },
+    {
+      "name": "revised_29_shuffle_test:16ACT",
+      "passed": true
+    },
+    {
+      "name": "revised_29_phase_only_test:nonprivileged evaluation",
+      "passed": true
+    },
+    {
+      "name": "revised_29_phase_only_test:same evaluation IDs",
+      "passed": true
+    },
+    {
+      "name": "revised_29_phase_only_test:same evaluation inputs",
+      "passed": true
+    },
+    {
+      "name": "revised_29_phase_only_test:same evaluation labels",
+      "passed": true
+    },
+    {
+      "name": "revised_29_phase_only_test:recomputed blank_accuracy",
+      "passed": true
+    },
+    {
+      "name": "revised_29_phase_only_test:recomputed all_accuracy",
+      "passed": true
+    },
+    {
+      "name": "revised_29_phase_only_test:recomputed given_agreement",
+      "passed": true
+    },
+    {
+      "name": "revised_29_phase_only_test:recomputed exact_accuracy",
+      "passed": true
+    },
+    {
+      "name": "revised_29_phase_only_test:recomputed valid_grid_fraction",
+      "passed": true
+    },
+    {
+      "name": "revised_29_phase_only_test:recomputed blank_cells",
+      "passed": true
+    },
+    {
+      "name": "revised_29_phase_only_test:recomputed given_cells",
+      "passed": true
+    },
+    {
+      "name": "revised_29_phase_only_test:recorded frozen_state_unchanged",
+      "passed": true
+    },
+    {
+      "name": "revised_29_phase_only_test:recorded frozen_buffers_unchanged",
+      "passed": true
+    },
+    {
+      "name": "revised_29_phase_only_test:recorded actor_parameters_unchanged",
+      "passed": true
+    },
+    {
+      "name": "revised_29_phase_only_test:recorded runtime_gates_cleared",
+      "passed": true
+    },
+    {
+      "name": "revised_29_phase_only_test:16ACT",
+      "passed": true
+    },
+    {
+      "name": "revised_29_reset_memory_test:nonprivileged evaluation",
+      "passed": true
+    },
+    {
+      "name": "revised_29_reset_memory_test:same evaluation IDs",
+      "passed": true
+    },
+    {
+      "name": "revised_29_reset_memory_test:same evaluation inputs",
+      "passed": true
+    },
+    {
+      "name": "revised_29_reset_memory_test:same evaluation labels",
+      "passed": true
+    },
+    {
+      "name": "revised_29_reset_memory_test:recomputed blank_accuracy",
+      "passed": true
+    },
+    {
+      "name": "revised_29_reset_memory_test:recomputed all_accuracy",
+      "passed": true
+    },
+    {
+      "name": "revised_29_reset_memory_test:recomputed given_agreement",
+      "passed": true
+    },
+    {
+      "name": "revised_29_reset_memory_test:recomputed exact_accuracy",
+      "passed": true
+    },
+    {
+      "name": "revised_29_reset_memory_test:recomputed valid_grid_fraction",
+      "passed": true
+    },
+    {
+      "name": "revised_29_reset_memory_test:recomputed blank_cells",
+      "passed": true
+    },
+    {
+      "name": "revised_29_reset_memory_test:recomputed given_cells",
+      "passed": true
+    },
+    {
+      "name": "revised_29_reset_memory_test:recorded frozen_state_unchanged",
+      "passed": true
+    },
+    {
+      "name": "revised_29_reset_memory_test:recorded frozen_buffers_unchanged",
+      "passed": true
+    },
+    {
+      "name": "revised_29_reset_memory_test:recorded actor_parameters_unchanged",
+      "passed": true
+    },
+    {
+      "name": "revised_29_reset_memory_test:recorded runtime_gates_cleared",
+      "passed": true
+    },
+    {
+      "name": "revised_29_reset_memory_test:16ACT",
+      "passed": true
+    },
+    {
+      "name": "phase_43_normal_dev:nonprivileged evaluation",
+      "passed": true
+    },
+    {
+      "name": "phase_43_normal_dev:same evaluation IDs",
+      "passed": true
+    },
+    {
+      "name": "phase_43_normal_dev:same evaluation inputs",
+      "passed": true
+    },
+    {
+      "name": "phase_43_normal_dev:same evaluation labels",
+      "passed": true
+    },
+    {
+      "name": "phase_43_normal_dev:recomputed blank_accuracy",
+      "passed": true
+    },
+    {
+      "name": "phase_43_normal_dev:recomputed all_accuracy",
+      "passed": true
+    },
+    {
+      "name": "phase_43_normal_dev:recomputed given_agreement",
+      "passed": true
+    },
+    {
+      "name": "phase_43_normal_dev:recomputed exact_accuracy",
+      "passed": true
+    },
+    {
+      "name": "phase_43_normal_dev:recomputed valid_grid_fraction",
+      "passed": true
+    },
+    {
+      "name": "phase_43_normal_dev:recomputed blank_cells",
+      "passed": true
+    },
+    {
+      "name": "phase_43_normal_dev:recomputed given_cells",
+      "passed": true
+    },
+    {
+      "name": "phase_43_normal_dev:recorded frozen_state_unchanged",
+      "passed": true
+    },
+    {
+      "name": "phase_43_normal_dev:recorded frozen_buffers_unchanged",
+      "passed": true
+    },
+    {
+      "name": "phase_43_normal_dev:recorded actor_parameters_unchanged",
+      "passed": true
+    },
+    {
+      "name": "phase_43_normal_dev:recorded runtime_gates_cleared",
+      "passed": true
+    },
+    {
+      "name": "phase_43_normal_dev:16ACT",
+      "passed": true
+    },
+    {
+      "name": "phase_43_normal_test:nonprivileged evaluation",
+      "passed": true
+    },
+    {
+      "name": "phase_43_normal_test:same evaluation IDs",
+      "passed": true
+    },
+    {
+      "name": "phase_43_normal_test:same evaluation inputs",
+      "passed": true
+    },
+    {
+      "name": "phase_43_normal_test:same evaluation labels",
+      "passed": true
+    },
+    {
+      "name": "phase_43_normal_test:recomputed blank_accuracy",
+      "passed": true
+    },
+    {
+      "name": "phase_43_normal_test:recomputed all_accuracy",
+      "passed": true
+    },
+    {
+      "name": "phase_43_normal_test:recomputed given_agreement",
+      "passed": true
+    },
+    {
+      "name": "phase_43_normal_test:recomputed exact_accuracy",
+      "passed": true
+    },
+    {
+      "name": "phase_43_normal_test:recomputed valid_grid_fraction",
+      "passed": true
+    },
+    {
+      "name": "phase_43_normal_test:recomputed blank_cells",
+      "passed": true
+    },
+    {
+      "name": "phase_43_normal_test:recomputed given_cells",
+      "passed": true
+    },
+    {
+      "name": "phase_43_normal_test:recorded frozen_state_unchanged",
+      "passed": true
+    },
+    {
+      "name": "phase_43_normal_test:recorded frozen_buffers_unchanged",
+      "passed": true
+    },
+    {
+      "name": "phase_43_normal_test:recorded actor_parameters_unchanged",
+      "passed": true
+    },
+    {
+      "name": "phase_43_normal_test:recorded runtime_gates_cleared",
+      "passed": true
+    },
+    {
+      "name": "phase_43_normal_test:16ACT",
+      "passed": true
+    },
+    {
+      "name": "pooled_43_normal_dev:nonprivileged evaluation",
+      "passed": true
+    },
+    {
+      "name": "pooled_43_normal_dev:same evaluation IDs",
+      "passed": true
+    },
+    {
+      "name": "pooled_43_normal_dev:same evaluation inputs",
+      "passed": true
+    },
+    {
+      "name": "pooled_43_normal_dev:same evaluation labels",
+      "passed": true
+    },
+    {
+      "name": "pooled_43_normal_dev:recomputed blank_accuracy",
+      "passed": true
+    },
+    {
+      "name": "pooled_43_normal_dev:recomputed all_accuracy",
+      "passed": true
+    },
+    {
+      "name": "pooled_43_normal_dev:recomputed given_agreement",
+      "passed": true
+    },
+    {
+      "name": "pooled_43_normal_dev:recomputed exact_accuracy",
+      "passed": true
+    },
+    {
+      "name": "pooled_43_normal_dev:recomputed valid_grid_fraction",
+      "passed": true
+    },
+    {
+      "name": "pooled_43_normal_dev:recomputed blank_cells",
+      "passed": true
+    },
+    {
+      "name": "pooled_43_normal_dev:recomputed given_cells",
+      "passed": true
+    },
+    {
+      "name": "pooled_43_normal_dev:recorded frozen_state_unchanged",
+      "passed": true
+    },
+    {
+      "name": "pooled_43_normal_dev:recorded frozen_buffers_unchanged",
+      "passed": true
+    },
+    {
+      "name": "pooled_43_normal_dev:recorded actor_parameters_unchanged",
+      "passed": true
+    },
+    {
+      "name": "pooled_43_normal_dev:recorded runtime_gates_cleared",
+      "passed": true
+    },
+    {
+      "name": "pooled_43_normal_dev:16ACT",
+      "passed": true
+    },
+    {
+      "name": "pooled_43_normal_test:nonprivileged evaluation",
+      "passed": true
+    },
+    {
+      "name": "pooled_43_normal_test:same evaluation IDs",
+      "passed": true
+    },
+    {
+      "name": "pooled_43_normal_test:same evaluation inputs",
+      "passed": true
+    },
+    {
+      "name": "pooled_43_normal_test:same evaluation labels",
+      "passed": true
+    },
+    {
+      "name": "pooled_43_normal_test:recomputed blank_accuracy",
+      "passed": true
+    },
+    {
+      "name": "pooled_43_normal_test:recomputed all_accuracy",
+      "passed": true
+    },
+    {
+      "name": "pooled_43_normal_test:recomputed given_agreement",
+      "passed": true
+    },
+    {
+      "name": "pooled_43_normal_test:recomputed exact_accuracy",
+      "passed": true
+    },
+    {
+      "name": "pooled_43_normal_test:recomputed valid_grid_fraction",
+      "passed": true
+    },
+    {
+      "name": "pooled_43_normal_test:recomputed blank_cells",
+      "passed": true
+    },
+    {
+      "name": "pooled_43_normal_test:recomputed given_cells",
+      "passed": true
+    },
+    {
+      "name": "pooled_43_normal_test:recorded frozen_state_unchanged",
+      "passed": true
+    },
+    {
+      "name": "pooled_43_normal_test:recorded frozen_buffers_unchanged",
+      "passed": true
+    },
+    {
+      "name": "pooled_43_normal_test:recorded actor_parameters_unchanged",
+      "passed": true
+    },
+    {
+      "name": "pooled_43_normal_test:recorded runtime_gates_cleared",
+      "passed": true
+    },
+    {
+      "name": "pooled_43_normal_test:16ACT",
+      "passed": true
+    },
+    {
+      "name": "revised_43_normal_dev:nonprivileged evaluation",
+      "passed": true
+    },
+    {
+      "name": "revised_43_normal_dev:same evaluation IDs",
+      "passed": true
+    },
+    {
+      "name": "revised_43_normal_dev:same evaluation inputs",
+      "passed": true
+    },
+    {
+      "name": "revised_43_normal_dev:same evaluation labels",
+      "passed": true
+    },
+    {
+      "name": "revised_43_normal_dev:recomputed blank_accuracy",
+      "passed": true
+    },
+    {
+      "name": "revised_43_normal_dev:recomputed all_accuracy",
+      "passed": true
+    },
+    {
+      "name": "revised_43_normal_dev:recomputed given_agreement",
+      "passed": true
+    },
+    {
+      "name": "revised_43_normal_dev:recomputed exact_accuracy",
+      "passed": true
+    },
+    {
+      "name": "revised_43_normal_dev:recomputed valid_grid_fraction",
+      "passed": true
+    },
+    {
+      "name": "revised_43_normal_dev:recomputed blank_cells",
+      "passed": true
+    },
+    {
+      "name": "revised_43_normal_dev:recomputed given_cells",
+      "passed": true
+    },
+    {
+      "name": "revised_43_normal_dev:recorded frozen_state_unchanged",
+      "passed": true
+    },
+    {
+      "name": "revised_43_normal_dev:recorded frozen_buffers_unchanged",
+      "passed": true
+    },
+    {
+      "name": "revised_43_normal_dev:recorded actor_parameters_unchanged",
+      "passed": true
+    },
+    {
+      "name": "revised_43_normal_dev:recorded runtime_gates_cleared",
+      "passed": true
+    },
+    {
+      "name": "revised_43_normal_dev:16ACT",
+      "passed": true
+    },
+    {
+      "name": "revised_43_normal_test:nonprivileged evaluation",
+      "passed": true
+    },
+    {
+      "name": "revised_43_normal_test:same evaluation IDs",
+      "passed": true
+    },
+    {
+      "name": "revised_43_normal_test:same evaluation inputs",
+      "passed": true
+    },
+    {
+      "name": "revised_43_normal_test:same evaluation labels",
+      "passed": true
+    },
+    {
+      "name": "revised_43_normal_test:recomputed blank_accuracy",
+      "passed": true
+    },
+    {
+      "name": "revised_43_normal_test:recomputed all_accuracy",
+      "passed": true
+    },
+    {
+      "name": "revised_43_normal_test:recomputed given_agreement",
+      "passed": true
+    },
+    {
+      "name": "revised_43_normal_test:recomputed exact_accuracy",
+      "passed": true
+    },
+    {
+      "name": "revised_43_normal_test:recomputed valid_grid_fraction",
+      "passed": true
+    },
+    {
+      "name": "revised_43_normal_test:recomputed blank_cells",
+      "passed": true
+    },
+    {
+      "name": "revised_43_normal_test:recomputed given_cells",
+      "passed": true
+    },
+    {
+      "name": "revised_43_normal_test:recorded frozen_state_unchanged",
+      "passed": true
+    },
+    {
+      "name": "revised_43_normal_test:recorded frozen_buffers_unchanged",
+      "passed": true
+    },
+    {
+      "name": "revised_43_normal_test:recorded actor_parameters_unchanged",
+      "passed": true
+    },
+    {
+      "name": "revised_43_normal_test:recorded runtime_gates_cleared",
+      "passed": true
+    },
+    {
+      "name": "revised_43_normal_test:16ACT",
+      "passed": true
+    },
+    {
+      "name": "activation_43_normal_dev:nonprivileged evaluation",
+      "passed": true
+    },
+    {
+      "name": "activation_43_normal_dev:same evaluation IDs",
+      "passed": true
+    },
+    {
+      "name": "activation_43_normal_dev:same evaluation inputs",
+      "passed": true
+    },
+    {
+      "name": "activation_43_normal_dev:same evaluation labels",
+      "passed": true
+    },
+    {
+      "name": "activation_43_normal_dev:recomputed blank_accuracy",
+      "passed": true
+    },
+    {
+      "name": "activation_43_normal_dev:recomputed all_accuracy",
+      "passed": true
+    },
+    {
+      "name": "activation_43_normal_dev:recomputed given_agreement",
+      "passed": true
+    },
+    {
+      "name": "activation_43_normal_dev:recomputed exact_accuracy",
+      "passed": true
+    },
+    {
+      "name": "activation_43_normal_dev:recomputed valid_grid_fraction",
+      "passed": true
+    },
+    {
+      "name": "activation_43_normal_dev:recomputed blank_cells",
+      "passed": true
+    },
+    {
+      "name": "activation_43_normal_dev:recomputed given_cells",
+      "passed": true
+    },
+    {
+      "name": "activation_43_normal_dev:recorded frozen_state_unchanged",
+      "passed": true
+    },
+    {
+      "name": "activation_43_normal_dev:recorded frozen_buffers_unchanged",
+      "passed": true
+    },
+    {
+      "name": "activation_43_normal_dev:recorded actor_parameters_unchanged",
+      "passed": true
+    },
+    {
+      "name": "activation_43_normal_dev:recorded runtime_gates_cleared",
+      "passed": true
+    },
+    {
+      "name": "activation_43_normal_dev:16ACT",
+      "passed": true
+    },
+    {
+      "name": "activation_43_normal_test:nonprivileged evaluation",
+      "passed": true
+    },
+    {
+      "name": "activation_43_normal_test:same evaluation IDs",
+      "passed": true
+    },
+    {
+      "name": "activation_43_normal_test:same evaluation inputs",
+      "passed": true
+    },
+    {
+      "name": "activation_43_normal_test:same evaluation labels",
+      "passed": true
+    },
+    {
+      "name": "activation_43_normal_test:recomputed blank_accuracy",
+      "passed": true
+    },
+    {
+      "name": "activation_43_normal_test:recomputed all_accuracy",
+      "passed": true
+    },
+    {
+      "name": "activation_43_normal_test:recomputed given_agreement",
+      "passed": true
+    },
+    {
+      "name": "activation_43_normal_test:recomputed exact_accuracy",
+      "passed": true
+    },
+    {
+      "name": "activation_43_normal_test:recomputed valid_grid_fraction",
+      "passed": true
+    },
+    {
+      "name": "activation_43_normal_test:recomputed blank_cells",
+      "passed": true
+    },
+    {
+      "name": "activation_43_normal_test:recomputed given_cells",
+      "passed": true
+    },
+    {
+      "name": "activation_43_normal_test:recorded frozen_state_unchanged",
+      "passed": true
+    },
+    {
+      "name": "activation_43_normal_test:recorded frozen_buffers_unchanged",
+      "passed": true
+    },
+    {
+      "name": "activation_43_normal_test:recorded actor_parameters_unchanged",
+      "passed": true
+    },
+    {
+      "name": "activation_43_normal_test:recorded runtime_gates_cleared",
+      "passed": true
+    },
+    {
+      "name": "activation_43_normal_test:16ACT",
+      "passed": true
+    },
+    {
+      "name": "revised_43_shuffle_test:nonprivileged evaluation",
+      "passed": true
+    },
+    {
+      "name": "revised_43_shuffle_test:same evaluation IDs",
+      "passed": true
+    },
+    {
+      "name": "revised_43_shuffle_test:same evaluation inputs",
+      "passed": true
+    },
+    {
+      "name": "revised_43_shuffle_test:same evaluation labels",
+      "passed": true
+    },
+    {
+      "name": "revised_43_shuffle_test:recomputed blank_accuracy",
+      "passed": true
+    },
+    {
+      "name": "revised_43_shuffle_test:recomputed all_accuracy",
+      "passed": true
+    },
+    {
+      "name": "revised_43_shuffle_test:recomputed given_agreement",
+      "passed": true
+    },
+    {
+      "name": "revised_43_shuffle_test:recomputed exact_accuracy",
+      "passed": true
+    },
+    {
+      "name": "revised_43_shuffle_test:recomputed valid_grid_fraction",
+      "passed": true
+    },
+    {
+      "name": "revised_43_shuffle_test:recomputed blank_cells",
+      "passed": true
+    },
+    {
+      "name": "revised_43_shuffle_test:recomputed given_cells",
+      "passed": true
+    },
+    {
+      "name": "revised_43_shuffle_test:recorded frozen_state_unchanged",
+      "passed": true
+    },
+    {
+      "name": "revised_43_shuffle_test:recorded frozen_buffers_unchanged",
+      "passed": true
+    },
+    {
+      "name": "revised_43_shuffle_test:recorded actor_parameters_unchanged",
+      "passed": true
+    },
+    {
+      "name": "revised_43_shuffle_test:recorded runtime_gates_cleared",
+      "passed": true
+    },
+    {
+      "name": "revised_43_shuffle_test:16ACT",
+      "passed": true
+    },
+    {
+      "name": "revised_43_phase_only_test:nonprivileged evaluation",
+      "passed": true
+    },
+    {
+      "name": "revised_43_phase_only_test:same evaluation IDs",
+      "passed": true
+    },
+    {
+      "name": "revised_43_phase_only_test:same evaluation inputs",
+      "passed": true
+    },
+    {
+      "name": "revised_43_phase_only_test:same evaluation labels",
+      "passed": true
+    },
+    {
+      "name": "revised_43_phase_only_test:recomputed blank_accuracy",
+      "passed": true
+    },
+    {
+      "name": "revised_43_phase_only_test:recomputed all_accuracy",
+      "passed": true
+    },
+    {
+      "name": "revised_43_phase_only_test:recomputed given_agreement",
+      "passed": true
+    },
+    {
+      "name": "revised_43_phase_only_test:recomputed exact_accuracy",
+      "passed": true
+    },
+    {
+      "name": "revised_43_phase_only_test:recomputed valid_grid_fraction",
+      "passed": true
+    },
+    {
+      "name": "revised_43_phase_only_test:recomputed blank_cells",
+      "passed": true
+    },
+    {
+      "name": "revised_43_phase_only_test:recomputed given_cells",
+      "passed": true
+    },
+    {
+      "name": "revised_43_phase_only_test:recorded frozen_state_unchanged",
+      "passed": true
+    },
+    {
+      "name": "revised_43_phase_only_test:recorded frozen_buffers_unchanged",
+      "passed": true
+    },
+    {
+      "name": "revised_43_phase_only_test:recorded actor_parameters_unchanged",
+      "passed": true
+    },
+    {
+      "name": "revised_43_phase_only_test:recorded runtime_gates_cleared",
+      "passed": true
+    },
+    {
+      "name": "revised_43_phase_only_test:16ACT",
+      "passed": true
+    },
+    {
+      "name": "revised_43_reset_memory_test:nonprivileged evaluation",
+      "passed": true
+    },
+    {
+      "name": "revised_43_reset_memory_test:same evaluation IDs",
+      "passed": true
+    },
+    {
+      "name": "revised_43_reset_memory_test:same evaluation inputs",
+      "passed": true
+    },
+    {
+      "name": "revised_43_reset_memory_test:same evaluation labels",
+      "passed": true
+    },
+    {
+      "name": "revised_43_reset_memory_test:recomputed blank_accuracy",
+      "passed": true
+    },
+    {
+      "name": "revised_43_reset_memory_test:recomputed all_accuracy",
+      "passed": true
+    },
+    {
+      "name": "revised_43_reset_memory_test:recomputed given_agreement",
+      "passed": true
+    },
+    {
+      "name": "revised_43_reset_memory_test:recomputed exact_accuracy",
+      "passed": true
+    },
+    {
+      "name": "revised_43_reset_memory_test:recomputed valid_grid_fraction",
+      "passed": true
+    },
+    {
+      "name": "revised_43_reset_memory_test:recomputed blank_cells",
+      "passed": true
+    },
+    {
+      "name": "revised_43_reset_memory_test:recomputed given_cells",
+      "passed": true
+    },
+    {
+      "name": "revised_43_reset_memory_test:recorded frozen_state_unchanged",
+      "passed": true
+    },
+    {
+      "name": "revised_43_reset_memory_test:recorded frozen_buffers_unchanged",
+      "passed": true
+    },
+    {
+      "name": "revised_43_reset_memory_test:recorded actor_parameters_unchanged",
+      "passed": true
+    },
+    {
+      "name": "revised_43_reset_memory_test:recorded runtime_gates_cleared",
+      "passed": true
+    },
+    {
+      "name": "revised_43_reset_memory_test:16ACT",
+      "passed": true
+    }
+  ]
+}

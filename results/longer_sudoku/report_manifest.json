@@ -1,0 +1,19 @@
+{
+  "reporter_sha256": "a2730168dc0972b02cbd1afb4e51f19fb2d2e07cf9c1be77202ab41f32fec183",
+  "inputs_sha256": {
+    "config.json": "b7a59eccb03f53dedabe157ea6d0d998eeaa61253825b1423ac6b244f99cd6ec",
+    "summary.json": "144d7440b3137d30fe4beefed018b0556fb1e4bc5e1932be99f57e317826c6d7",
+    "evaluations.json": "869239131d4a0a265f22b33396173654a9b6337de7f47544b2abf0c686c9411f",
+    "history.jsonl": "95936f5497f795ffa896edce2785acf63d2e89607237e322b32370f739c36500",
+    "data_audit.json": "694aef446502416309bc94690fc76d1c7091aaf74e07a08812f49efd44d71667",
+    "verification.json": "34c8d46e91e6fe22dcc50b8c293f412b1b8e4cc2e1cc38693452a7ebc2f4abd3",
+    "tensor_verification.json": "c483d76654ab9b2d298c2317cd01fabb1ea250e651b32d7baa804f81322ad23c",
+    "source_manifest.json": "4a1fbc1238b5430a0debeb6446d401baaf28ca9bd1d5b1d5493b76ba504f793a"
+  },
+  "plots": [
+    "plots/sudoku_endpoints.png",
+    "plots/sudoku_training.png"
+  ],
+  "local_checks_path": "G:\\Projects\\TransformerLab\\TinyRecursiveModels\\results\\longer_sudoku\\local_checks.json",
+  "shared_local_checks_sha256": "e5dd446f90456d320314be849cfe46e6e3de6ef7f31fdb2558204de12ff5d804"
+}

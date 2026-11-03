@@ -1,0 +1,18 @@
+{
+  "source_run": "../longer_sudoku",
+  "probe_protocol": {
+    "passed": 233,
+    "path": "verification.json",
+    "total": 233
+  },
+  "probe_actual_tensors": {
+    "passed": 940,
+    "path": "tensor_verification.json",
+    "total": 940
+  },
+  "unit_tests": {
+    "passed": 56,
+    "elapsed_seconds": 6.13,
+    "command": "python -m pytest -q"
+  }
+}

@@ -1,0 +1,337 @@
+{
+  "status": "complete",
+  "scope": "Engineering smoke only; not a matched performance experiment",
+  "device": "cuda",
+  "seed": 29,
+  "source_checkpoint_sha256": "86f8aee367c2016d69ce8d20a5efa2a36383218135ca1c59a966246c7d3d723d",
+  "source_a_arm": "native, with historical inactive wrapper/controller/factor tensors discarded",
+  "architecture": {
+    "batch_size": 4,
+    "seq_len": 81,
+    "vocab_size": 11,
+    "num_puzzle_identifiers": 1,
+    "puzzle_emb_ndim": 512,
+    "puzzle_emb_len": 16,
+    "H_cycles": 3,
+    "L_cycles": 6,
+    "H_layers": 0,
+    "L_layers": 2,
+    "hidden_size": 512,
+    "expansion": 4.0,
+    "num_heads": 8,
+    "pos_encodings": "rope",
+    "halt_max_steps": 16,
+    "halt_exploration_prob": 0.1,
+    "forward_dtype": "bfloat16",
+    "mlp_t": false,
+    "no_ACT_continue": true,
+    "dense_controller_width": 64,
+    "dense_controller_heads": 4,
+    "dense_controller_layers": 2,
+    "dense_tile_size": 32,
+    "dense_chunk_tiles": 128,
+    "dense_decoder_width": 32,
+    "dense_relative_cap": 0.03,
+    "meta_controller_width": 32,
+    "meta_controller_heads": 4,
+    "meta_controller_layers": 1,
+    "meta_history": 4,
+    "meta_tile_size": 16,
+    "meta_chunk_tiles": 128,
+    "meta_decoder_width": 16,
+    "meta_relative_cap": 0.1
+  },
+  "b_parameters": 348128,
+  "hierarchy": true,
+  "c_parameters": 25456,
+  "a_parameters": 6828034,
+  "generated_weights_per_example_per_act": 1572864,
+  "dense_matrices": [
+    {
+      "projection": 0,
+      "shape": [
+        512,
+        1536
+      ],
+      "measured_initial_rank": 512,
+      "maximum_possible_rank": 512,
+      "initial_frobenius_ratio": 0.003858534386381507
+    },
+    {
+      "projection": 1,
+      "shape": [
+        512,
+        1536
+      ],
+      "measured_initial_rank": 512,
+      "maximum_possible_rank": 512,
+      "initial_frobenius_ratio": 0.0038591292686760426
+    }
+  ],
+  "low_rank_factors_present": false,
+  "c_matrix": {
+    "shape": [
+      1024,
+      32
+    ],
+    "measured_initial_rank": 32,
+    "maximum_possible_rank": 32,
+    "initial_frobenius_ratio": 0.002443748526275158,
+    "scope": "Last sampled initial-evaluation ACT; C modifies only B's generator output weight"
+  },
+  "temporary_weights_cleared": true,
+  "c_temporary_weights_cleared": true,
+  "frozen_a_unchanged": true,
+  "frozen_sparse_scratch_unchanged": true,
+  "a_sha256": "080ac0cd5bcc8e6e90d47cf8e98d44edf46ce02e68cba727ce844c1807e5f9bb",
+  "b_before_sha256": "22099a33a49135cccd5ee43e0a8670d1773ce769fa306d7208a0dcd8f004b77f",
+  "b_after_sha256": "604b6f911430de280d53f9f7d770ea068800a2d48e3493bf94b65c2d5890f2f6",
+  "c_before_sha256": "26a76f32ef2b8ab11284ffb609988258d7ab594633f5e9f5bf3a4de07a40b7ef",
+  "c_after_sha256": "7f41d24348b8b44bbb0c9caf5361856f3c22d27cb0fa56de0b22520adb7dbbd4",
+  "admitted_training_base_ids": [
+    66560,
+    66561,
+    66562,
+    66563
+  ],
+  "training": [
+    {
+      "step": 1,
+      "task_loss": 1.3452144861221313,
+      "gradient_norms": {
+        "reader": 0.0024391005281358957,
+        "generator": 0.002907978370785713,
+        "meta_reader": 7.72046587371733e-06,
+        "meta_generator": 7.661722520424519e-06
+      }
+    },
+    {
+      "step": 2,
+      "task_loss": 1.3145990371704102,
+      "gradient_norms": {
+        "reader": 0.002125086262822151,
+        "generator": 0.0053862049244344234,
+        "meta_reader": 8.343901754415128e-06,
+        "meta_generator": 1.5804973372723907e-05
+      }
+    },
+    {
+      "step": 3,
+      "task_loss": 1.3691514730453491,
+      "gradient_norms": {
+        "reader": 0.0018452429212629795,
+        "generator": 0.006965777836740017,
+        "meta_reader": 1.022547348838998e-05,
+        "meta_generator": 1.9696362869581208e-05
+      }
+    },
+    {
+      "step": 4,
+      "task_loss": 1.3856711387634277,
+      "gradient_norms": {
+        "reader": 0.0018206338863819838,
+        "generator": 0.006930960807949305,
+        "meta_reader": 6.571366611751728e-06,
+        "meta_generator": 1.825527215260081e-05
+      }
+    },
+    {
+      "step": 5,
+      "task_loss": 1.3881993293762207,
+      "gradient_norms": {
+        "reader": 0.001954332459717989,
+        "generator": 0.007128165103495121,
+        "meta_reader": 5.766908998339204e-06,
+        "meta_generator": 2.083404797303956e-05
+      }
+    },
+    {
+      "step": 6,
+      "task_loss": 1.3913668394088745,
+      "gradient_norms": {
+        "reader": 0.0020641193259507418,
+        "generator": 0.0074263946153223515,
+        "meta_reader": 5.589467036770657e-06,
+        "meta_generator": 2.546438918216154e-05
+      }
+    },
+    {
+      "step": 7,
+      "task_loss": 1.394665241241455,
+      "gradient_norms": {
+        "reader": 0.001973718171939254,
+        "generator": 0.007795331533998251,
+        "meta_reader": 5.649935246765381e-06,
+        "meta_generator": 3.068608930334449e-05
+      }
+    },
+    {
+      "step": 8,
+      "task_loss": 1.3978352546691895,
+      "gradient_norms": {
+        "reader": 0.001996537670493126,
+        "generator": 0.00818051490932703,
+        "meta_reader": 5.5183336371555924e-06,
+        "meta_generator": 3.49181609635707e-05
+      }
+    }
+  ],
+  "evaluations": {
+    "off": {
+      "mode": "off",
+      "n": 8,
+      "all_accuracy": 0.5987654320987654,
+      "blank_accuracy": 0.4247787610619469,
+      "given_agreement": 1.0,
+      "exact_accuracy": 0.0,
+      "valid_grid_fraction": 0.0,
+      "clue_copy_accuracy": 0.30246913580246915,
+      "blank_cells": 452,
+      "given_cells": 196,
+      "task_loss": 1.3910862803459167,
+      "act_steps": 16,
+      "native_logits_bitwise_equal": true,
+      "meta_mode": "dynamic",
+      "standalone_b_logits_bitwise_equal": null
+    },
+    "initial": {
+      "mode": "dynamic",
+      "n": 8,
+      "all_accuracy": 0.5972222222222222,
+      "blank_accuracy": 0.4225663716814159,
+      "given_agreement": 1.0,
+      "exact_accuracy": 0.0,
+      "valid_grid_fraction": 0.0,
+      "clue_copy_accuracy": 0.30246913580246915,
+      "blank_cells": 452,
+      "given_cells": 196,
+      "task_loss": 1.390617549419403,
+      "act_steps": 16,
+      "native_logits_bitwise_equal": null,
+      "meta_mode": "dynamic",
+      "standalone_b_logits_bitwise_equal": null
+    },
+    "final": {
+      "mode": "dynamic",
+      "n": 8,
+      "all_accuracy": 0.5987654320987654,
+      "blank_accuracy": 0.4247787610619469,
+      "given_agreement": 1.0,
+      "exact_accuracy": 0.0,
+      "valid_grid_fraction": 0.0,
+      "clue_copy_accuracy": 0.30246913580246915,
+      "blank_cells": 452,
+      "given_cells": 196,
+      "task_loss": 1.3886218667030334,
+      "act_steps": 16,
+      "native_logits_bitwise_equal": null,
+      "meta_mode": "dynamic",
+      "standalone_b_logits_bitwise_equal": null
+    },
+    "off_after_training": {
+      "mode": "off",
+      "n": 8,
+      "all_accuracy": 0.5987654320987654,
+      "blank_accuracy": 0.4247787610619469,
+      "given_agreement": 1.0,
+      "exact_accuracy": 0.0,
+      "valid_grid_fraction": 0.0,
+      "clue_copy_accuracy": 0.30246913580246915,
+      "blank_cells": 452,
+      "given_cells": 196,
+      "task_loss": 1.3910862803459167,
+      "act_steps": 16,
+      "native_logits_bitwise_equal": true,
+      "meta_mode": "dynamic",
+      "standalone_b_logits_bitwise_equal": null
+    },
+    "initial_c_off": {
+      "mode": "dynamic",
+      "n": 8,
+      "all_accuracy": 0.5987654320987654,
+      "blank_accuracy": 0.4247787610619469,
+      "given_agreement": 1.0,
+      "exact_accuracy": 0.0,
+      "valid_grid_fraction": 0.0,
+      "clue_copy_accuracy": 0.30246913580246915,
+      "blank_cells": 452,
+      "given_cells": 196,
+      "task_loss": 1.389415681362152,
+      "act_steps": 16,
+      "native_logits_bitwise_equal": null,
+      "meta_mode": "off",
+      "standalone_b_logits_bitwise_equal": true
+    },
+    "c_off": {
+      "mode": "dynamic",
+      "n": 8,
+      "all_accuracy": 0.5972222222222222,
+      "blank_accuracy": 0.4225663716814159,
+      "given_agreement": 1.0,
+      "exact_accuracy": 0.0,
+      "valid_grid_fraction": 0.0,
+      "clue_copy_accuracy": 0.30246913580246915,
+      "blank_cells": 452,
+      "given_cells": 196,
+      "task_loss": 1.3890138864517212,
+      "act_steps": 16,
+      "native_logits_bitwise_equal": null,
+      "meta_mode": "off",
+      "standalone_b_logits_bitwise_equal": true
+    },
+    "c_shuffle": {
+      "mode": "dynamic",
+      "n": 8,
+      "all_accuracy": 0.5987654320987654,
+      "blank_accuracy": 0.4247787610619469,
+      "given_agreement": 1.0,
+      "exact_accuracy": 0.0,
+      "valid_grid_fraction": 0.0,
+      "clue_copy_accuracy": 0.30246913580246915,
+      "blank_cells": 452,
+      "given_cells": 196,
+      "task_loss": 1.3894654512405396,
+      "act_steps": 16,
+      "native_logits_bitwise_equal": null,
+      "meta_mode": "shuffle",
+      "standalone_b_logits_bitwise_equal": null
+    },
+    "c_phase": {
+      "mode": "dynamic",
+      "n": 8,
+      "all_accuracy": 0.5972222222222222,
+      "blank_accuracy": 0.4225663716814159,
+      "given_agreement": 1.0,
+      "exact_accuracy": 0.0,
+      "valid_grid_fraction": 0.0,
+      "clue_copy_accuracy": 0.30246913580246915,
+      "blank_cells": 452,
+      "given_cells": 196,
+      "task_loss": 1.3897572755813599,
+      "act_steps": 16,
+      "native_logits_bitwise_equal": null,
+      "meta_mode": "phase",
+      "standalone_b_logits_bitwise_equal": null
+    },
+    "c_reset_memory": {
+      "mode": "dynamic",
+      "n": 8,
+      "all_accuracy": 0.5972222222222222,
+      "blank_accuracy": 0.4225663716814159,
+      "given_agreement": 1.0,
+      "exact_accuracy": 0.0,
+      "valid_grid_fraction": 0.0,
+      "clue_copy_accuracy": 0.30246913580246915,
+      "blank_cells": 452,
+      "given_cells": 196,
+      "task_loss": 1.3892276287078857,
+      "act_steps": 16,
+      "native_logits_bitwise_equal": null,
+      "meta_mode": "reset_memory",
+      "standalone_b_logits_bitwise_equal": null
+    }
+  },
+  "training_seconds": 2.415866700001061,
+  "peak_cuda_allocated_mib": 552.94580078125,
+  "elapsed_seconds": 85.45983060001163
+}

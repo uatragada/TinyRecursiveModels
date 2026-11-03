@@ -1,196 +1,102 @@
-**Update: Due to many automatically generated and irrelevant issues submitted to this repo (that have been deleted now) and our limited capacity to properly maintain this repo, we have to temporaliy archive (make read-only) this and several other repos.**
+# Tiny Recursive Models: Adaptive Controllers
 
+A research fork of [Samsung SAIL Montreal's Tiny Recursive Models](https://github.com/SamsungSAILMontreal/TinyRecursiveModels), exploring whether transformers can control other transformers through temporary weight changes.
 
-# Less is More: Recursive Reasoning with Tiny Networks
+The upstream model, code, and attribution are preserved. The original project introduction and benchmark instructions are in [UPSTREAM_README.md](UPSTREAM_README.md). This fork's bounded experiments are separate from the upstream paper's benchmark results.
 
-This is the codebase for the paper: "Less is More: Recursive Reasoning with Tiny Networks". TRM is a recursive reasoning approach that achieves amazing scores of 45% on ARC-AGI-1 and 8% on ARC-AGI-2 using a tiny 7M parameters neural network.
+## What this fork adds
 
-[Paper](https://arxiv.org/abs/2510.04871)
+- **A** is the native Tiny Recursive Model, solving 9 x 9 Sudoku through recurrent latent and answer updates.
+- **B** reads A's hidden-state trajectory and generates temporary, per-puzzle changes to two of A's MLP weight matrices.
+- **C** reads B and changes B's weight-generation head before B generates A's changes. The structured variant uses cross-attention over B's internal layer tokens.
+- Matched controls, controller ablations, isolated A-weight adaptation probes, tests, saved measurements, and experiment reports.
 
-### Motivation
+The current dense architecture generates complete temporary matrices. Earlier low-rank controller experiments remain available as research history. Inference-time updates do not overwrite the stored base weights.
 
-Tiny Recursion Model (TRM) is a recursive reasoning model that achieves amazing scores of 45% on ARC-AGI-1 and 8% on ARC-AGI-2 with a tiny 7M parameters neural network. The idea that one must rely on massive foundational models trained for millions of dollars by some big corporation in order to achieve success on hard tasks is a trap. Currently, there is too much focus on exploiting LLMs rather than devising and expanding new lines of direction. With recursive reasoning, it turns out that “less is more”: you don’t always need to crank up model size in order for a model to reason and solve hard problems. A tiny model pretrained from scratch, recursing on itself and updating its answers over time, can achieve a lot without breaking the bank.
+## Results so far
 
-This work came to be after I learned about the recent innovative Hierarchical Reasoning Model (HRM). I was amazed that an approach using small models could do so well on hard tasks like the ARC-AGI competition (reaching 40% accuracy when normally only Large Language Models could compete). But I kept thinking that it is too complicated, relying too much on biological arguments about the human brain, and that this recursive reasoning process could be greatly simplified and improved. Tiny Recursion Model (TRM) simplifies recursive reasoning to its core essence, which ultimately has nothing to do with the human brain, does not require any mathematical (fixed-point) theorem, nor any hierarchy.
+The completed three-seed, frozen-A attention study did **not** establish an accuracy advantage for structured inter-model attention over a parameter-matched larger B.
 
-### How TRM works
+| System | Mean blank-cell accuracy |
+| --- | ---: |
+| B only | 41.791% |
+| Larger B, parameter matched | 41.726% |
+| B + C, pooled reads | 41.806% |
+| B + C, structured attention | 41.716% |
 
-<p align="center">
-  <img src="https://AlexiaJM.github.io/assets/images/TRM_fig.png" alt="TRM"  style="width: 30%;">
-</p>
+These measurements use the same 128 held-out Sudoku puzzles and one frozen A donor. No evaluated variant solved a complete puzzle. The primary structured-attention versus larger-B difference was -0.009 percentage points, with a conditional paired-puzzle 95% interval of [-0.090, +0.071]. This interval does not capture uncertainty from retraining A.
 
-Tiny Recursion Model (TRM) recursively improves its predicted answer y with a tiny network. It starts with the embedded input question x and initial embedded answer y and latent z. For up to K improvements steps, it tries to improve its answer y. It does so by i) recursively updating n times its latent z given the question x, current answer y, and current latent z (recursive reasoning), and then ii) updating its answer y given the current answer y and current latent z. This recursive process allows the model to progressively improve its answer (potentially addressing any errors from its previous answer) in an extremely parameter-efficient manner while minimizing overfitting.
+![Controlled attention comparison](results/cross_attention_test_20261030/plots/comparison.png)
 
-### Requirements
+See the [full controlled report](results/cross_attention_test_20261030/report.md) for the protocol, budgets, per-seed results, ablations, and limitations. Earlier joint-training studies also did not show a consistent adaptability advantage over their static controls.
 
-Installation should take a few minutes. For the smallest experiments on Sudoku-Extreme (pretrain_mlp_t_sudoku), you need 1 GPU with enough memory. With 1 L40S (48Gb Ram), it takes around 18h to finish. In case that you run into issues due to library versions, here is the requirements with the exact versions used: [specific_requirements.txt](https://github.com/SamsungSAILMontreal/TinyRecursiveModels/blob/main/specific_requirements.txt).
+## Start reading
 
-- Python 3.10 (or similar)
-- Cuda 12.6.0 (or similar)
+| Document | Scope |
+| --- | --- |
+| [Inter-model attention](INTER_MODEL_ATTENTION.md) | Current A/B/C attention architecture and controlled study |
+| [Dense weight generation](DENSE_ARCHITECTURE.md) | B directly generates complete temporary changes to A |
+| [Stacked controllers](STACKED_ARCHITECTURE.md) | C changes B's generator, then B changes A |
+| [Longer experiment](LONGER_EXPERIMENT.md) | Native, static, and dynamic joint training, followed by fresh-controller probes |
+| [Initial experiment](LOCAL_EXPERIMENT.md) | Earlier native-TRM controller study and data protocol |
 
-```bash
-pip install --upgrade pip wheel setuptools
-pip install --pre --upgrade torch torchvision torchaudio --index-url https://download.pytorch.org/whl/nightly/cu126 # install torch based on your cuda version
-pip install -r requirements.txt # install requirements
-pip install --no-cache-dir --no-build-isolation adam-atan2 
-wandb login YOUR-LOGIN # login if you want the logger to sync results to your Weights & Biases (https://wandb.ai/)
-```
+Implementation lives in `models/recursive_reasoning/trm_{plastic,dense,stacked,comparison}.py`; runners are in `local_lab/`, tests in `tests/`, and evidence checks in `scripts/`.
 
-### Dataset Preparation
+## Install and run the tests
 
-```bash
-# ARC-AGI-1
-python -m dataset.build_arc_dataset \
-  --input-file-prefix kaggle/combined/arc-agi \
-  --output-dir data/arc1concept-aug-1000 \
-  --subsets training evaluation concept \
-  --test-set-name evaluation
+The recorded environment used Python 3.12 and a CUDA-enabled PyTorch build. Exact local dependency versions are in [local_lab/requirements-local.txt](local_lab/requirements-local.txt); that file specifies CUDA 12.8 wheels. The local runners use the included portable AdamATan2 implementation instead of requiring its compiled CUDA extension.
 
-# ARC-AGI-2
-python -m dataset.build_arc_dataset \
-  --input-file-prefix kaggle/combined/arc-agi \
-  --output-dir data/arc2concept-aug-1000 \
-  --subsets training2 evaluation2 concept \
-  --test-set-name evaluation2
-
-## Note: You cannot train on both ARC-AGI-1 and ARC-AGI-2 and evaluate them both because ARC-AGI-2 training data contains some ARC-AGI-1 eval data
-
-# Sudoku-Extreme
-python dataset/build_sudoku_dataset.py --output-dir data/sudoku-extreme-1k-aug-1000  --subsample-size 1000 --num-aug 1000  # 1000 examples, 1000 augments
-
-# Maze-Hard
-python dataset/build_maze_dataset.py # 1000 examples, 8 augments
-```
-
-## Experiments
-
-### Sudoku-Extreme (assuming 1 L40S GPU):
+From the repository root:
 
 ```bash
-run_name="pretrain_mlp_t_sudoku"
-python pretrain.py \
-arch=trm \
-data_paths="[data/sudoku-extreme-1k-aug-1000]" \
-evaluators="[]" \
-epochs=50000 eval_interval=5000 \
-lr=1e-4 puzzle_emb_lr=1e-4 weight_decay=1.0 puzzle_emb_weight_decay=1.0 \
-arch.mlp_t=True arch.pos_encodings=none \
-arch.L_layers=2 \
-arch.H_cycles=3 arch.L_cycles=6 \
-+run_name=${run_name} ema=True
+python -m venv .venv
+# Linux/macOS:
+source .venv/bin/activate
+# Windows PowerShell instead:
+# .\.venv\Scripts\Activate.ps1
 
-Expected: Around 87% exact-accuracy (+- 2%)
-
-run_name="pretrain_att_sudoku"
-python pretrain.py \
-arch=trm \
-data_paths="[data/sudoku-extreme-1k-aug-1000]" \
-evaluators="[]" \
-epochs=50000 eval_interval=5000 \
-lr=1e-4 puzzle_emb_lr=1e-4 weight_decay=1.0 puzzle_emb_weight_decay=1.0 \
-arch.L_layers=2 \
-arch.H_cycles=3 arch.L_cycles=6 \
-+run_name=${run_name} ema=True
+python -m pip install -r local_lab/requirements-local.txt
+python -m pytest -q
 ```
 
-Expected: Around 75% exact-accuracy (+- 2%)
+The unit suite uses small synthetic fixtures and does not need downloaded Sudoku data or saved model checkpoints. It currently contains 108 tests. The native source-training runner requires CUDA; follow-up runner budgets and recorded timings come from the local GPU environment.
 
-*Runtime:* < 20 hours
+## Reproduce an experiment
 
-### Maze-Hard (assuming 4 L40S GPUs):
+The Git repository includes source, configurations, reports, plots, JSON measurements, source snapshots, and compact per-puzzle metrics. Downloaded Sudoku pools, raw prediction bundles, and all `.pt` artifacts, including trained checkpoints and tensor evaluation dumps, are excluded. Saved verification receipts describe the original local audits; repeating the complete tensor audits requires regenerating those omitted artifacts.
 
-```bash
-run_name="pretrain_att_maze30x30"
-torchrun --nproc-per-node 4 --rdzv_backend=c10d --rdzv_endpoint=localhost:0 --nnodes=1 pretrain.py \
-arch=trm \
-data_paths="[data/maze-30x30-hard-1k]" \
-evaluators="[]" \
-epochs=50000 eval_interval=5000 \
-lr=1e-4 puzzle_emb_lr=1e-4 weight_decay=1.0 puzzle_emb_weight_decay=1.0 \
-arch.L_layers=2 \
-arch.H_cycles=3 arch.L_cycles=4 \
-+run_name=${run_name} ema=True
-```
+1. Prepare the pinned expanded Sudoku pool. This command downloads data from the source recorded by `local_lab.data` and writes a local provenance manifest:
 
-*Runtime:* < 24 hours
+   ```bash
+   python -m local_lab.data --root data/local-expanded-sudoku --train-size 65536 --val-size 2048 --test-size 1024
+   ```
 
-Actually, you can run Maze-Hard with 1 L40S GPU by reducing the batch-size with no noticable loss in performance:
+2. Copy `local_lab/config_longer.json` to `local_lab/config_longer_repro.json`. Set `name` to `longer_sudoku_repro` and `results_dir` to `results/longer_sudoku_repro`, then run:
 
-```bash
-run_name="pretrain_att_maze30x30_1gpu"
-python pretrain.py \
-arch=trm \
-data_paths="[data/maze-30x30-hard-1k]" \
-evaluators="[]" \
-epochs=50000 eval_interval=5000 \
-lr=1e-4 puzzle_emb_lr=1e-4 weight_decay=1.0 puzzle_emb_weight_decay=1.0 global_batch_size=128 \
-arch.L_layers=2 \
-arch.H_cycles=3 arch.L_cycles=4 \
-+run_name=${run_name} ema=True
-```
+   ```bash
+   python -m local_lab.train --config local_lab/config_longer_repro.json
+   ```
 
-*Runtime:* < 24 hours
+   This generates `checkpoints/longer_sudoku_repro/native.pt` alongside the static and dynamic arms. Retraining produces a new donor; it does not guarantee the original measurements.
 
+3. For the controlled attention comparison, copy `local_lab/config_attention_test.json` to `local_lab/config_attention_repro.json`. Set:
 
-### ARC-AGI-1 (assuming 4 H-100 GPUs):
+   - `source_checkpoint`: `checkpoints/longer_sudoku_repro/native.pt`
+   - `results_dir`: `results/cross_attention_repro`
+   - `profile_file`: `results/cross_attention_profile_repro.json`
 
-```bash
-run_name="pretrain_att_arc1concept_4"
-torchrun --nproc-per-node 4 --rdzv_backend=c10d --rdzv_endpoint=localhost:0 --nnodes=1 pretrain.py \
-arch=trm \
-data_paths="[data/arc1concept-aug-1000]" \
-arch.L_layers=2 \
-arch.H_cycles=3 arch.L_cycles=4 \
-+run_name=${run_name} ema=True
+   Then run:
 
-```
+   ```bash
+   python -m local_lab.attention_test --config local_lab/config_attention_repro.json --stage all
+   python scripts/verify_attention_test.py --run results/cross_attention_repro
+   python -m local_lab.attention_report --run results/cross_attention_repro
+   ```
 
-*Runtime:* ~3 days
+Use a fresh output directory for each run: runners protect existing results against overwrites. Historical documents and saved reports sometimes show the original machine's interpreter or paths; use your activated environment's `python` command and paths inside your checkout.
 
-### ARC-AGI-2 (assuming 4 H-100 GPUs):
+## Attribution and licenses
 
-```bash
-run_name="pretrain_att_arc2concept_4"
-torchrun --nproc-per-node 4 --rdzv_backend=c10d --rdzv_endpoint=localhost:0 --nnodes=1 pretrain.py \
-arch=trm \
-data_paths="[data/arc2concept-aug-1000]" \
-arch.L_layers=2 \
-arch.H_cycles=3 arch.L_cycles=4 \
-+run_name=${run_name} ema=True
+The native TRM implementation comes from Samsung SAIL Montreal's [Less is More: Recursive Reasoning with Tiny Networks](https://github.com/SamsungSAILMontreal/TinyRecursiveModels). Its original [MIT license](LICENSE) is retained.
 
-```
-
-*Runtime:* ~3 days
-
-
-## Reference
-
-If you find our work useful, please consider citing:
-
-```bibtex
-@misc{jolicoeurmartineau2025morerecursivereasoningtiny,
-      title={Less is More: Recursive Reasoning with Tiny Networks}, 
-      author={Alexia Jolicoeur-Martineau},
-      year={2025},
-      eprint={2510.04871},
-      archivePrefix={arXiv},
-      primaryClass={cs.LG},
-      url={https://arxiv.org/abs/2510.04871}, 
-}
-```
-
-and the Hierarchical Reasoning Model (HRM):
-
-```bibtex
-@misc{wang2025hierarchicalreasoningmodel,
-      title={Hierarchical Reasoning Model}, 
-      author={Guan Wang and Jin Li and Yuhao Sun and Xing Chen and Changling Liu and Yue Wu and Meng Lu and Sen Song and Yasin Abbasi Yadkori},
-      year={2025},
-      eprint={2506.21734},
-      archivePrefix={arXiv},
-      primaryClass={cs.AI},
-      url={https://arxiv.org/abs/2506.21734}, 
-}
-```
-
-This code is based on the Hierarchical Reasoning Model [code](https://github.com/sapientinc/HRM) and the Hierarchical Reasoning Model Analysis [code](https://github.com/arcprize/hierarchical-reasoning-model-analysis).
+The portable optimizer derives from AdamATan2. Its [Apache-2.0 license](third_party/adam_atan2_0_0_3/LICENSE), original sources, and [provenance](third_party/adam_atan2_0_0_3/provenance.json) are included. Sudoku dataset identity, revision, and source terms are recorded separately by the data-preparation pipeline; the upstream code license is not asserted to license that dataset.

@@ -1,0 +1,8 @@
+# Saved evidence includes SHA-256 manifests of the original bytes.
+# Preserve result files and executed source snapshots across platforms.
+/results/** -text
+# Optimizer tests also verify the exact vendored reference bytes.
+/third_party/** -text
+*.png binary
+*.npz binary
+*.tar.gz binary

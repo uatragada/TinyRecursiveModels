@@ -1,0 +1,8 @@
+{
+  "status": "passed",
+  "command": "..\\plastic-latent-lab\\.venv\\Scripts\\python.exe -m pytest -q",
+  "passed": 83,
+  "pytest_reported_seconds": 11.88,
+  "new_dense_cases": 16,
+  "scope": "Full local test suite, including dense matrix rank and norm bounds, gradient flow, native parity, label independence, isolation, memory reset, joint gradients and exception cleanup."
+}

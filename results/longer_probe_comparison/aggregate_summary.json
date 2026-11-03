@@ -1,0 +1,290 @@
+{
+  "status": "complete",
+  "conclusion": "Across 2 fresh B/U/V seeds, mean final unknown-cell accuracy was Native-trained A donor 41.17% (gain +0.698 pp); Static-joint A donor 40.71% (gain +1.201 pp); Dynamic-joint A donor 40.03% (gain +1.018 pp). The source A-training seed and donor checkpoints are shared across these optimization runs.",
+  "seeds": [
+    29,
+    43
+  ],
+  "matching": {
+    "all_requested_reports_available": true,
+    "all_probe_runs_complete": true,
+    "all_per_seed_isolation_checks_passed": true,
+    "three_donors_per_seed": true,
+    "same_observed_checkpoint_grid": true,
+    "same_endpoint_puzzle_count": true,
+    "same_source_run": true,
+    "actual_admissions_match_within_each_seed": true,
+    "same_adaptation_pool_base_ids": true,
+    "same_endpoint_pool_base_ids": true,
+    "same_probe_training_protocol": true,
+    "same_exact_source_donors_across_seeds": true,
+    "distinct_fresh_interfaces_across_seeds": true
+  },
+  "donor_hash_checks": {
+    "native": true,
+    "static_joint": true,
+    "joint": true
+  },
+  "per_seed_learning": [
+    {
+      "variant": "native",
+      "seed": 29,
+      "n": 512,
+      "steps": [
+        0,
+        100,
+        200,
+        300
+      ],
+      "initial_blank_accuracy": 0.40478933221628793,
+      "final_blank_accuracy": 0.41163123538241353,
+      "blank_accuracy_gain": 0.006841903166125596,
+      "initial_exact_accuracy": 0.0,
+      "final_exact_accuracy": 0.0,
+      "initial_loss": 0.9779750578927899,
+      "final_loss": 0.9174239510588947,
+      "loss_reduction": 0.060551106833895196,
+      "blank_accuracy_gain_auc": 0.003002059552483662,
+      "loss_reduction_auc": 0.032891853324807464
+    },
+    {
+      "variant": "static_joint",
+      "seed": 29,
+      "n": 512,
+      "steps": [
+        0,
+        100,
+        200,
+        300
+      ],
+      "initial_blank_accuracy": 0.39518972318218315,
+      "final_blank_accuracy": 0.4077913917687716,
+      "blank_accuracy_gain": 0.012601668586588455,
+      "initial_exact_accuracy": 0.0,
+      "final_exact_accuracy": 0.0,
+      "initial_loss": 1.0526377994228255,
+      "final_loss": 0.9202219648810518,
+      "loss_reduction": 0.13241583454177375,
+      "blank_accuracy_gain_auc": 0.006068116498528037,
+      "loss_reduction_auc": 0.06889673806412143
+    },
+    {
+      "variant": "joint",
+      "seed": 29,
+      "n": 512,
+      "steps": [
+        0,
+        100,
+        200,
+        300
+      ],
+      "initial_blank_accuracy": 0.390023388138374,
+      "final_blank_accuracy": 0.3973889063427235,
+      "blank_accuracy_gain": 0.007365518204349497,
+      "initial_exact_accuracy": 0.0,
+      "final_exact_accuracy": 0.0,
+      "initial_loss": 1.027026617144349,
+      "final_loss": 0.9315924059064431,
+      "loss_reduction": 0.09543421123790585,
+      "blank_accuracy_gain_auc": 0.0027867955923249568,
+      "loss_reduction_auc": 0.051195896203696356
+    },
+    {
+      "variant": "native",
+      "seed": 43,
+      "n": 512,
+      "steps": [
+        0,
+        100,
+        200,
+        300
+      ],
+      "initial_blank_accuracy": 0.40468460920864313,
+      "final_blank_accuracy": 0.41180577372848814,
+      "blank_accuracy_gain": 0.0071211645198450135,
+      "initial_exact_accuracy": 0.0,
+      "final_exact_accuracy": 0.0,
+      "initial_loss": 0.9781031010479558,
+      "final_loss": 0.9132426603065952,
+      "loss_reduction": 0.06486044074136066,
+      "blank_accuracy_gain_auc": 0.003409315693324496,
+      "loss_reduction_auc": 0.03251217603289806
+    },
+    {
+      "variant": "static_joint",
+      "seed": 43,
+      "n": 512,
+      "steps": [
+        0,
+        100,
+        200,
+        300
+      ],
+      "initial_blank_accuracy": 0.39508500017453835,
+      "final_blank_accuracy": 0.4064998080078193,
+      "blank_accuracy_gain": 0.011414807833280971,
+      "initial_exact_accuracy": 0.0,
+      "final_exact_accuracy": 0.0,
+      "initial_loss": 1.0527429099711272,
+      "final_loss": 0.927649336501396,
+      "loss_reduction": 0.12509357346973116,
+      "blank_accuracy_gain_auc": 0.004264553589090188,
+      "loss_reduction_auc": 0.058775260261169714
+    },
+    {
+      "variant": "joint",
+      "seed": 43,
+      "n": 512,
+      "steps": [
+        0,
+        100,
+        200,
+        300
+      ],
+      "initial_blank_accuracy": 0.39023283415366355,
+      "final_blank_accuracy": 0.40321848710161623,
+      "blank_accuracy_gain": 0.012985652947952675,
+      "initial_exact_accuracy": 0.0,
+      "final_exact_accuracy": 0.0,
+      "initial_loss": 1.0267611681960085,
+      "final_loss": 0.9308397186854946,
+      "loss_reduction": 0.09592144951051385,
+      "blank_accuracy_gain_auc": 0.005934303766537521,
+      "loss_reduction_auc": 0.052983611602239855
+    }
+  ],
+  "mean_learning": [
+    {
+      "variant": "native",
+      "seeds": [
+        29,
+        43
+      ],
+      "n_seeds": 2,
+      "initial_blank_accuracy": 0.4047369707124655,
+      "final_blank_accuracy": 0.41171850455545084,
+      "blank_accuracy_gain": 0.006981533842985305,
+      "initial_loss": 0.9780390794703728,
+      "final_loss": 0.915333305682745,
+      "loss_reduction": 0.06270577378762793,
+      "blank_accuracy_gain_auc": 0.003205687622904079,
+      "loss_reduction_auc": 0.03270201467885277,
+      "final_exact_accuracy": 0.0
+    },
+    {
+      "variant": "static_joint",
+      "seeds": [
+        29,
+        43
+      ],
+      "n_seeds": 2,
+      "initial_blank_accuracy": 0.3951373616783608,
+      "final_blank_accuracy": 0.40714559988829546,
+      "blank_accuracy_gain": 0.012008238209934713,
+      "initial_loss": 1.0526903546969764,
+      "final_loss": 0.923935650691224,
+      "loss_reduction": 0.12875470400575245,
+      "blank_accuracy_gain_auc": 0.005166335043809112,
+      "loss_reduction_auc": 0.06383599916264557,
+      "final_exact_accuracy": 0.0
+    },
+    {
+      "variant": "joint",
+      "seeds": [
+        29,
+        43
+      ],
+      "n_seeds": 2,
+      "initial_blank_accuracy": 0.39012811114601875,
+      "final_blank_accuracy": 0.40030369672216987,
+      "blank_accuracy_gain": 0.010175585576151086,
+      "initial_loss": 1.0268938926701787,
+      "final_loss": 0.9312160622959689,
+      "loss_reduction": 0.09567783037420985,
+      "blank_accuracy_gain_auc": 0.004360549679431239,
+      "loss_reduction_auc": 0.052089753902968106,
+      "final_exact_accuracy": 0.0
+    }
+  ],
+  "per_seed_joint_contrasts": [
+    {
+      "comparator": "native",
+      "seed": 29,
+      "initial_blank_accuracy_advantage": -0.014765944077913928,
+      "final_blank_accuracy_advantage": -0.014242329039690027,
+      "extra_blank_accuracy_gain": 0.0005236150382239013,
+      "final_loss_advantage": -0.014168454847548362,
+      "extra_loss_reduction": 0.034883104404010656,
+      "extra_blank_accuracy_gain_auc": -0.0002152639601587054,
+      "extra_loss_reduction_auc": 0.018304042878888892
+    },
+    {
+      "comparator": "static_joint",
+      "seed": 29,
+      "initial_blank_accuracy_advantage": -0.005166335043809145,
+      "final_blank_accuracy_advantage": -0.010402485426048103,
+      "extra_blank_accuracy_gain": -0.005236150382238958,
+      "final_loss_advantage": -0.011370441025391309,
+      "extra_loss_reduction": -0.036981623303867894,
+      "extra_blank_accuracy_gain_auc": -0.00328132090620308,
+      "extra_loss_reduction_auc": -0.017700841860425073
+    },
+    {
+      "comparator": "native",
+      "seed": 43,
+      "initial_blank_accuracy_advantage": -0.014451775054979576,
+      "final_blank_accuracy_advantage": -0.008587286626871915,
+      "extra_blank_accuracy_gain": 0.0058644884281076615,
+      "final_loss_advantage": -0.017597058378899466,
+      "extra_loss_reduction": 0.031061008769153187,
+      "extra_blank_accuracy_gain_auc": 0.002524988073213025,
+      "extra_loss_reduction_auc": 0.020471435569341792
+    },
+    {
+      "comparator": "static_joint",
+      "seed": 43,
+      "initial_blank_accuracy_advantage": -0.004852166020874793,
+      "final_blank_accuracy_advantage": -0.003281320906203089,
+      "extra_blank_accuracy_gain": 0.001570845114671704,
+      "final_loss_advantage": -0.003190382184098617,
+      "extra_loss_reduction": -0.02917212395921731,
+      "extra_blank_accuracy_gain_auc": 0.001669750177447333,
+      "extra_loss_reduction_auc": -0.0057916486589298585
+    }
+  ],
+  "mean_joint_contrasts": [
+    {
+      "comparator": "native",
+      "seeds": [
+        29,
+        43
+      ],
+      "n_seeds": 2,
+      "initial_blank_accuracy_advantage": -0.014608859566446752,
+      "final_blank_accuracy_advantage": -0.011414807833280971,
+      "extra_blank_accuracy_gain": 0.0031940517331657814,
+      "final_loss_advantage": -0.015882756613223914,
+      "extra_loss_reduction": 0.03297205658658192,
+      "extra_blank_accuracy_gain_auc": 0.00115486205652716,
+      "extra_loss_reduction_auc": 0.019387739224115342
+    },
+    {
+      "comparator": "static_joint",
+      "seeds": [
+        29,
+        43
+      ],
+      "n_seeds": 2,
+      "initial_blank_accuracy_advantage": -0.005009250532341969,
+      "final_blank_accuracy_advantage": -0.006841903166125596,
+      "extra_blank_accuracy_gain": -0.0018326526337836269,
+      "final_loss_advantage": -0.007280411604744963,
+      "extra_loss_reduction": -0.0330768736315426,
+      "extra_blank_accuracy_gain_auc": -0.0008057853643778734,
+      "extra_loss_reduction_auc": -0.011746245259677466
+    }
+  ],
+  "missing_runs": [],
+  "source_A_training_replicates": 1,
+  "aggregation_unit": "fresh B/U/V optimization seed, conditional on the same source A donors and puzzle pools"
+}

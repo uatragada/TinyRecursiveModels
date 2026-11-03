@@ -1,0 +1,95 @@
+{
+  "scope": "Expanded pinned Sudoku pools and preserved old-cache evidence; stdlib/NumPy only, with no Torch import or training process.",
+  "dataset_repository": "sapientinc/sudoku-extreme",
+  "revision": "58942f96baeb572ca3127e2a9e9c70f330783d6b",
+  "cache": "data/local-expanded-sudoku",
+  "manifest_sha256": "dc57678ebbb518d604493a5e6f154ab44bdb1c63e9098d6f91194538fb752cb3",
+  "sizes": {
+    "train": 65536,
+    "val": 2048,
+    "test": 1024
+  },
+  "all_shapes": {
+    "train": [
+      65536,
+      81
+    ],
+    "val": [
+      2048,
+      81
+    ],
+    "test": [
+      1024,
+      81
+    ]
+  },
+  "valid_solution_and_clue_count": 68608,
+  "full_local_reload_validation_passed": true,
+  "cross_split_duplicate_puzzle_or_solution_count": 0,
+  "maximum_application_bytes_per_official_file": 33554432,
+  "application_bytes_read": {
+    "train": 12648448,
+    "test": 196608
+  },
+  "official_file_bytes": {
+    "train": 718819925,
+    "test": 79360390
+  },
+  "whole_official_file_downloaded": {
+    "train": false,
+    "test": false
+  },
+  "etags": {
+    "train": "\"bb2cd2b4cc9e3694606ccfeeb78151da3a882fb8833214bc1ba93780ffd50931\"",
+    "test": "\"dc537623f264df1b9bbb3a080ea6545ac729a8517cf8c155625dae2874a43ac2\""
+  },
+  "skipped_rows": {
+    "train": {},
+    "test": {}
+  },
+  "all_expanded_cached_file_hashes_match": true,
+  "expanded_cached_file_hash_checks": {
+    "raw/test_consumed_prefix.csv": true,
+    "raw/test_selected.csv": true,
+    "raw/train_consumed_prefix.csv": true,
+    "raw/train_selected.csv": true,
+    "raw/val_selected.csv": true,
+    "selected_rows.json": true,
+    "test.npz": true,
+    "train.npz": true,
+    "upstream_dataset_card.md": true,
+    "upstream_metadata.json": true,
+    "val.npz": true
+  },
+  "old_cache": {
+    "cache": "data/local-bounded-sudoku",
+    "manifest_sha256": "9872342bd8bf0a5803a811567c940368efb02a2006f96a645ae0a0039a029e8f",
+    "original_source_audit": "results/local_sudoku/data_audit.json",
+    "original_source_audit_sha256": "f1652b7c8ffb7674cb178326416e4af00584524909b31ed3c10f4fbbd1aa1e24",
+    "manifest_equals_original_source_audit": true,
+    "manifest_bytes_equal_original_source_audit": false,
+    "all_original_cached_file_hashes_match": true,
+    "original_cached_file_hash_checks": {
+      "raw/test_consumed_prefix.csv": true,
+      "raw/test_selected.csv": true,
+      "raw/train_consumed_prefix.csv": true,
+      "raw/train_selected.csv": true,
+      "raw/val_selected.csv": true,
+      "selected_rows.json": true,
+      "test.npz": true,
+      "train.npz": true,
+      "upstream_dataset_card.md": true,
+      "upstream_metadata.json": true,
+      "val.npz": true
+    },
+    "scope": "Original manifest and every file hash still match saved source-run audit; the old cache was not rewritten."
+  },
+  "observed_data_unit_tests": {
+    "passed": 11,
+    "duration_seconds": 0.037,
+    "command": "python -m unittest discover -s tests -p test_local_data.py -v",
+    "rerun_in_this_update": false
+  },
+  "cli": "python -m local_lab.data --root data/local-expanded-sudoku --train-size 65536 --val-size 2048 --test-size 1024 --max-stream-bytes 33554432",
+  "torch_imported_by_evidence_process": false
+}

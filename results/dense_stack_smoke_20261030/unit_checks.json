@@ -1,0 +1,8 @@
+{
+  "status": "passed",
+  "command": "..\\plastic-latent-lab\\.venv\\Scripts\\python.exe -m pytest -q",
+  "passed": 96,
+  "pytest_reported_seconds": 14.71,
+  "new_hierarchy_cases": 13,
+  "scope": "Full local suite, including C-off A/B parity, C-to-B-to-A gradient flow, dense bounds/ranks, frozen A, C-only and joint modes, label independence, per-puzzle state isolation and cleanup."
+}

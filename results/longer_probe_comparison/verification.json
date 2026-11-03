@@ -1,0 +1,205 @@
+{
+  "passed": true,
+  "checks": {
+    "both_runs_complete": true,
+    "distinct_fresh_seeds": true,
+    "per_seed_protocol_verifiers_passed": true,
+    "same_source_run": true,
+    "same_probe_configuration_except_seed_and_paths": true,
+    "same_adaptation_pool": true,
+    "same_endpoint_pool": true,
+    "different_fresh_non_A_tensors": true,
+    "fixed_ACT16_policy_matches": true,
+    "same_candidate_and_admitted_stream_within_each_seed": true,
+    "native:same_donor_checkpoint_sha256": true,
+    "native:same_donor_A_sha256": true,
+    "29/native:same_four_step_grid": true,
+    "29/native:gain_recomputed_from_endpoints": true,
+    "29/native:AUC_recomputed_from_curves": true,
+    "43/native:same_four_step_grid": true,
+    "43/native:gain_recomputed_from_endpoints": true,
+    "43/native:AUC_recomputed_from_curves": true,
+    "static_joint:same_donor_checkpoint_sha256": true,
+    "static_joint:same_donor_A_sha256": true,
+    "29/static_joint:same_four_step_grid": true,
+    "29/static_joint:gain_recomputed_from_endpoints": true,
+    "29/static_joint:AUC_recomputed_from_curves": true,
+    "43/static_joint:same_four_step_grid": true,
+    "43/static_joint:gain_recomputed_from_endpoints": true,
+    "43/static_joint:AUC_recomputed_from_curves": true,
+    "joint:same_donor_checkpoint_sha256": true,
+    "joint:same_donor_A_sha256": true,
+    "29/joint:same_four_step_grid": true,
+    "29/joint:gain_recomputed_from_endpoints": true,
+    "29/joint:AUC_recomputed_from_curves": true,
+    "43/joint:same_four_step_grid": true,
+    "43/joint:gain_recomputed_from_endpoints": true,
+    "43/joint:AUC_recomputed_from_curves": true,
+    "source_protocol_verification_passed": true,
+    "source_actual_tensor_verification_passed": true,
+    "29:actual_tensor_verification_passed": true,
+    "43:actual_tensor_verification_passed": true,
+    "runtime_total_matches_saved_runs": true,
+    "runtime_total_within_70_minute_cap": true
+  },
+  "scope": "Independent no-Torch cross-seed metadata consistency and paired metric arithmetic; actual checkpoint tensor equality has separate verification. Separate saved protocol and actual-tensor verification results are checked for passing status and reported with their own counts.",
+  "seeds": [
+    29,
+    43
+  ],
+  "per_seed": [
+    {
+      "seed": 29,
+      "variant": "native",
+      "initial_accuracy": 0.40478933221628793,
+      "final_accuracy": 0.41163123538241353,
+      "gain_pp": 0.6841903166125596,
+      "accuracy_gain_auc_pp": 0.30020595524836624,
+      "initial_loss": 0.9779750578927899,
+      "final_loss": 0.9174239510588947,
+      "loss_decrease": 0.060551106833895196,
+      "loss_decrease_auc": 0.032891853324807464
+    },
+    {
+      "seed": 43,
+      "variant": "native",
+      "initial_accuracy": 0.40468460920864313,
+      "final_accuracy": 0.41180577372848814,
+      "gain_pp": 0.7121164519845014,
+      "accuracy_gain_auc_pp": 0.34093156933244956,
+      "initial_loss": 0.9781031010479558,
+      "final_loss": 0.9132426603065952,
+      "loss_decrease": 0.06486044074136066,
+      "loss_decrease_auc": 0.03251217603289806
+    },
+    {
+      "seed": 29,
+      "variant": "static_joint",
+      "initial_accuracy": 0.39518972318218315,
+      "final_accuracy": 0.4077913917687716,
+      "gain_pp": 1.2601668586588455,
+      "accuracy_gain_auc_pp": 0.6068116498528036,
+      "initial_loss": 1.0526377994228255,
+      "final_loss": 0.9202219648810518,
+      "loss_decrease": 0.13241583454177375,
+      "loss_decrease_auc": 0.06889673806412143
+    },
+    {
+      "seed": 43,
+      "variant": "static_joint",
+      "initial_accuracy": 0.39508500017453835,
+      "final_accuracy": 0.4064998080078193,
+      "gain_pp": 1.141480783328097,
+      "accuracy_gain_auc_pp": 0.4264553589090188,
+      "initial_loss": 1.0527429099711272,
+      "final_loss": 0.927649336501396,
+      "loss_decrease": 0.12509357346973116,
+      "loss_decrease_auc": 0.058775260261169714
+    },
+    {
+      "seed": 29,
+      "variant": "joint",
+      "initial_accuracy": 0.390023388138374,
+      "final_accuracy": 0.3973889063427235,
+      "gain_pp": 0.7365518204349497,
+      "accuracy_gain_auc_pp": 0.27867955923249565,
+      "initial_loss": 1.027026617144349,
+      "final_loss": 0.9315924059064431,
+      "loss_decrease": 0.09543421123790585,
+      "loss_decrease_auc": 0.051195896203696356
+    },
+    {
+      "seed": 43,
+      "variant": "joint",
+      "initial_accuracy": 0.39023283415366355,
+      "final_accuracy": 0.40321848710161623,
+      "gain_pp": 1.2985652947952675,
+      "accuracy_gain_auc_pp": 0.5934303766537521,
+      "initial_loss": 1.0267611681960085,
+      "final_loss": 0.9308397186854946,
+      "loss_decrease": 0.09592144951051385,
+      "loss_decrease_auc": 0.052983611602239855
+    }
+  ],
+  "equal_seed_means": {
+    "native": {
+      "initial_accuracy": 0.4047369707124655,
+      "final_accuracy": 0.41171850455545084,
+      "gain_pp": 0.6981533842985305,
+      "accuracy_gain_auc_pp": 0.32056876229040787,
+      "initial_loss": 0.9780390794703728,
+      "final_loss": 0.915333305682745,
+      "loss_decrease": 0.06270577378762793,
+      "loss_decrease_auc": 0.03270201467885277
+    },
+    "static_joint": {
+      "initial_accuracy": 0.3951373616783608,
+      "final_accuracy": 0.40714559988829546,
+      "gain_pp": 1.2008238209934712,
+      "accuracy_gain_auc_pp": 0.5166335043809112,
+      "initial_loss": 1.0526903546969764,
+      "final_loss": 0.923935650691224,
+      "loss_decrease": 0.12875470400575245,
+      "loss_decrease_auc": 0.06383599916264557
+    },
+    "joint": {
+      "initial_accuracy": 0.39012811114601875,
+      "final_accuracy": 0.40030369672216987,
+      "gain_pp": 1.0175585576151085,
+      "accuracy_gain_auc_pp": 0.4360549679431239,
+      "initial_loss": 1.0268938926701787,
+      "final_loss": 0.9312160622959689,
+      "loss_decrease": 0.09567783037420985,
+      "loss_decrease_auc": 0.052089753902968106
+    }
+  },
+  "paired_joint_contrasts": {
+    "native": {
+      "final_advantage_pp": -1.141480783328097,
+      "extra_gain_pp": 0.31940517331657803,
+      "extra_accuracy_gain_auc_pp": 0.115486205652716,
+      "extra_loss_decrease": 0.03297205658658192,
+      "extra_loss_decrease_auc": 0.01938773922411534
+    },
+    "static_joint": {
+      "final_advantage_pp": -0.6841903166125596,
+      "extra_gain_pp": -0.18326526337836269,
+      "extra_accuracy_gain_auc_pp": -0.08057853643778728,
+      "extra_loss_decrease": -0.0330768736315426,
+      "extra_loss_decrease_auc": -0.011746245259677462
+    }
+  },
+  "inputs_sha256": {
+    "results\\longer_probe_seed29": {
+      "summary.json": "8a9fa18f50ba2afb8d61a7b866aedeac5ef2d8891b7ac3d05ba661a4680ff96b",
+      "config.json": "d93a361c866b8ba18bf6c0397dff1df6a98ad52c722d49d2ad8420062359f457",
+      "evaluations.json": "b34a702c6dcc623e186a687ba10bb9a81e8bf3118ff09b0862d8ca0117302347",
+      "verification.json": "c6980e6886b1206d1282990942a8dfca93fe3a5092faf341b4363dfe4e7b7a64"
+    },
+    "results\\longer_probe_seed43": {
+      "summary.json": "6c879e2fab449513f4e3e99243dd66741bdfb83f417f51996bf0fb1eb13f66bf",
+      "config.json": "8caa408ef05a5a17edb1f79fe414ec78df285b54e5e7feec5f4b617d06ff2cba",
+      "evaluations.json": "003cec3fa73c4b3f1532b0d0bf9b7757685afeec475f14e12de98829bb9f6607",
+      "verification.json": "51d95b63dc8b488b35e7dc1d2c7fac76e85eb0cd2ceb50c9f9d278c0d98387c3"
+    }
+  },
+  "limitation": "Two fresh B/U/V and data-order seeds share a single source A-training seed, donor checkpoints and test puzzles; these are not independent A-training replicates.",
+  "actual_runtime": {
+    "source_seconds": 2506.1794548000908,
+    "probe_seconds": {
+      "29": 443.8850772000151,
+      "43": 496.256269000005
+    },
+    "combined_seconds": 3446.320801000111,
+    "combined_minutes": 57.43868001666851
+  },
+  "evidence_check_counts": {
+    "source_protocol": 339,
+    "source_actual_tensors": 1071,
+    "29_protocol": 233,
+    "29_actual_tensors": 940,
+    "43_protocol": 233,
+    "43_actual_tensors": 940,
+    "cross_seed": 40
+  }
+}

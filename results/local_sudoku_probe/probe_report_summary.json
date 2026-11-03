@@ -1,0 +1,91 @@
+{
+  "status": "complete",
+  "conclusion": "Fresh-B test-panel unknown-cell accuracy, step 0 \u2192 final: Native-trained A donor 16.87% \u2192 16.69%; Static-joint A donor 18.35% \u2192 18.85%; Dynamic-joint A donor 18.32% \u2192 18.18%. This is same-task readaptation on new Sudoku instances, conditional on one source A-training seed and one fresh-B seed. The dynamic-joint A donor shows no consistent adaptability advantage over the static-joint donor in this bounded run.",
+  "learning": [
+    {
+      "variant": "native",
+      "n": 128,
+      "steps": [
+        0,
+        60
+      ],
+      "initial_blank_accuracy": 0.16868982838007535,
+      "final_blank_accuracy": 0.16687595925770896,
+      "blank_accuracy_gain": -0.0018138691223663905,
+      "initial_exact_accuracy": 0.0,
+      "final_exact_accuracy": 0.0,
+      "initial_loss": 1.4341534276055028,
+      "final_loss": 1.4321550352677295,
+      "loss_reduction": 0.001998392337773325
+    },
+    {
+      "variant": "static_joint",
+      "n": 128,
+      "steps": [
+        0,
+        60
+      ],
+      "initial_blank_accuracy": 0.18347983814706292,
+      "final_blank_accuracy": 0.18850286033207758,
+      "blank_accuracy_gain": 0.005023022185014658,
+      "initial_exact_accuracy": 0.0,
+      "final_exact_accuracy": 0.0,
+      "initial_loss": 1.4298325650814852,
+      "final_loss": 1.4273551052267364,
+      "loss_reduction": 0.002477459854748787
+    },
+    {
+      "variant": "joint",
+      "n": 128,
+      "steps": [
+        0,
+        60
+      ],
+      "initial_blank_accuracy": 0.18320078135900655,
+      "final_blank_accuracy": 0.1818054974187247,
+      "blank_accuracy_gain": -0.0013952839402818495,
+      "initial_exact_accuracy": 0.0,
+      "final_exact_accuracy": 0.0,
+      "initial_loss": 1.435531449502021,
+      "final_loss": 1.4327498949316548,
+      "loss_reduction": 0.002781554570366218
+    }
+  ],
+  "joint_donor_contrasts": [
+    {
+      "comparator": "native",
+      "initial_blank_accuracy_advantage": 0.014510952978931208,
+      "final_blank_accuracy_advantage": 0.014929538161015748,
+      "extra_blank_accuracy_gain": 0.000418585182084541,
+      "final_loss_advantage": -0.0005948596639253623,
+      "extra_loss_reduction": 0.0007831622325928933
+    },
+    {
+      "comparator": "static_joint",
+      "initial_blank_accuracy_advantage": -0.0002790567880563699,
+      "final_blank_accuracy_advantage": -0.006697362913352878,
+      "extra_blank_accuracy_gain": -0.006418306125296508,
+      "final_loss_advantage": -0.005394789704918468,
+      "extra_loss_reduction": 0.0003040947156174312
+    }
+  ],
+  "checks": {
+    "all_three_donor_arms_recorded": true,
+    "all_probe_stages_complete": true,
+    "equal_executed_steps": true,
+    "common_fresh_non_A_initialization": true,
+    "A_hashes_unchanged": true,
+    "puzzle_embeddings_unchanged": true,
+    "all_native_buffers_unchanged": true,
+    "same_candidate_streams": true,
+    "all_test_endpoints_use_16_ACT_steps": true,
+    "evaluation_state_unchanged": true,
+    "evaluation_gates_cleared": true,
+    "three_matched_step_0_final_panels": true
+  },
+  "all_checks_passed": true,
+  "actual_admission_streams_equal": true,
+  "isolated_A_probe_executed": true,
+  "H3_established": false,
+  "scope": "One-seed same-task Sudoku readaptation with A frozen and common fresh B plus U/V trained"
+}

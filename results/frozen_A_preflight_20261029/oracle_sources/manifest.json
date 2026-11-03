@@ -1,0 +1,23 @@
+{
+  "models/common.py": "6aaff2b0cee33073739586e4b416b030d338ab4b9ffb5261b2db14414dc3112b",
+  "models/ema.py": "41f92b2ec89a53ebcd69ced5903ccc4519a199ec2208d9694dd49ec398379ece",
+  "models/layers.py": "3d3c635eae200854982bd13fd6998a28fa7a7a9987084f3e47586e73add98099",
+  "models/losses.py": "7aa324db1556f0e715f71a6e14b01b25b44fb12fbe862352cb4651b52bb75e72",
+  "models/sparse_embedding.py": "54aec93a6f4a296b6081314a62522ca9e8e3e4ba4e83c168bf64b22befd4949f",
+  "models/recursive_reasoning/hrm.py": "1337f64f061930022a7cb4c019454b3e3b2e95adb9737277fec2c7368420df2d",
+  "models/recursive_reasoning/transformers_baseline.py": "8685c407406e445d1dd7cd33f6aff4b867d196a86a2dd42b6ec54b28cfb2bd03",
+  "models/recursive_reasoning/trm.py": "05d37524062ac6b7d958dbd7a173f3f7c99eaaa0b60cf78c57638a82ad185b46",
+  "models/recursive_reasoning/trm_hier6.py": "ed9793deb8a4a5ebfcda26c0bbcd99e397406719af4b96bf2959c3f44cf620dc",
+  "models/recursive_reasoning/trm_plastic.py": "05250a6ffaced4c88f92304e7bb7fefe1e2f7ee8fea8a38ba2906fe6d35e0ca9",
+  "models/recursive_reasoning/trm_singlez.py": "4d66c54475f6dd19774c973d00204c329ffb8c3a1449239388d8dcb2a4560cfe",
+  "local_lab/adam_atan2.py": "b8db63d29d7257686228d491352ec00168e41d15d9ded11bb0b3d402fd43e5c2",
+  "local_lab/benchmark.py": "3791eb25d5f76155190060dfc8f4ba465079d40493c0c94200127c839f7a2039",
+  "local_lab/data.py": "93fa672af53fca96f765321391ac0c635e3779ed1baae2cd060d4f4aa6f94eba",
+  "local_lab/frozen_control.py": "2bb1c913d81b7890f503ac18954d83a4f418e5a63108d6bf507732567bd357e5",
+  "local_lab/frozen_run.py": "91dffa6703c1e862fe8d8e2c5b1073d689d0e205fc37fd909c9488ccfec83284",
+  "local_lab/probe.py": "b7ca9fc4945810e83d12d676e4f6f4d90213b0443fbfb0f333ca789caa383799",
+  "local_lab/report.py": "a2730168dc0972b02cbd1afb4e51f19fb2d2e07cf9c1be77202ab41f32fec183",
+  "local_lab/settings.py": "891d8a72f6f546b3a7f1d3a5b2400bc519fd4856bbed745dfad362bb843f9199",
+  "local_lab/smoke.py": "c05012630aa0c52ea85257f86fe2b44f9dffb7f09f4a5cc89be93463d03ad9bc",
+  "local_lab/train.py": "0ac9be9aaba4f3205c33a80fbc0ee726ea880ae7da832953e0734dd6e9f5b334"
+}

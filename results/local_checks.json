@@ -1,0 +1,98 @@
+{
+  "scope": "Local dependency/provenance evidence plus final unit-test, protocol and independent checkpoint-tensor validation; prior observations are labeled separately.",
+  "python": {
+    "executable": "G:\\Projects\\TransformerLab\\plastic-latent-lab\\.venv\\Scripts\\python.exe",
+    "version": "3.12.2",
+    "implementation": "CPython",
+    "platform": "Windows-11-10.0.26200-SP0"
+  },
+  "installed_distributions": {
+    "torch": "2.10.0+cu128",
+    "numpy": "1.26.4",
+    "pydantic": "2.12.5",
+    "einops": "0.8.2",
+    "matplotlib": "3.8.4",
+    "pytest": "8.4.2",
+    "PyYAML": "6.0.3"
+  },
+  "upstream_TRM_git_revision": "c01103738605ba39d1430519b1ee0c62f4c707f8",
+  "portable_optimizer": {
+    "module": "local_lab/adam_atan2.py",
+    "module_sha256": "b8db63d29d7257686228d491352ec00168e41d15d9ded11bb0b3d402fd43e5c2",
+    "algorithm": "AdamATan2 0.0.3 reference, not AdamW; identical FP32/FP64 moments, bias corrections, atan2 without epsilon and decoupled weight decay",
+    "port_modifications": "Portable Torch operations replace the fused CUDA extension; Python integer step counters; optional closure support; dense FP32/FP64 parameters.",
+    "upstream_package": {
+      "source": "https://files.pythonhosted.org/packages/06/a2/8ef8f0bb022f39d87edda9e04e77458195eb0011d13561c4e7a85e6c1c22/adam_atan2-0.0.3.tar.gz",
+      "sha256": "f07faef4a6d7476ad3be6096155a35a5ecf6a3932282367f05d45158b81ff5a8",
+      "version": "0.0.3",
+      "project_urls": {
+        "Homepage": "https://github.com/imoneoi/adam_atan2"
+      }
+    },
+    "source_file_sha256": {
+      "third_party/adam_atan2_0_0_3/upstream.tar.gz": "f07faef4a6d7476ad3be6096155a35a5ecf6a3932282367f05d45158b81ff5a8",
+      "third_party/adam_atan2_0_0_3/adam_atan2/adam_atan2.py": "9860727cf789ed4e4f667754b85a16630ab40918ce832e1780831fd6fdf427f7",
+      "third_party/adam_atan2_0_0_3/adam_atan2/adam_atan2_test.py": "723acc9321e4949553367104272314030dffc441821d1361d5ce876af9594fbf",
+      "third_party/adam_atan2_0_0_3/LICENSE": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "third_party/adam_atan2_0_0_3/provenance.json": "e47dc66aae94a515ae78bce81e313a61624945b3444d8932fad5a7ae96543f11"
+    },
+    "actual_sdist_sha256_matches_pin": true,
+    "license": "Apache-2.0; original license and sources retained under third_party/adam_atan2_0_0_3"
+  },
+  "prior_observed_checks": {
+    "unit_tests": {
+      "passed": true,
+      "tests_passed": 42,
+      "duration_seconds": 6.53,
+      "command": "G:\\Projects\\TransformerLab\\plastic-latent-lab\\.venv\\Scripts\\python.exe -m pytest tests -q",
+      "observation_source": "Direct prior tool output observed by this agent: 42 passed in 6.53s.",
+      "rerun_in_this_update": false
+    },
+    "native_full_width_smoke": {
+      "status": "complete",
+      "elapsed_seconds": 48.56702379998751,
+      "independent_verification_passed": true,
+      "independent_verification_checks": 305,
+      "all_check_values_true": true,
+      "summary_file": "results/local_sudoku_smoke/summary.json",
+      "summary_sha256": "01ac277e81e37f87e7580ab2be8cb96318b946a494cb166dd05f1b6a4f8745b0",
+      "verification_file": "results/local_sudoku_smoke/verification.json",
+      "verification_sha256": "e76543fa58897c8a9d198863e09f5b5114645f374e149f6fe54b06bcee5f92fd",
+      "rerun_in_this_update": false
+    }
+  },
+  "torch_imported_by_this_metadata_process": false,
+  "local_requirements_file": "local_lab/requirements-local.txt",
+  "local_requirements_sha256": "2e6df23c3667f51fa0fb8360aa69d29319c8b2940ee14da9ef5c9314797bf916",
+  "final_validation": {
+    "main_protocol": {
+      "passed": 305,
+      "total": 305,
+      "path": "results/local_sudoku/verification.json"
+    },
+    "main_actual_tensors": {
+      "passed": 210,
+      "total": 210,
+      "path": "results/local_sudoku/tensor_verification.json"
+    },
+    "probe_actual_tensors": {
+      "passed": 448,
+      "total": 448,
+      "path": "results/local_sudoku_probe/tensor_verification.json"
+    },
+    "probe_run_seconds": 75.93717110005673,
+    "unit_tests": {
+      "passed": 49,
+      "command": "python -m pytest -q",
+      "elapsed_seconds": 3.98,
+      "discovery": "pytest.ini testpaths=tests; portable optimizer parity tests included"
+    },
+    "probe_protocol": {
+      "passed": 139,
+      "total": 139,
+      "path": "results/local_sudoku_probe/verification.json"
+    },
+    "training_processes": "Both completed and exited; no unattended training process left running",
+    "main_run_seconds": 263.3731366000138
+  }
+}

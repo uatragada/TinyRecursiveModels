@@ -1,0 +1,63 @@
+{
+  "name": "longer_probe_seed29",
+  "results_dir": "results/longer_probe_seed29",
+  "source_run": "results/longer_sudoku",
+  "data_dir": "data/local-expanded-sudoku",
+  "seed": 29,
+  "batch_size": 64,
+  "steps": 300,
+  "warmup_steps": 20,
+  "learning_rate": 0.0001,
+  "betas": [
+    0.9,
+    0.95
+  ],
+  "weight_decay": 1.0,
+  "train_log_steps": [
+    1,
+    50,
+    100,
+    150,
+    200,
+    250,
+    300
+  ],
+  "adaptation_val_offset": 1024,
+  "checkpoint_steps": [
+    100,
+    200
+  ],
+  "fixed_act_training": true,
+  "eval_size": 512,
+  "eval_batch_size": 64,
+  "max_seconds": 600,
+  "training_cutoff_seconds": 300,
+  "model_config": {
+    "batch_size": 64,
+    "seq_len": 81,
+    "vocab_size": 11,
+    "num_puzzle_identifiers": 1,
+    "puzzle_emb_ndim": 512,
+    "puzzle_emb_len": 16,
+    "H_cycles": 3,
+    "L_cycles": 6,
+    "H_layers": 0,
+    "L_layers": 2,
+    "hidden_size": 512,
+    "expansion": 4.0,
+    "num_heads": 8,
+    "pos_encodings": "rope",
+    "halt_max_steps": 16,
+    "halt_exploration_prob": 0.1,
+    "forward_dtype": "bfloat16",
+    "mlp_t": false,
+    "no_ACT_continue": true,
+    "controller_width": 128,
+    "controller_heads": 8,
+    "controller_layers": 3,
+    "controller_ff_multiplier": 4,
+    "controller_history": 4,
+    "adapter_rank": 4,
+    "adapter_alpha": 0.2
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "reporter_sha256": "a2730168dc0972b02cbd1afb4e51f19fb2d2e07cf9c1be77202ab41f32fec183",
+  "inputs_sha256": {
+    "config.json": "d93a361c866b8ba18bf6c0397dff1df6a98ad52c722d49d2ad8420062359f457",
+    "summary.json": "8a9fa18f50ba2afb8d61a7b866aedeac5ef2d8891b7ac3d05ba661a4680ff96b",
+    "evaluations.json": "b34a702c6dcc623e186a687ba10bb9a81e8bf3118ff09b0862d8ca0117302347",
+    "history.jsonl": "fccdec7b3f957b9fdea10bd1a0eee0b6e3db022db30b83e8dd786dcfac80120e",
+    "verification.json": "c6980e6886b1206d1282990942a8dfca93fe3a5092faf341b4363dfe4e7b7a64",
+    "tensor_verification.json": "243391571b24406886d77acb435a5df09e36a65924a88b551c12eabef316fea0",
+    "source_manifest.json": "316dd04e2d83bc6bd4e400fb1b312a62e55a145f847766a7e334bfc611972255"
+  },
+  "plots": [
+    "plots/isolated_A_probe.png"
+  ],
+  "local_checks_path": "G:\\Projects\\TransformerLab\\TinyRecursiveModels\\results\\longer_probe_seed29\\local_checks.json",
+  "shared_local_checks_sha256": "0687b70d23c0a42aa5be0791c8443f71619b6ba74cc870cb587e8d99337e65ae"
+}

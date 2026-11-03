@@ -1,0 +1,32 @@
+{
+  "results_dir": "results/frozen_A_preflight_20261029",
+  "source_checkpoint": "checkpoints/longer_sudoku/joint.pt",
+  "data_dir": "data/local-expanded-sudoku",
+  "seeds": [
+    29
+  ],
+  "batch_size": 8,
+  "steps": 3,
+  "learning_rate": 0.001,
+  "warmup_steps": 20,
+  "controller_width": 32,
+  "controller_heads": 4,
+  "controller_layers": 1,
+  "train_offset": 1024,
+  "train_size": 16,
+  "dev_offset": 1792,
+  "dev_size": 8,
+  "oracle_offset": 1920,
+  "oracle_size": 4,
+  "test_size": 8,
+  "calibration_size": 4,
+  "oracle_steps": 2,
+  "oracle_lr": 0.15,
+  "teacher_every": 2,
+  "teacher_steps": 1,
+  "teacher_weight": 0.01,
+  "log_every": 1,
+  "eval_batch_size": 8,
+  "max_seconds": 300,
+  "training_cutoff_seconds": 180
+}

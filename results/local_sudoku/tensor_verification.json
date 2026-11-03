@@ -1,0 +1,868 @@
+{
+  "scope": "Independent saved-tensor hashes, finite values and expected trained/frozen components; CPU Torch only. Does not replay training or independently recompute predictions.",
+  "passed": true,
+  "checks_passed": 210,
+  "checks_total": 210,
+  "changed_tensor_counts": {
+    "native": {
+      "A": 13,
+      "B": 0,
+      "adapters": 0,
+      "static_gates": 0
+    },
+    "static_joint": {
+      "A": 13,
+      "B": 0,
+      "adapters": 4,
+      "static_gates": 1
+    },
+    "joint": {
+      "A": 13,
+      "B": 43,
+      "adapters": 4,
+      "static_gates": 0
+    }
+  },
+  "checks": [
+    {
+      "name": "initial checkpoint digest",
+      "passed": true
+    },
+    {
+      "name": "native: complete tensor keys",
+      "passed": true
+    },
+    {
+      "name": "native: raw digest",
+      "passed": true
+    },
+    {
+      "name": "native: EMA digest",
+      "passed": true
+    },
+    {
+      "name": "native: embedded metadata",
+      "passed": true
+    },
+    {
+      "name": "native: finite static_gates",
+      "passed": true
+    },
+    {
+      "name": "native: finite inner.H_init",
+      "passed": true
+    },
+    {
+      "name": "native: finite inner.L_init",
+      "passed": true
+    },
+    {
+      "name": "native: finite inner.embed_tokens.embedding_weight",
+      "passed": true
+    },
+    {
+      "name": "native: finite inner.lm_head.weight",
+      "passed": true
+    },
+    {
+      "name": "native: finite inner.q_head.weight",
+      "passed": true
+    },
+    {
+      "name": "native: finite inner.q_head.bias",
+      "passed": true
+    },
+    {
+      "name": "native: finite inner.puzzle_emb.weights",
+      "passed": true
+    },
+    {
+      "name": "native: finite inner.L_level.layers.0.self_attn.qkv_proj.weight",
+      "passed": true
+    },
+    {
+      "name": "native: finite inner.L_level.layers.0.self_attn.o_proj.weight",
+      "passed": true
+    },
+    {
+      "name": "native: finite inner.L_level.layers.0.mlp.gate_up_proj.weight",
+      "passed": true
+    },
+    {
+      "name": "native: finite inner.L_level.layers.0.mlp.down_proj.u",
+      "passed": true
+    },
+    {
+      "name": "native: finite inner.L_level.layers.0.mlp.down_proj.v",
+      "passed": true
+    },
+    {
+      "name": "native: finite inner.L_level.layers.0.mlp.down_proj.base.weight",
+      "passed": true
+    },
+    {
+      "name": "native: finite inner.L_level.layers.1.self_attn.qkv_proj.weight",
+      "passed": true
+    },
+    {
+      "name": "native: finite inner.L_level.layers.1.self_attn.o_proj.weight",
+      "passed": true
+    },
+    {
+      "name": "native: finite inner.L_level.layers.1.mlp.gate_up_proj.weight",
+      "passed": true
+    },
+    {
+      "name": "native: finite inner.L_level.layers.1.mlp.down_proj.u",
+      "passed": true
+    },
+    {
+      "name": "native: finite inner.L_level.layers.1.mlp.down_proj.v",
+      "passed": true
+    },
+    {
+      "name": "native: finite inner.L_level.layers.1.mlp.down_proj.base.weight",
+      "passed": true
+    },
+    {
+      "name": "native: finite controller.position",
+      "passed": true
+    },
+    {
+      "name": "native: finite controller.observation.weight",
+      "passed": true
+    },
+    {
+      "name": "native: finite controller.observation.bias",
+      "passed": true
+    },
+    {
+      "name": "native: finite controller.transformer.layers.0.self_attn.in_proj_weight",
+      "passed": true
+    },
+    {
+      "name": "native: finite controller.transformer.layers.0.self_attn.in_proj_bias",
+      "passed": true
+    },
+    {
+      "name": "native: finite controller.transformer.layers.0.self_attn.out_proj.weight",
+      "passed": true
+    },
+    {
+      "name": "native: finite controller.transformer.layers.0.self_attn.out_proj.bias",
+      "passed": true
+    },
+    {
+      "name": "native: finite controller.transformer.layers.0.linear1.weight",
+      "passed": true
+    },
+    {
+      "name": "native: finite controller.transformer.layers.0.linear1.bias",
+      "passed": true
+    },
+    {
+      "name": "native: finite controller.transformer.layers.0.linear2.weight",
+      "passed": true
+    },
+    {
+      "name": "native: finite controller.transformer.layers.0.linear2.bias",
+      "passed": true
+    },
+    {
+      "name": "native: finite controller.transformer.layers.0.norm1.weight",
+      "passed": true
+    },
+    {
+      "name": "native: finite controller.transformer.layers.0.norm1.bias",
+      "passed": true
+    },
+    {
+      "name": "native: finite controller.transformer.layers.0.norm2.weight",
+      "passed": true
+    },
+    {
+      "name": "native: finite controller.transformer.layers.0.norm2.bias",
+      "passed": true
+    },
+    {
+      "name": "native: finite controller.transformer.layers.1.self_attn.in_proj_weight",
+      "passed": true
+    },
+    {
+      "name": "native: finite controller.transformer.layers.1.self_attn.in_proj_bias",
+      "passed": true
+    },
+    {
+      "name": "native: finite controller.transformer.layers.1.self_attn.out_proj.weight",
+      "passed": true
+    },
+    {
+      "name": "native: finite controller.transformer.layers.1.self_attn.out_proj.bias",
+      "passed": true
+    },
+    {
+      "name": "native: finite controller.transformer.layers.1.linear1.weight",
+      "passed": true
+    },
+    {
+      "name": "native: finite controller.transformer.layers.1.linear1.bias",
+      "passed": true
+    },
+    {
+      "name": "native: finite controller.transformer.layers.1.linear2.weight",
+      "passed": true
+    },
+    {
+      "name": "native: finite controller.transformer.layers.1.linear2.bias",
+      "passed": true
+    },
+    {
+      "name": "native: finite controller.transformer.layers.1.norm1.weight",
+      "passed": true
+    },
+    {
+      "name": "native: finite controller.transformer.layers.1.norm1.bias",
+      "passed": true
+    },
+    {
+      "name": "native: finite controller.transformer.layers.1.norm2.weight",
+      "passed": true
+    },
+    {
+      "name": "native: finite controller.transformer.layers.1.norm2.bias",
+      "passed": true
+    },
+    {
+      "name": "native: finite controller.transformer.layers.2.self_attn.in_proj_weight",
+      "passed": true
+    },
+    {
+      "name": "native: finite controller.transformer.layers.2.self_attn.in_proj_bias",
+      "passed": true
+    },
+    {
+      "name": "native: finite controller.transformer.layers.2.self_attn.out_proj.weight",
+      "passed": true
+    },
+    {
+      "name": "native: finite controller.transformer.layers.2.self_attn.out_proj.bias",
+      "passed": true
+    },
+    {
+      "name": "native: finite controller.transformer.layers.2.linear1.weight",
+      "passed": true
+    },
+    {
+      "name": "native: finite controller.transformer.layers.2.linear1.bias",
+      "passed": true
+    },
+    {
+      "name": "native: finite controller.transformer.layers.2.linear2.weight",
+      "passed": true
+    },
+    {
+      "name": "native: finite controller.transformer.layers.2.linear2.bias",
+      "passed": true
+    },
+    {
+      "name": "native: finite controller.transformer.layers.2.norm1.weight",
+      "passed": true
+    },
+    {
+      "name": "native: finite controller.transformer.layers.2.norm1.bias",
+      "passed": true
+    },
+    {
+      "name": "native: finite controller.transformer.layers.2.norm2.weight",
+      "passed": true
+    },
+    {
+      "name": "native: finite controller.transformer.layers.2.norm2.bias",
+      "passed": true
+    },
+    {
+      "name": "native: finite controller.norm.weight",
+      "passed": true
+    },
+    {
+      "name": "native: finite controller.norm.bias",
+      "passed": true
+    },
+    {
+      "name": "native: finite controller.gates.weight",
+      "passed": true
+    },
+    {
+      "name": "native: finite controller.gates.bias",
+      "passed": true
+    },
+    {
+      "name": "native: A learned",
+      "passed": true
+    },
+    {
+      "name": "native: B and adapters and static gates unchanged",
+      "passed": true
+    },
+    {
+      "name": "static_joint: complete tensor keys",
+      "passed": true
+    },
+    {
+      "name": "static_joint: raw digest",
+      "passed": true
+    },
+    {
+      "name": "static_joint: EMA digest",
+      "passed": true
+    },
+    {
+      "name": "static_joint: embedded metadata",
+      "passed": true
+    },
+    {
+      "name": "static_joint: finite static_gates",
+      "passed": true
+    },
+    {
+      "name": "static_joint: finite inner.H_init",
+      "passed": true
+    },
+    {
+      "name": "static_joint: finite inner.L_init",
+      "passed": true
+    },
+    {
+      "name": "static_joint: finite inner.embed_tokens.embedding_weight",
+      "passed": true
+    },
+    {
+      "name": "static_joint: finite inner.lm_head.weight",
+      "passed": true
+    },
+    {
+      "name": "static_joint: finite inner.q_head.weight",
+      "passed": true
+    },
+    {
+      "name": "static_joint: finite inner.q_head.bias",
+      "passed": true
+    },
+    {
+      "name": "static_joint: finite inner.puzzle_emb.weights",
+      "passed": true
+    },
+    {
+      "name": "static_joint: finite inner.L_level.layers.0.self_attn.qkv_proj.weight",
+      "passed": true
+    },
+    {
+      "name": "static_joint: finite inner.L_level.layers.0.self_attn.o_proj.weight",
+      "passed": true
+    },
+    {
+      "name": "static_joint: finite inner.L_level.layers.0.mlp.gate_up_proj.weight",
+      "passed": true
+    },
+    {
+      "name": "static_joint: finite inner.L_level.layers.0.mlp.down_proj.u",
+      "passed": true
+    },
+    {
+      "name": "static_joint: finite inner.L_level.layers.0.mlp.down_proj.v",
+      "passed": true
+    },
+    {
+      "name": "static_joint: finite inner.L_level.layers.0.mlp.down_proj.base.weight",
+      "passed": true
+    },
+    {
+      "name": "static_joint: finite inner.L_level.layers.1.self_attn.qkv_proj.weight",
+      "passed": true
+    },
+    {
+      "name": "static_joint: finite inner.L_level.layers.1.self_attn.o_proj.weight",
+      "passed": true
+    },
+    {
+      "name": "static_joint: finite inner.L_level.layers.1.mlp.gate_up_proj.weight",
+      "passed": true
+    },
+    {
+      "name": "static_joint: finite inner.L_level.layers.1.mlp.down_proj.u",
+      "passed": true
+    },
+    {
+      "name": "static_joint: finite inner.L_level.layers.1.mlp.down_proj.v",
+      "passed": true
+    },
+    {
+      "name": "static_joint: finite inner.L_level.layers.1.mlp.down_proj.base.weight",
+      "passed": true
+    },
+    {
+      "name": "static_joint: finite controller.position",
+      "passed": true
+    },
+    {
+      "name": "static_joint: finite controller.observation.weight",
+      "passed": true
+    },
+    {
+      "name": "static_joint: finite controller.observation.bias",
+      "passed": true
+    },
+    {
+      "name": "static_joint: finite controller.transformer.layers.0.self_attn.in_proj_weight",
+      "passed": true
+    },
+    {
+      "name": "static_joint: finite controller.transformer.layers.0.self_attn.in_proj_bias",
+      "passed": true
+    },
+    {
+      "name": "static_joint: finite controller.transformer.layers.0.self_attn.out_proj.weight",
+      "passed": true
+    },
+    {
+      "name": "static_joint: finite controller.transformer.layers.0.self_attn.out_proj.bias",
+      "passed": true
+    },
+    {
+      "name": "static_joint: finite controller.transformer.layers.0.linear1.weight",
+      "passed": true
+    },
+    {
+      "name": "static_joint: finite controller.transformer.layers.0.linear1.bias",
+      "passed": true
+    },
+    {
+      "name": "static_joint: finite controller.transformer.layers.0.linear2.weight",
+      "passed": true
+    },
+    {
+      "name": "static_joint: finite controller.transformer.layers.0.linear2.bias",
+      "passed": true
+    },
+    {
+      "name": "static_joint: finite controller.transformer.layers.0.norm1.weight",
+      "passed": true
+    },
+    {
+      "name": "static_joint: finite controller.transformer.layers.0.norm1.bias",
+      "passed": true
+    },
+    {
+      "name": "static_joint: finite controller.transformer.layers.0.norm2.weight",
+      "passed": true
+    },
+    {
+      "name": "static_joint: finite controller.transformer.layers.0.norm2.bias",
+      "passed": true
+    },
+    {
+      "name": "static_joint: finite controller.transformer.layers.1.self_attn.in_proj_weight",
+      "passed": true
+    },
+    {
+      "name": "static_joint: finite controller.transformer.layers.1.self_attn.in_proj_bias",
+      "passed": true
+    },
+    {
+      "name": "static_joint: finite controller.transformer.layers.1.self_attn.out_proj.weight",
+      "passed": true
+    },
+    {
+      "name": "static_joint: finite controller.transformer.layers.1.self_attn.out_proj.bias",
+      "passed": true
+    },
+    {
+      "name": "static_joint: finite controller.transformer.layers.1.linear1.weight",
+      "passed": true
+    },
+    {
+      "name": "static_joint: finite controller.transformer.layers.1.linear1.bias",
+      "passed": true
+    },
+    {
+      "name": "static_joint: finite controller.transformer.layers.1.linear2.weight",
+      "passed": true
+    },
+    {
+      "name": "static_joint: finite controller.transformer.layers.1.linear2.bias",
+      "passed": true
+    },
+    {
+      "name": "static_joint: finite controller.transformer.layers.1.norm1.weight",
+      "passed": true
+    },
+    {
+      "name": "static_joint: finite controller.transformer.layers.1.norm1.bias",
+      "passed": true
+    },
+    {
+      "name": "static_joint: finite controller.transformer.layers.1.norm2.weight",
+      "passed": true
+    },
+    {
+      "name": "static_joint: finite controller.transformer.layers.1.norm2.bias",
+      "passed": true
+    },
+    {
+      "name": "static_joint: finite controller.transformer.layers.2.self_attn.in_proj_weight",
+      "passed": true
+    },
+    {
+      "name": "static_joint: finite controller.transformer.layers.2.self_attn.in_proj_bias",
+      "passed": true
+    },
+    {
+      "name": "static_joint: finite controller.transformer.layers.2.self_attn.out_proj.weight",
+      "passed": true
+    },
+    {
+      "name": "static_joint: finite controller.transformer.layers.2.self_attn.out_proj.bias",
+      "passed": true
+    },
+    {
+      "name": "static_joint: finite controller.transformer.layers.2.linear1.weight",
+      "passed": true
+    },
+    {
+      "name": "static_joint: finite controller.transformer.layers.2.linear1.bias",
+      "passed": true
+    },
+    {
+      "name": "static_joint: finite controller.transformer.layers.2.linear2.weight",
+      "passed": true
+    },
+    {
+      "name": "static_joint: finite controller.transformer.layers.2.linear2.bias",
+      "passed": true
+    },
+    {
+      "name": "static_joint: finite controller.transformer.layers.2.norm1.weight",
+      "passed": true
+    },
+    {
+      "name": "static_joint: finite controller.transformer.layers.2.norm1.bias",
+      "passed": true
+    },
+    {
+      "name": "static_joint: finite controller.transformer.layers.2.norm2.weight",
+      "passed": true
+    },
+    {
+      "name": "static_joint: finite controller.transformer.layers.2.norm2.bias",
+      "passed": true
+    },
+    {
+      "name": "static_joint: finite controller.norm.weight",
+      "passed": true
+    },
+    {
+      "name": "static_joint: finite controller.norm.bias",
+      "passed": true
+    },
+    {
+      "name": "static_joint: finite controller.gates.weight",
+      "passed": true
+    },
+    {
+      "name": "static_joint: finite controller.gates.bias",
+      "passed": true
+    },
+    {
+      "name": "static_joint: A learned",
+      "passed": true
+    },
+    {
+      "name": "static_joint: B unchanged",
+      "passed": true
+    },
+    {
+      "name": "static_joint: factors and global gates learned",
+      "passed": true
+    },
+    {
+      "name": "joint: complete tensor keys",
+      "passed": true
+    },
+    {
+      "name": "joint: raw digest",
+      "passed": true
+    },
+    {
+      "name": "joint: EMA digest",
+      "passed": true
+    },
+    {
+      "name": "joint: embedded metadata",
+      "passed": true
+    },
+    {
+      "name": "joint: finite static_gates",
+      "passed": true
+    },
+    {
+      "name": "joint: finite inner.H_init",
+      "passed": true
+    },
+    {
+      "name": "joint: finite inner.L_init",
+      "passed": true
+    },
+    {
+      "name": "joint: finite inner.embed_tokens.embedding_weight",
+      "passed": true
+    },
+    {
+      "name": "joint: finite inner.lm_head.weight",
+      "passed": true
+    },
+    {
+      "name": "joint: finite inner.q_head.weight",
+      "passed": true
+    },
+    {
+      "name": "joint: finite inner.q_head.bias",
+      "passed": true
+    },
+    {
+      "name": "joint: finite inner.puzzle_emb.weights",
+      "passed": true
+    },
+    {
+      "name": "joint: finite inner.L_level.layers.0.self_attn.qkv_proj.weight",
+      "passed": true
+    },
+    {
+      "name": "joint: finite inner.L_level.layers.0.self_attn.o_proj.weight",
+      "passed": true
+    },
+    {
+      "name": "joint: finite inner.L_level.layers.0.mlp.gate_up_proj.weight",
+      "passed": true
+    },
+    {
+      "name": "joint: finite inner.L_level.layers.0.mlp.down_proj.u",
+      "passed": true
+    },
+    {
+      "name": "joint: finite inner.L_level.layers.0.mlp.down_proj.v",
+      "passed": true
+    },
+    {
+      "name": "joint: finite inner.L_level.layers.0.mlp.down_proj.base.weight",
+      "passed": true
+    },
+    {
+      "name": "joint: finite inner.L_level.layers.1.self_attn.qkv_proj.weight",
+      "passed": true
+    },
+    {
+      "name": "joint: finite inner.L_level.layers.1.self_attn.o_proj.weight",
+      "passed": true
+    },
+    {
+      "name": "joint: finite inner.L_level.layers.1.mlp.gate_up_proj.weight",
+      "passed": true
+    },
+    {
+      "name": "joint: finite inner.L_level.layers.1.mlp.down_proj.u",
+      "passed": true
+    },
+    {
+      "name": "joint: finite inner.L_level.layers.1.mlp.down_proj.v",
+      "passed": true
+    },
+    {
+      "name": "joint: finite inner.L_level.layers.1.mlp.down_proj.base.weight",
+      "passed": true
+    },
+    {
+      "name": "joint: finite controller.position",
+      "passed": true
+    },
+    {
+      "name": "joint: finite controller.observation.weight",
+      "passed": true
+    },
+    {
+      "name": "joint: finite controller.observation.bias",
+      "passed": true
+    },
+    {
+      "name": "joint: finite controller.transformer.layers.0.self_attn.in_proj_weight",
+      "passed": true
+    },
+    {
+      "name": "joint: finite controller.transformer.layers.0.self_attn.in_proj_bias",
+      "passed": true
+    },
+    {
+      "name": "joint: finite controller.transformer.layers.0.self_attn.out_proj.weight",
+      "passed": true
+    },
+    {
+      "name": "joint: finite controller.transformer.layers.0.self_attn.out_proj.bias",
+      "passed": true
+    },
+    {
+      "name": "joint: finite controller.transformer.layers.0.linear1.weight",
+      "passed": true
+    },
+    {
+      "name": "joint: finite controller.transformer.layers.0.linear1.bias",
+      "passed": true
+    },
+    {
+      "name": "joint: finite controller.transformer.layers.0.linear2.weight",
+      "passed": true
+    },
+    {
+      "name": "joint: finite controller.transformer.layers.0.linear2.bias",
+      "passed": true
+    },
+    {
+      "name": "joint: finite controller.transformer.layers.0.norm1.weight",
+      "passed": true
+    },
+    {
+      "name": "joint: finite controller.transformer.layers.0.norm1.bias",
+      "passed": true
+    },
+    {
+      "name": "joint: finite controller.transformer.layers.0.norm2.weight",
+      "passed": true
+    },
+    {
+      "name": "joint: finite controller.transformer.layers.0.norm2.bias",
+      "passed": true
+    },
+    {
+      "name": "joint: finite controller.transformer.layers.1.self_attn.in_proj_weight",
+      "passed": true
+    },
+    {
+      "name": "joint: finite controller.transformer.layers.1.self_attn.in_proj_bias",
+      "passed": true
+    },
+    {
+      "name": "joint: finite controller.transformer.layers.1.self_attn.out_proj.weight",
+      "passed": true
+    },
+    {
+      "name": "joint: finite controller.transformer.layers.1.self_attn.out_proj.bias",
+      "passed": true
+    },
+    {
+      "name": "joint: finite controller.transformer.layers.1.linear1.weight",
+      "passed": true
+    },
+    {
+      "name": "joint: finite controller.transformer.layers.1.linear1.bias",
+      "passed": true
+    },
+    {
+      "name": "joint: finite controller.transformer.layers.1.linear2.weight",
+      "passed": true
+    },
+    {
+      "name": "joint: finite controller.transformer.layers.1.linear2.bias",
+      "passed": true
+    },
+    {
+      "name": "joint: finite controller.transformer.layers.1.norm1.weight",
+      "passed": true
+    },
+    {
+      "name": "joint: finite controller.transformer.layers.1.norm1.bias",
+      "passed": true
+    },
+    {
+      "name": "joint: finite controller.transformer.layers.1.norm2.weight",
+      "passed": true
+    },
+    {
+      "name": "joint: finite controller.transformer.layers.1.norm2.bias",
+      "passed": true
+    },
+    {
+      "name": "joint: finite controller.transformer.layers.2.self_attn.in_proj_weight",
+      "passed": true
+    },
+    {
+      "name": "joint: finite controller.transformer.layers.2.self_attn.in_proj_bias",
+      "passed": true
+    },
+    {
+      "name": "joint: finite controller.transformer.layers.2.self_attn.out_proj.weight",
+      "passed": true
+    },
+    {
+      "name": "joint: finite controller.transformer.layers.2.self_attn.out_proj.bias",
+      "passed": true
+    },
+    {
+      "name": "joint: finite controller.transformer.layers.2.linear1.weight",
+      "passed": true
+    },
+    {
+      "name": "joint: finite controller.transformer.layers.2.linear1.bias",
+      "passed": true
+    },
+    {
+      "name": "joint: finite controller.transformer.layers.2.linear2.weight",
+      "passed": true
+    },
+    {
+      "name": "joint: finite controller.transformer.layers.2.linear2.bias",
+      "passed": true
+    },
+    {
+      "name": "joint: finite controller.transformer.layers.2.norm1.weight",
+      "passed": true
+    },
+    {
+      "name": "joint: finite controller.transformer.layers.2.norm1.bias",
+      "passed": true
+    },
+    {
+      "name": "joint: finite controller.transformer.layers.2.norm2.weight",
+      "passed": true
+    },
+    {
+      "name": "joint: finite controller.transformer.layers.2.norm2.bias",
+      "passed": true
+    },
+    {
+      "name": "joint: finite controller.norm.weight",
+      "passed": true
+    },
+    {
+      "name": "joint: finite controller.norm.bias",
+      "passed": true
+    },
+    {
+      "name": "joint: finite controller.gates.weight",
+      "passed": true
+    },
+    {
+      "name": "joint: finite controller.gates.bias",
+      "passed": true
+    },
+    {
+      "name": "joint: A learned",
+      "passed": true
+    },
+    {
+      "name": "joint: B and factors learned",
+      "passed": true
+    },
+    {
+      "name": "joint: static gates unchanged",
+      "passed": true
+    }
+  ]
+}

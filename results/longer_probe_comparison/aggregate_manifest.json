@@ -1,0 +1,25 @@
+{
+  "reporter_sha256": "a2730168dc0972b02cbd1afb4e51f19fb2d2e07cf9c1be77202ab41f32fec183",
+  "inputs_sha256": {
+    "G:\\Projects\\TransformerLab\\TinyRecursiveModels\\results\\longer_probe_seed29": {
+      "config.json": "d93a361c866b8ba18bf6c0397dff1df6a98ad52c722d49d2ad8420062359f457",
+      "summary.json": "8a9fa18f50ba2afb8d61a7b866aedeac5ef2d8891b7ac3d05ba661a4680ff96b",
+      "evaluations.json": "b34a702c6dcc623e186a687ba10bb9a81e8bf3118ff09b0862d8ca0117302347",
+      "probe_report_summary.json": "56c85d170750f0ce02d7b81ee1f18ff9ace0392a852fdef9ba24894e7d2aa9b5",
+      "verification.json": "c6980e6886b1206d1282990942a8dfca93fe3a5092faf341b4363dfe4e7b7a64",
+      "tensor_verification.json": "243391571b24406886d77acb435a5df09e36a65924a88b551c12eabef316fea0"
+    },
+    "G:\\Projects\\TransformerLab\\TinyRecursiveModels\\results\\longer_probe_seed43": {
+      "config.json": "8caa408ef05a5a17edb1f79fe414ec78df285b54e5e7feec5f4b617d06ff2cba",
+      "summary.json": "6c879e2fab449513f4e3e99243dd66741bdfb83f417f51996bf0fb1eb13f66bf",
+      "evaluations.json": "003cec3fa73c4b3f1532b0d0bf9b7757685afeec475f14e12de98829bb9f6607",
+      "probe_report_summary.json": "b4d943404b74db084daeeac856850558c58bda530f2fc725f35034a0c3139211",
+      "verification.json": "51d95b63dc8b488b35e7dc1d2c7fac76e85eb0cd2ceb50c9f9d278c0d98387c3",
+      "tensor_verification.json": "243391571b24406886d77acb435a5df09e36a65924a88b551c12eabef316fea0"
+    }
+  },
+  "plots": [
+    "plots/probe_seed_comparison.png"
+  ],
+  "aggregate_verification_sha256": "000ad858437f1829140501b415f03f867bdf7aa782351d51ec6834e3a1288348"
+}

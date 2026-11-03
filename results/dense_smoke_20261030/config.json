@@ -1,0 +1,23 @@
+{
+  "results_dir": "results/dense_smoke_20261030",
+  "source_checkpoint": "checkpoints/longer_sudoku/native.pt",
+  "data_dir": "data/local-expanded-sudoku",
+  "seed": 29,
+  "batch_size": 4,
+  "steps": 8,
+  "learning_rate": 0.001,
+  "max_seconds": 180,
+  "train_offset": 1024,
+  "train_size": 32,
+  "dev_offset": 1792,
+  "dev_size": 8,
+  "architecture": {
+    "dense_controller_width": 64,
+    "dense_controller_heads": 4,
+    "dense_controller_layers": 2,
+    "dense_tile_size": 32,
+    "dense_chunk_tiles": 128,
+    "dense_decoder_width": 32,
+    "dense_relative_cap": 0.03
+  }
+}

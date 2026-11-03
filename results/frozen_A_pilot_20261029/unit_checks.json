@@ -1,0 +1,15 @@
+{
+  "command": "python -m pytest -q",
+  "passed": 67,
+  "training_processes": "All completed and exited",
+  "targeted_post_initialization_tests": {
+    "passed": 11,
+    "elapsed_seconds": 3.99
+  },
+  "integration_preflight": {
+    "status": "complete",
+    "results_dir": "results/frozen_A_preflight_20261029",
+    "elapsed_seconds": 43.87490829998569
+  },
+  "elapsed_seconds": 5.47
+}

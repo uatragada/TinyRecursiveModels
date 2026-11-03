@@ -1,0 +1,20 @@
+{
+  "source_protocol": {
+    "total": 339,
+    "passed": 339,
+    "path": "verification.json"
+  },
+  "source_run_complete": true,
+  "unit_tests": {
+    "command": "python -m pytest -q",
+    "passed": 56,
+    "elapsed_seconds": 6.13
+  },
+  "source_elapsed_seconds": 2506.1794548000908,
+  "expanded_data_evidence": "../expanded_data_checks.json",
+  "source_actual_tensors": {
+    "total": 1071,
+    "passed": 1071,
+    "path": "tensor_verification.json"
+  }
+}

@@ -1,0 +1,131 @@
+{
+  "rows": [
+    {
+      "comparison": "cross-minus-larger_b",
+      "primary": true,
+      "gain_pp": -0.009413536665725303,
+      "per_seed_gain_pp": [
+        0.07060152499293985,
+        -0.05648121999435188,
+        -0.04236091499576391
+      ],
+      "conditional_95_interval_pp": [
+        -0.08963204904060722,
+        0.07070160743550709
+      ]
+    },
+    {
+      "comparison": "cross-minus-pooled",
+      "primary": false,
+      "gain_pp": -0.08942859832439046,
+      "per_seed_gain_pp": [
+        -0.04236091499576391,
+        -0.15532335498446767,
+        -0.07060152499293985
+      ],
+      "conditional_95_interval_pp": [
+        -0.15971551878584958,
+        -0.023371803500748873
+      ]
+    },
+    {
+      "comparison": "cross-minus-b",
+      "primary": false,
+      "gain_pp": -0.0753082933258025,
+      "per_seed_gain_pp": [
+        -0.07060152499293985,
+        -0.12708274498729172,
+        -0.02824060999717594
+      ],
+      "conditional_95_interval_pp": [
+        -0.151476426518808,
+        3.1421595083998462e-18
+      ]
+    },
+    {
+      "comparison": "cross-minus-c_off",
+      "primary": false,
+      "gain_pp": -0.028240609997175935,
+      "per_seed_gain_pp": [
+        -0.01412030499858797,
+        -0.07060152499293985,
+        0.0
+      ],
+      "conditional_95_interval_pp": [
+        -0.1128994702974013,
+        0.05665802676122385
+      ]
+    },
+    {
+      "comparison": "cross-minus-c_write_shuffle",
+      "primary": false,
+      "gain_pp": -0.06589475666007719,
+      "per_seed_gain_pp": [
+        -0.11296243998870376,
+        -0.12708274498729172,
+        0.04236091499576391
+      ],
+      "conditional_95_interval_pp": [
+        -0.15112874279777083,
+        0.018808681699358346
+      ]
+    },
+    {
+      "comparison": "cross-minus-c_read_shuffle",
+      "primary": false,
+      "gain_pp": -0.06589475666007719,
+      "per_seed_gain_pp": [
+        -0.11296243998870376,
+        -0.12708274498729172,
+        0.04236091499576391
+      ],
+      "conditional_95_interval_pp": [
+        -0.15512676332003916,
+        0.018790193543683036
+      ]
+    },
+    {
+      "comparison": "cross-minus-c_read_pooled",
+      "primary": false,
+      "gain_pp": -0.05648121999435187,
+      "per_seed_gain_pp": [
+        -0.04236091499576391,
+        -0.12708274498729172,
+        0.0
+      ],
+      "conditional_95_interval_pp": [
+        -0.13762534693153522,
+        0.02357403613170551
+      ]
+    },
+    {
+      "comparison": "cross-minus-c_phase",
+      "primary": false,
+      "gain_pp": -0.0847218299915278,
+      "per_seed_gain_pp": [
+        -0.01412030499858797,
+        -0.15532335498446767,
+        -0.08472182999152782
+      ],
+      "conditional_95_interval_pp": [
+        -0.16526138418455294,
+        -0.009354001038921648
+      ]
+    },
+    {
+      "comparison": "cross-minus-c_reset_memory",
+      "primary": false,
+      "gain_pp": -0.05177445166148922,
+      "per_seed_gain_pp": [
+        0.0,
+        -0.12708274498729172,
+        -0.02824060999717594
+      ],
+      "conditional_95_interval_pp": [
+        -0.12215175005872679,
+        0.014174394671700355
+      ]
+    }
+  ],
+  "scope": "Paired bootstrap over held-out puzzles, averaging these three fixed controller seeds before resampling. Intervals are conditional on this A donor and these controller runs, not estimates of A-training or full controller-training uncertainty. One predeclared primary comparison; secondary intervals are descriptive and unadjusted."
+}

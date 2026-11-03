@@ -1,0 +1,179 @@
+{
+  "repository": "sapientinc/sudoku-extreme",
+  "revision": "58942f96baeb572ca3127e2a9e9c70f330783d6b",
+  "metadata_api_url": "https://huggingface.co/api/datasets/sapientinc/sudoku-extreme/revision/58942f96baeb572ca3127e2a9e9c70f330783d6b",
+  "dataset_card_url": "https://huggingface.co/datasets/sapientinc/sudoku-extreme/blob/58942f96baeb572ca3127e2a9e9c70f330783d6b/README.md",
+  "dataset_license_declared_in_card_or_api": null,
+  "dataset_license_note": "Not declared in the pinned dataset card/API",
+  "upstream_code_license": "MIT; TinyRecursiveModels/LICENSE is preserved separately and is not asserted to license this dataset",
+  "requested_sizes": {
+    "train": 8192,
+    "val": 512,
+    "test": 512
+  },
+  "splits": {
+    "train": {
+      "n": 8192,
+      "shape": [
+        8192,
+        81
+      ],
+      "official_source_split": "train",
+      "original_index_min": 0,
+      "original_index_max": 8191,
+      "source_counts": {
+        "puzzles4_forum_hardest_1905": 4292,
+        "puzzles1_unbiased": 1946,
+        "puzzles0_kaggle": 208,
+        "puzzles5_forum_hardest_1905_11+": 88,
+        "01_file1": 1546,
+        "puzzles2_17_clue": 105,
+        "puzzles6_forum_hardest_1106": 3,
+        "puzzles3_magictour_top1465": 4
+      },
+      "rating_min": 0,
+      "rating_max": 257,
+      "valid_solution_count": 8192,
+      "clue_consistent_count": 8192,
+      "unique_puzzle_sha256": 8192,
+      "unique_solution_sha256": 8192
+    },
+    "val": {
+      "n": 512,
+      "shape": [
+        512,
+        81
+      ],
+      "official_source_split": "train",
+      "original_index_min": 8192,
+      "original_index_max": 8703,
+      "source_counts": {
+        "puzzles1_unbiased": 141,
+        "puzzles4_forum_hardest_1905": 274,
+        "01_file1": 73,
+        "puzzles0_kaggle": 12,
+        "puzzles2_17_clue": 5,
+        "puzzles5_forum_hardest_1905_11+": 6,
+        "puzzles3_magictour_top1465": 1
+      },
+      "rating_min": 0,
+      "rating_max": 213,
+      "valid_solution_count": 512,
+      "clue_consistent_count": 512,
+      "unique_puzzle_sha256": 512,
+      "unique_solution_sha256": 512
+    },
+    "test": {
+      "n": 512,
+      "shape": [
+        512,
+        81
+      ],
+      "official_source_split": "test",
+      "original_index_min": 0,
+      "original_index_max": 511,
+      "source_counts": {
+        "puzzles1_unbiased": 153,
+        "puzzles4_forum_hardest_1905": 274,
+        "puzzles0_kaggle": 13,
+        "puzzles2_17_clue": 6,
+        "01_file1": 59,
+        "puzzles5_forum_hardest_1905_11+": 7
+      },
+      "rating_min": 0,
+      "rating_max": 112,
+      "valid_solution_count": 512,
+      "clue_consistent_count": 512,
+      "unique_puzzle_sha256": 512,
+      "unique_solution_sha256": 512
+    }
+  },
+  "streams": {
+    "train": {
+      "requested_url": "https://huggingface.co/datasets/sapientinc/sudoku-extreme/resolve/58942f96baeb572ca3127e2a9e9c70f330783d6b/train.csv",
+      "revision": "58942f96baeb572ca3127e2a9e9c70f330783d6b",
+      "http_status": 206,
+      "etag": "\"bb2cd2b4cc9e3694606ccfeeb78151da3a882fb8833214bc1ba93780ffd50931\"",
+      "response_content_length": 8388608,
+      "content_range": "bytes 0-8388607/718819925",
+      "application_bytes_read": 1703936,
+      "cached_complete_prefix_bytes": 1639067,
+      "read_ahead_bytes_not_selected_or_cached": 64869,
+      "maximum_application_bytes": 8388608,
+      "whole_official_file_downloaded": false,
+      "original_rows_consumed": 8704,
+      "accepted_rows": 8704,
+      "skipped_rows": {},
+      "selected_source_counts": {
+        "puzzles4_forum_hardest_1905": 4566,
+        "puzzles1_unbiased": 2087,
+        "puzzles0_kaggle": 220,
+        "puzzles5_forum_hardest_1905_11+": 94,
+        "01_file1": 1619,
+        "puzzles2_17_clue": 110,
+        "puzzles6_forum_hardest_1106": 3,
+        "puzzles3_magictour_top1465": 5
+      },
+      "row_index_basis": "zero-based data rows, excluding the CSV header"
+    },
+    "test": {
+      "requested_url": "https://huggingface.co/datasets/sapientinc/sudoku-extreme/resolve/58942f96baeb572ca3127e2a9e9c70f330783d6b/test.csv",
+      "revision": "58942f96baeb572ca3127e2a9e9c70f330783d6b",
+      "http_status": 206,
+      "etag": "\"dc537623f264df1b9bbb3a080ea6545ac729a8517cf8c155625dae2874a43ac2\"",
+      "response_content_length": 8388608,
+      "content_range": "bytes 0-8388607/79360390",
+      "application_bytes_read": 131072,
+      "cached_complete_prefix_bytes": 96784,
+      "read_ahead_bytes_not_selected_or_cached": 34288,
+      "maximum_application_bytes": 8388608,
+      "whole_official_file_downloaded": false,
+      "original_rows_consumed": 512,
+      "accepted_rows": 512,
+      "skipped_rows": {},
+      "selected_source_counts": {
+        "puzzles1_unbiased": 153,
+        "puzzles4_forum_hardest_1905": 274,
+        "puzzles0_kaggle": 13,
+        "puzzles2_17_clue": 6,
+        "01_file1": 59,
+        "puzzles5_forum_hardest_1905_11+": 7
+      },
+      "row_index_basis": "zero-based data rows, excluding the CSV header"
+    }
+  },
+  "encoding": {
+    "pad": 0,
+    "blank": 1,
+    "digits_1_to_9": [
+      2,
+      10
+    ],
+    "vocab_size": 11,
+    "puzzle_identifier": 0,
+    "seq_len": 81
+  },
+  "selection": "Official test sequential prefix first; official train sequential prefix supplies train then validation; reject invalid rows and any already-selected puzzle OR solution hash",
+  "cross_split_duplicate_puzzle_or_solution_count": 0,
+  "augmentation": "On-the-fly train only: independent digit permutation, optional transpose, band/stack and within-band/stack row/column permutations, matching upstream Sudoku symmetries",
+  "limitations": [
+    "Sequential prefixes can be source- and difficulty-biased; these are not random samples of the full official dataset.",
+    "Validation is an adjacent held-out portion of the official training prefix, not a separately published benchmark split.",
+    "Exact puzzle and solution hash separation is enforced; mathematical equivalence of local train/validation puzzles is not independently solved.",
+    "Official card claims unique solutions and mathematically inequivalent train/test sets; local checks validate provided solutions and clues, not independent uniqueness proofs.",
+    "Pool size is not training exposure; the runner must report actual base puzzles seen and repeated augmented presentations."
+  ],
+  "file_sha256": {
+    "raw/test_consumed_prefix.csv": "4322b5fa856944051a97fbaeb2be691e42d5fc1411513bb44bc6370141471941",
+    "raw/test_selected.csv": "4322b5fa856944051a97fbaeb2be691e42d5fc1411513bb44bc6370141471941",
+    "raw/train_consumed_prefix.csv": "8a29e34979c608f899e28c12020134104c96e1a0de2f36927ab75848779e6ab3",
+    "raw/train_selected.csv": "84df96aa2020a3f16d93d37e807d0556986b91701f14191c5183bbe9c3fbf563",
+    "raw/val_selected.csv": "9b453884478e634b8eeb771c74d91d7449f70719a5623f60104b7067b9c73a95",
+    "selected_rows.json": "d074fa2a5b9cf2b39b762c81b1bfb3704369c0c36c2d606885111de0766de98d",
+    "test.npz": "aaee1e121d5fe5d6855954b9836d03c7cd3e7e70103a22b722d69692f933fd78",
+    "train.npz": "ce18b3c32a1b8cd4e6ed20a4ff531b660b783e3067731a911f961c4aa8bf061d",
+    "upstream_dataset_card.md": "11341cf37ee8822317d24ed78262b43b2661af9c18303cc3e4043ff7ce4b82c6",
+    "upstream_metadata.json": "4248fd1c01be17b632847ad81f5afa236fc51e2b129965d47c239b63ba497c82",
+    "val.npz": "23543030504cd7073dd77e1be2348e3d734b830b23f483646392b787585c028c"
+  }
+}

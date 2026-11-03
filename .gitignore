@@ -1,0 +1,27 @@
+__pycache__/
+.pytest_cache/
+.venv/
+*.py[cod]
+*.egg-info/
+*.log
+
+# Local datasets and trained weights stay on this machine.
+/data/
+/checkpoints/
+/tmp/
+/wandb/
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+# These bundles include downloaded Sudoku inputs and labels.
+/results/**/predictions.npz
+
+# Local credentials and machine files.
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+.DS_Store
+Thumbs.db

@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "checks": {
+    "uniform": true,
+    "uniform_accuracy": true,
+    "positive": true,
+    "positive_accuracy": true,
+    "negative": true,
+    "negative_accuracy": true
+  },
+  "scope": "Closed-form Stablemax probability and clue/blank weighting checks; synthetic exact-prediction and invalid-grid cases."
+}
