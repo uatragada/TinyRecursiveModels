@@ -1,0 +1,18 @@
+{
+  "seed": 59,
+  "kind": "cross",
+  "step": 304,
+  "task_loss": 1.3280951976776123,
+  "gradient_norm": 0.0034951227717101574,
+  "cross_head_gradient_norms": [
+    1.0031590136350133e-06,
+    5.417076067715243e-07,
+    4.5100591705704574e-07,
+    3.416795379962423e-07
+  ],
+  "b_weight_updates": 1,
+  "c_weight_updates": 1,
+  "cuda_allocated_mib": 202.33837890625,
+  "cuda_reserved_mib": 1454.0,
+  "elapsed_seconds": 166.07477069999732
+}

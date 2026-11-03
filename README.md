@@ -13,9 +13,33 @@ The upstream model, code, and attribution are preserved. The original project in
 
 The current dense architecture generates complete temporary matrices. Earlier low-rank controller experiments remain available as research history. Inference-time updates do not overwrite the stored base weights.
 
+The default now regenerates C's changes to B and B's changes to A before every
+reasoning call: 21 times per ACT and 336 times per full H3/L6 puzzle. See
+[the per-step weight correction](PER_STEP_WEIGHTS.md). The earlier experiment
+configurations explicitly retain their one-action-per-ACT cadence for reproduction.
+
 ## Results so far
 
+The November 2 per-step study completed with three seeds, 304 updates per
+variant, batch 16, and 128 new held-out puzzles. Frozen A scored 42.467% blank-cell
+accuracy. B only scored 43.132%, parameter-matched larger B 43.061%, pooled B+C
+43.005%, and structured B+C 43.080%. C did not establish a gain over larger B:
++0.019 percentage points, conditional 95% interval [-0.071, +0.118].
+
+A separate exploratory control trained the same structured B+C with identical
+initial tensors, data, optimizer updates and A calls, using the old once-per-ACT
+timing. It scored 42.797%, versus 43.080% with per-reasoning-step updates:
++0.283 percentage points, conditional interval [+0.019, +0.563]. All three seeds
+favored per-step updates. Controller calls and total FLOPs differ. No evaluated
+variant solved a complete puzzle; A stayed frozen, so this does not test joint-A
+adaptability. See [the full per-step report](results/per_step_comparison_20261102_v4/report.md)
+and [the direct cadence comparison](results/per_step_comparison_20261102_v4/cadence_comparison.md).
+
+## Earlier October 30 comparison
+
 The completed three-seed, frozen-A attention study did **not** establish an accuracy advantage for structured inter-model attention over a parameter-matched larger B.
+These results used the earlier one-action-per-ACT cadence; performance with
+fresh weights at every reasoning call is measured separately above.
 
 | System | Mean blank-cell accuracy |
 | --- | ---: |
@@ -59,7 +83,7 @@ python -m pip install -r local_lab/requirements-local.txt
 python -m pytest -q
 ```
 
-The unit suite uses small synthetic fixtures and does not need downloaded Sudoku data or saved model checkpoints. It currently contains 108 tests. The native source-training runner requires CUDA; follow-up runner budgets and recorded timings come from the local GPU environment.
+The unit suite uses small synthetic fixtures and does not need downloaded Sudoku data or saved model checkpoints. It currently contains 136 tests. The native source-training runner requires CUDA; follow-up runner budgets and recorded timings come from the local GPU environment.
 
 ## Reproduce an experiment
 

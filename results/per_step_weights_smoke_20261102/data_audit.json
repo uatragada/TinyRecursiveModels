@@ -1,0 +1,25 @@
+{
+  "dataset_manifest_sha256": "dc57678ebbb518d604493a5e6f154ab44bdb1c63e9098d6f91194538fb752cb3",
+  "panels": {
+    "train": {
+      "base_ids": [
+        66560,
+        66561,
+        66562,
+        66563
+      ],
+      "inputs_sha256": "43be02bf16ad3f68619eb066b53a3b222f3671728720cdb5de03e844a6b2151a",
+      "labels_sha256": "525c99ed401147cb4f600a7f689eaef49cddd670e2a65cfbcd375814e64b814f"
+    },
+    "dev": {
+      "base_ids": [
+        67328,
+        67329
+      ],
+      "inputs_sha256": "4803925b853a11c808a554af531c81153cbd1f0537a0c52ab5cd7ab911bcdb67",
+      "labels_sha256": "f8dd0915bc8569438d0eb46852d1a95a1ae29c68a178fa47bdfdbfcfd37d6d52"
+    }
+  },
+  "official_test_used": false,
+  "oracle_used": false
+}

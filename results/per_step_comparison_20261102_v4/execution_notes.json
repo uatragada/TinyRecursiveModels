@@ -1,0 +1,14 @@
+{
+  "earlier_attempt": "results/per_step_comparison_20261102",
+  "earlier_attempt_status": "Aborted at first B-only development checkpoint due to host MemoryError; no trained-arm test evaluations completed.",
+  "resource_changes": [
+    "Batch reduced from 32 to 16.",
+    "Temporary state and CUDA cache released after complete puzzle episodes.",
+    "Checkpoint hashing consumes array buffers without a Python bytes copy.",
+    "Decoder combines 768 tiles per chunk; output and gradient agreement tested.",
+    "Final panels use 32 development and 128 fresh test puzzles to retain four variants and three seeds within the cap."
+  ],
+  "protocol_selection": "Resource and training-panel timing only; all reported arms initialized fresh after these changes.",
+  "native_gradient_boundary": "14 reasoning calls without gradient recording, then seven distinct differentiable controller writes per ACT.",
+  "parameter_match": "Equal total trainable parameter counts for larger B and B+C; larger B spends the added capacity on its context network."
+}

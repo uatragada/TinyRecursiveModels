@@ -63,14 +63,17 @@ def metrics(prediction, inputs, labels, logits):
 def verify(directory):
     torch.set_num_threads(4)
     cfg = json.loads((directory / "config.json").read_text())
+    kinds = tuple(cfg.get("kinds", KINDS))
     result = json.loads((directory / "summary.json").read_text())
     checks = {}
     def check(name, condition):
         checks[name] = bool(condition)
     check("completed", result["status"] == "complete")
-    check("within_explicit_budget", result["elapsed_seconds"] <= cfg["max_seconds"] <= 1800)
+    cap = 3600 if cfg["architecture"].get("weight_update_cadence") == "per_reasoning_step" else 1800
+    check("within_explicit_budget", result["elapsed_seconds"] <= cfg["max_seconds"] <= cap)
     check("locked_steps", result["steps_per_arm"] == cfg["locked_steps"] and cfg["locked_steps"] % 16 == 0)
-    check("predeclared_primary", cfg["primary_comparison"] == "cross-minus-larger_b")
+    expected_primary = "cadence-control-only" if cfg.get("paired_run") else "cross-minus-larger_b"
+    check("predeclared_primary", cfg["primary_comparison"] == expected_primary)
     profile = json.loads((directory / "profile.json").read_text())
     unmodified_cfg = {key: value for key, value in cfg.items() if key != "locked_steps"}
     check("profile_matches_config", hashlib.sha256(json.dumps(unmodified_cfg, sort_keys=True).encode()).hexdigest() == profile["config_sha256"])
@@ -95,7 +98,22 @@ def verify(directory):
         check(f"panel:{name}:ids", pools[name]["base_ids"].tolist() == audit["panels"][name]["base_ids"])
     for left, right in (("train", "dev"), ("train", "test"), ("dev", "test")):
         check(f"disjoint:{left}:{right}", not set(pools[left]["base_ids"]) & set(pools[right]["base_ids"]))
-    expected_arms = {(seed, kind) for seed in cfg["seeds"] for kind in KINDS}
+    if cfg.get("previous_data_dir"):
+        previous = load_data(ROOT / cfg["previous_data_dir"])
+        check("previous_cache_identity", sha(ROOT / cfg["previous_data_dir"] / "manifest.json") == audit["previous_cache_manifest_sha256"])
+        check("frozen_a_training_pool_preserved", np.array_equal(previous["train"]["inputs"], dataset["train"]["inputs"]))
+        for key in ("inputs", "labels"):
+            seen = {hashlib.sha256(row.tobytes()).hexdigest() for pool in previous.values() for row in pool[key]}
+            check("test_fresh_vs_previous:" + key, not any(hashlib.sha256(row.tobytes()).hexdigest() in seen for row in pools["test"][key]))
+    interval = cfg.get("dev_every", 0)
+    checkpoints = list(range(interval, cfg["locked_steps"], interval)) if interval else []
+    eval_batch = cfg.get("eval_batch_size", cfg["batch_size"])
+    dev_calls = int(np.ceil(cfg["dev_size"] / eval_batch)) * 16
+    test_calls = int(np.ceil(cfg["test_size"] / eval_batch)) * 16
+    eval_calls = (len(cfg["seeds"]) * len(kinds) * ((2 + len(checkpoints)) * dev_calls + test_calls)
+        + len(cfg["seeds"]) * len(cfg.get("ablations", ABLATIONS)) * test_calls + dev_calls + test_calls)
+    check("profile_planned_all_evaluations", profile["evaluation_act_calls"] == eval_calls)
+    expected_arms = {(seed, kind) for seed in cfg["seeds"] for kind in kinds}
     check("all_training_arms", {(row["seed"], row["kind"]) for row in result["training"]} == expected_arms and len(result["training"]) == len(expected_arms))
     c_initials = {}
     for seed in cfg["seeds"]:
@@ -109,7 +127,7 @@ def verify(directory):
                 stream_hash.update(batch[key].tobytes())
             admitted.extend(batch["base_ids"].tolist())
         matched_counts = []
-        for kind in KINDS:
+        for kind in kinds:
             prefix = f"{seed}:{kind}"
             row = next(row for row in result["training"] if row["seed"] == seed and row["kind"] == kind)
             saved = torch.load(directory / f"{kind}_seed{seed}.pt", map_location="cpu", weights_only=True)
@@ -126,8 +144,12 @@ def verify(directory):
             check(prefix + ":parameter_count", sum(v.numel() for v in actors.values()) == row["parameter_count"])
             check(prefix + ":data_stream", row["stream_sha256"] == stream_hash.hexdigest() and row["admitted_base_ids"] == admitted)
             check(prefix + ":exposure_counts", row["augmented_admissions"] == len(admitted) and row["act_slots"] == cfg["locked_steps"] * cfg["batch_size"])
+            check(prefix + ":unique_base_count", row["unique_base_puzzles"] == len(set(admitted)))
             check(prefix + ":native_calls", row["a_calls_per_act"] == 21)
             check(prefix + ":gradient_records", row["history"][-1]["step"] == cfg["locked_steps"] and all(np.isfinite(v["task_loss"]) and v["gradient_norm"] > 0 for v in row["history"]))
+            if cfg["architecture"].get("weight_update_cadence") == "per_reasoning_step":
+                check(prefix + ":per_step_architecture", saved["model_config"]["weight_update_cadence"] == row["weight_update_cadence"] == "per_reasoning_step")
+                check(prefix + ":per_step_training_writes", all(v["b_weight_updates"] == 21 and v["c_weight_updates"] == (21 if kind in ("pooled", "cross") else 0) for v in row["history"]))
             if kind != "b":
                 matched_counts.append(row["parameter_count"])
             if kind in ("pooled", "cross"):
@@ -136,13 +158,16 @@ def verify(directory):
             if kind == "larger_b":
                 check(prefix + ":extra_capacity_updated", all(not torch.equal(value, initial[key]) for key, value in actors.items() if key.startswith("extra_")))
             del saved, state, actors, initial
-        check(f"{seed}:active_parameter_match", len(set(matched_counts)) == 1)
-        check(f"{seed}:identical_c_initialization", c_initials[(seed, "pooled")] == c_initials[(seed, "cross")])
+        if len(matched_counts) > 1:
+            check(f"{seed}:active_parameter_match", len(set(matched_counts)) == 1)
+        if "pooled" in kinds and "cross" in kinds:
+            check(f"{seed}:identical_c_initialization", c_initials[(seed, "pooled")] == c_initials[(seed, "cross")])
     expected_evals = {("a", 0, "a_only", split) for split in ("dev", "test")}
     for seed, kind in expected_arms:
         expected_evals |= {(kind, seed, "initial", "dev"), (kind, seed, "normal", "dev"), (kind, seed, "normal", "test")}
+        expected_evals |= {(kind, seed, f"step_{step}", "dev") for step in checkpoints}
         if kind == "cross":
-            expected_evals |= {(kind, seed, variant, "test") for variant in ABLATIONS}
+            expected_evals |= {(kind, seed, variant, "test") for variant in cfg.get("ablations", ABLATIONS)}
     check("evaluation_coverage", {(r["kind"], r["seed"], r["variant"], r["split"]) for r in result["evaluations"]} == expected_evals and len(result["evaluations"]) == len(expected_evals))
     arrays = {}
     for index, row in enumerate(result["evaluations"]):
@@ -157,6 +182,12 @@ def verify(directory):
         for name, value in calculated.items():
             check(prefix + ":" + name, abs(value - row[name]) <= (2e-6 if name == "task_loss" else 1e-12))
         check(prefix + ":runtime_flags", row["actor_unchanged"] and row["a_unchanged"] and row["act_steps"] == 16)
+        if "b_weight_updates_per_act" in row:
+            count = int(np.ceil(len(pool["inputs"]) / eval_batch)) * 16
+            expected_b = 0 if row["variant"] == "a_only" else 21 if row["weight_update_cadence"] == "per_reasoning_step" else 1
+            expected_c = [] if row["kind"] not in ("pooled", "cross") else [0 if row["variant"] == "c_off" else expected_b] * count
+            check(prefix + ":b_generation_cadence", row["b_weight_updates_per_act"] == [expected_b] * count)
+            check(prefix + ":c_generation_cadence", row["c_weight_updates_per_act"] == expected_c)
         if saved["sample_attention"] is not None:
             attention = saved["sample_attention"]
             check(prefix + ":attention", tuple(attention.shape) == (1, 4, 4, 14) and torch.isfinite(attention).all()

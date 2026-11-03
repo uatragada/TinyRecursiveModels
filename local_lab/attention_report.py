@@ -22,6 +22,8 @@ def report(directory):
     if summary["status"] != "complete" or verification["status"] != "passed":
         raise ValueError("A completed and verified comparison is required")
     rows, seeds = summary["evaluations"], cfg["seeds"]
+    unit_path = directory / "unit_checks.json"
+    units = json.loads(unit_path.read_text()) if unit_path.exists() else {"passed": "unrecorded"}
     def locate(kind, seed, variant="normal", split="test"):
         return next(i for i, row in enumerate(rows)
             if (row["kind"], row["seed"], row["variant"], row["split"]) == (kind, seed, variant, split))
@@ -47,6 +49,8 @@ def report(directory):
             ("cross", "c_read_pooled", "cross-minus-c_read_pooled"),
             ("cross", "c_phase", "cross-minus-c_phase"),
             ("cross", "c_reset_memory", "cross-minus-c_reset_memory")]
+        comparisons = [(kind, variant, name) for kind, variant, name in comparisons
+                       if any(row["kind"] == kind and row["variant"] == variant and row["split"] == "test" for row in rows)]
         for kind, variant, name in comparisons:
             differences, per_seed = [], []
             for seed in seeds:
@@ -103,6 +107,38 @@ def report(directory):
     (directory / "plots").mkdir(exist_ok=True)
     fig.savefig(directory / "plots/comparison.png", dpi=170)
     plt.close(fig)
+    interval = cfg.get("dev_every", 0)
+    checkpoint_steps = [0] + (list(range(interval, cfg["locked_steps"], interval)) if interval else []) + [cfg["locked_steps"]]
+    curves = {}
+    fig, curve_axes = plt.subplots(1, 2, figsize=(10.5, 4.2))
+    for color, (kind, name) in zip(colors, NAMES.items()):
+        curve = []
+        for step in checkpoint_steps:
+            variant = "initial" if step == 0 else "normal" if step == cfg["locked_steps"] else f"step_{step}"
+            measurements = [rows[locate(kind, seed, variant, "dev")] for seed in seeds]
+            curve.append({"step": step,
+                "mean_blank_accuracy": float(np.mean([r["blank_accuracy"] for r in measurements])),
+                "mean_task_loss": float(np.mean([r["task_loss"] for r in measurements])),
+                "per_seed_blank_accuracy": [r["blank_accuracy"] for r in measurements],
+                "per_seed_task_loss": [r["task_loss"] for r in measurements]})
+        curves[kind] = curve
+        for seed_index in range(len(seeds)):
+            curve_axes[0].plot(checkpoint_steps, [100*r["per_seed_blank_accuracy"][seed_index] for r in curve], color=color, alpha=.17, lw=.8)
+            curve_axes[1].plot(checkpoint_steps, [r["per_seed_task_loss"][seed_index] for r in curve], color=color, alpha=.17, lw=.8)
+        curve_axes[0].plot(checkpoint_steps, [100*r["mean_blank_accuracy"] for r in curve], color=color, label=name, marker="o", ms=3)
+        curve_axes[1].plot(checkpoint_steps, [r["mean_task_loss"] for r in curve], color=color, label=name, marker="o", ms=3)
+    for ax in curve_axes:
+        ax.set_xlabel("Optimizer updates")
+        ax.grid(alpha=.2)
+        ax.spines[["top", "right"]].set_visible(False)
+    curve_axes[0].set_ylabel("Development blank-cell accuracy (%)")
+    curve_axes[1].set_ylabel("Development task loss")
+    curve_axes[0].legend(frameon=False, fontsize=8)
+    fig.suptitle("Development curves: thin lines are seeds; bold lines are means")
+    fig.tight_layout()
+    fig.savefig(directory / "plots/learning_curves.png", dpi=170)
+    plt.close(fig)
+    (directory / "learning_curves.json").write_text(json.dumps(curves, indent=2), encoding="utf-8")
     training = summary["training"]
     table = "\n".join(f"| {v['name']} | {next(r['parameter_count'] for r in training if r['kind'] == k):,} | {100*v['accuracy']:.3f}% | {v['task_loss']:.6f} |"
         for k, v in means.items())
@@ -112,6 +148,16 @@ def report(directory):
     exact_note = ("No evaluated variant produced a complete valid puzzle solution."
         if all(row["exact_accuracy"] == 0 and row["valid_grid_fraction"] == 0 for row in rows if row["split"] == "test")
         else "Exact-puzzle and valid-grid fractions for every condition are retained in summary.json.")
+    cadence = ("Fresh weights were generated before each of the 21 reasoning calls per ACT, "
+        "including all 14 native no-gradient warm-up calls: 336 generations per complete puzzle. "
+        "Each of the final seven calls has its own differentiable B/C write."
+        if cfg["architecture"].get("weight_update_cadence") == "per_reasoning_step" else
+        "The historical per_act cadence generated one action held over the final seven native reasoning calls.")
+    freshness = ("Exact puzzle and solution hashes of the final test panel were checked against "
+        "every split of the previous cache; the panel starts beyond that cache's test prefix. "
+        "The frozen A donor's original training pool was verified unchanged."
+        if cfg.get("previous_data_dir") else "")
+    config_path = cfg.get("config_path", "local_lab/config_attention_test.json")
     text = f"""# Controlled test of inter-model attention
 
 **{verdict}**
@@ -137,7 +183,7 @@ scored **{100*baseline['blank_accuracy']:.3f}%**. Controller results average see
 
 {exact_note}
 
-![Controlled comparison]({(directory / 'plots/comparison.png').as_posix()})
+![Controlled comparison](plots/comparison.png)
 
 ## Protocol and executed budget
 
@@ -146,6 +192,8 @@ does not train A or test whether joint A training makes A more adaptable. B writ
 complete dense temporary changes to A's two MLP down-projections. C cross-attends
 to 14 internal B tokens and writes a dense temporary change to B's generation
 head. There are no low-rank factors in the tested models.
+
+{cadence}
 
 Each of the 12 training runs received **{cfg['locked_steps']} updates**, batch
 **{cfg['batch_size']}**, identical data/augmentation and native A-call budgets
@@ -157,7 +205,7 @@ trainable count exactly matches B+C. Total FLOPs and wall-clock costs are not
 identical; the matched compute boundary is the number of A calls.
 
 The {cfg['dev_size']}-puzzle development panel and held-out test panel are disjoint
-from controller training. Hyperparameters and the primary comparison were fixed
+from controller training. {freshness} Hyperparameters and the primary comparison were fixed
 before study evaluation. A training-only throughput profile selected
 {cfg['locked_steps']} updates from a requested {cfg['requested_steps']} to respect
 the **{cfg['max_seconds']/60:.0f}-minute cap**, with a 50% timing margin. Profile
@@ -165,12 +213,27 @@ models were discarded. Every reported checkpoint is the final training step;
 development scores were not used to choose checkpoints. No oracle was used.
 
 The comparison completed in **{summary['elapsed_seconds']/60:.2f} minutes**.
-All {len(training)} arms completed. The local suite passed 108 tests before the
+All {len(training)} arms completed. The local suite passed {units['passed']} tests before the
 run. The independent saved-artifact audit passed **{verification['passed']}/{verification['total']}**
 checks, including all native A tensors unchanged, common initialization,
 regenerated augmented streams, exact parameter matching, snapshot hashes,
 prediction-derived accuracy and independently calculated Stablemax task loss.
 The auditor does not replay optimizer steps or model inference.
+
+## Development learning curves
+
+All arms were measured at updates {checkpoint_steps}. Intermediate evaluations
+follow complete 16-ACT episodes; the next training episode resets all puzzle
+slots, preserving the matched training stream. Every final test score uses the
+last checkpoint, with no development-based selection or early stopping.
+
+![Development curves](plots/learning_curves.png)
+
+Structured B+C development loss changed from {curves['cross'][0]['mean_task_loss']:.6f}
+to {curves['cross'][-1]['mean_task_loss']:.6f}; its blank accuracy changed from
+{100*curves['cross'][0]['mean_blank_accuracy']:.3f}% to
+{100*curves['cross'][-1]['mean_blank_accuracy']:.3f}%. These measurements describe
+the executed budget and do not establish convergence or predict a longer run.
 
 ## Paired effects and inference ablations
 
@@ -192,13 +255,13 @@ or safety. Exact-puzzle results and each inference condition remain in summary.j
 
 ## Reproduction
 
-Copy `local_lab/config_attention_test.json` with fresh `results_dir` and
+Copy `{config_path}` with fresh `results_dir` and
 `profile_file` paths; existing runs are never overwritten. Then run:
 
 ```powershell
-& '..\\plastic-latent-lab\\.venv\\Scripts\\python.exe' -m local_lab.attention_test --config local_lab/config_attention_test.json --stage all
-& '..\\plastic-latent-lab\\.venv\\Scripts\\python.exe' scripts/verify_attention_test.py
-& '..\\plastic-latent-lab\\.venv\\Scripts\\python.exe' -m local_lab.attention_report
+& '..\\plastic-latent-lab\\.venv\\Scripts\\python.exe' -m local_lab.attention_test --config {config_path} --stage all
+& '..\\plastic-latent-lab\\.venv\\Scripts\\python.exe' scripts/verify_attention_test.py --run {directory.relative_to(ROOT).as_posix()}
+& '..\\plastic-latent-lab\\.venv\\Scripts\\python.exe' -m local_lab.attention_report --run {directory.relative_to(ROOT).as_posix()}
 ```
 """
     (directory / "report.md").write_text(text, encoding="utf-8")

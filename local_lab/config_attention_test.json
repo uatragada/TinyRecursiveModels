@@ -20,6 +20,7 @@
   "primary_comparison": "cross-minus-larger_b",
   "bootstrap_resamples": 4000,
   "architecture": {
+    "weight_update_cadence": "per_act",
     "dense_controller_width": 64,
     "dense_controller_heads": 4,
     "dense_controller_layers": 2,

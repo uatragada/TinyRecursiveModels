@@ -13,6 +13,7 @@
   "dev_offset": 1792,
   "dev_size": 8,
   "architecture": {
+    "weight_update_cadence": "per_act",
     "hidden_size": 512,
     "num_heads": 8,
     "L_layers": 2,

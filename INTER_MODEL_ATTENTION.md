@@ -1,5 +1,22 @@
 # Attention between the transformers
 
+The November 2 controlled per-step study is complete. Structured B+C averaged
+43.080% blank accuracy, versus 43.061% for larger B, 43.132% for B only, and
+43.005% for pooled B+C. Its primary difference was +0.019 percentage points,
+conditional 95% interval [-0.071, +0.118]. C still has no established advantage
+over the B controls. A matched exploratory timing control scored 42.797% with
+the old cadence, versus 43.080% per step; that difference was +0.283 points,
+conditional interval [+0.019, +0.563]. See
+[the per-step report](results/per_step_comparison_20261102_v4/report.md).
+
+As of November 2, the model default generates fresh C-to-B and B-to-A weight
+changes before **every reasoning call**, including native warm-up calls. H3/L6
+therefore has 21 generations per ACT and 336 per full puzzle. See
+[the cadence correction](PER_STEP_WEIGHTS.md) and its separate engineering
+checks. The controlled results below used the earlier `per_act` cadence: one
+set of weights held over the final seven calls. They do not establish how the
+new cadence performs; those results are reported separately above.
+
 The controlled three-seed test is complete. Structured attention averaged
 **41.716% blank-cell accuracy**, versus **41.726%** for the parameter-matched
 larger B, **41.806%** for trained pooled reads, and **41.791%** for B alone.

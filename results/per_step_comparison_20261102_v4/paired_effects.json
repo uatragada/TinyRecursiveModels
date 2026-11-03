@@ -1,0 +1,75 @@
+{
+  "rows": [
+    {
+      "comparison": "cross-minus-larger_b",
+      "primary": true,
+      "gain_pp": 0.01888039271216841,
+      "per_seed_gain_pp": [
+        0.02832058906825262,
+        0.1416029453412631,
+        -0.11328235627301048
+      ],
+      "conditional_95_interval_pp": [
+        -0.07076139258420604,
+        0.11790269967564876
+      ]
+    },
+    {
+      "comparison": "cross-minus-pooled",
+      "primary": false,
+      "gain_pp": 0.07552157084867364,
+      "per_seed_gain_pp": [
+        0.1557632398753894,
+        0.1416029453412631,
+        -0.07080147267063155
+      ],
+      "conditional_95_interval_pp": [
+        0.014180173392858748,
+        0.14154381870415278
+      ]
+    },
+    {
+      "comparison": "cross-minus-b",
+      "primary": false,
+      "gain_pp": -0.05192107995846313,
+      "per_seed_gain_pp": [
+        0.07080147267063155,
+        -0.04248088360237893,
+        -0.18408382894364203
+      ],
+      "conditional_95_interval_pp": [
+        -0.1315665820881496,
+        0.023664242276676715
+      ]
+    },
+    {
+      "comparison": "cross-minus-c_off",
+      "primary": false,
+      "gain_pp": 0.01416029453412631,
+      "per_seed_gain_pp": [
+        0.02832058906825262,
+        0.09912206173888417,
+        -0.08496176720475786
+      ],
+      "conditional_95_interval_pp": [
+        -0.047315384451545484,
+        0.07998231041677194
+      ]
+    },
+    {
+      "comparison": "cross-minus-c_read_shuffle",
+      "primary": false,
+      "gain_pp": 0.03304068724629473,
+      "per_seed_gain_pp": [
+        0.1416029453412631,
+        0.02832058906825262,
+        -0.07080147267063155
+      ],
+      "conditional_95_interval_pp": [
+        -0.04274174049725737,
+        0.11775442458425965
+      ]
+    }
+  ],
+  "scope": "Paired bootstrap over held-out puzzles, averaging these three fixed controller seeds before resampling. Intervals are conditional on this A donor and these controller runs, not estimates of A-training or full controller-training uncertainty. One predeclared primary comparison; secondary intervals are descriptive and unadjusted."
+}

@@ -1,0 +1,28 @@
+{
+  "config_sha256": "10295b97011ab6bdb53912656554257576aa3d66dd3a4fc2404e4c6526322f98",
+  "training_step_median_seconds": 0.3425934499973664,
+  "evaluation_act_median_seconds": 0.2532233499950962,
+  "profile_training_times": [
+    0.3496900000027381,
+    0.3512655999948038,
+    0.3280213000107324,
+    0.3354968999919947,
+    0.3293486999900779,
+    0.35905800000182353
+  ],
+  "profile_eval_times": [
+    0.2800318999943556,
+    0.22803890000795946,
+    0.2727463000046555,
+    0.3085527000075672,
+    0.23195019998820499,
+    0.25802479998674244,
+    0.24842190000345,
+    0.22078289999626577
+  ],
+  "evaluation_act_calls": null,
+  "locked_steps": null,
+  "peak_cuda_allocated_mib": 2127.28271484375,
+  "scope": "Training-panel-only timing calibration. Profile models are discarded; all study arms are initialized fresh. No held-out evaluation or tuning.",
+  "estimated_study_seconds_with_50_percent_margin": null
+}

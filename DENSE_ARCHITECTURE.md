@@ -26,11 +26,23 @@ For a selected projection, the forward calculation is:
 
 `output = linear(input, W_A) + batch_matmul(input, delta_W_B.transpose(-1, -2))`
 
-There is one complete `delta_W_B` per example and projection. Each is held over
-the final seven calls in native H3/L6's 21-call ACT update. The preceding 14 calls
-remain unmodified. B's memory persists in value across ACT updates, resets for new
-puzzles, and has truncated gradient credit across updates. A's stored weights
-are not overwritten by temporary inference-time changes.
+There is one complete `delta_W_B` per example and projection, freshly generated
+before **every reasoning call**. Native H3/L6 has 21 calls per ACT update and 16
+ACT updates per full puzzle, so B generates weights 336 times per puzzle. Each
+call uses the latest low/high states and carried controller memory. When C is
+enabled, C first changes B's generator at that same cadence. Updates replace the
+previous temporary matrix; they are relative to the stored base, with history
+carried by B/C state rather than an accumulating matrix sum.
+
+The native first 14 calls still run without gradient recording, but their
+effective weights also change. Each of the final seven calls has its own
+differentiable B/C generation. Memory credit is truncated between ACT updates,
+and each puzzle slot resets independently. See [the cadence correction and
+local checks](PER_STEP_WEIGHTS.md).
+
+`weight_update_cadence=per_reasoning_step` is the model default. The original
+October 30 configurations explicitly select `per_act` to reproduce their one
+late action held over seven calls. Those results do not evaluate the new cadence.
 
 The generator bounds each entry so that each update's Frobenius norm is at most
 3% of its base weight's Frobenius norm, up to floating-point rounding. This is a

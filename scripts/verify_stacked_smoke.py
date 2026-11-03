@@ -109,6 +109,29 @@ def verify(directory):
                 checks[f"{variant}:{metric}"] = abs(value - row[metric]) < 1e-12
     for name, expected_hash in json.loads((directory / "source_manifest.json").read_text()).items():
         checks[f"source_snapshot:{name}"] = sha(directory / "source_snapshot" / name) == expected_hash
+    if summary.get("weight_update_cadence"):
+        steps = summary["architecture"]["H_cycles"] * (summary["architecture"]["L_cycles"] + 1)
+        scheduled = steps if summary["weight_update_cadence"] == "per_reasoning_step" else 1
+        checks["configured_cadence_recorded"] = cfg["architecture"].get("weight_update_cadence", "per_reasoning_step") == summary["weight_update_cadence"]
+        checks["generated_entry_count_matches_cadence"] = summary["generated_weights_per_example_per_act"] == scheduled * summary["generated_weights_per_example_per_update"]
+        checks["training_b_c_update_counts"] = all(row["b_weight_updates"] == row["c_weight_updates"] == scheduled for row in summary["training"])
+        for name, row in summary["evaluations"].items():
+            expected_b = 0 if row["mode"] == "off" else scheduled
+            expected_c = 0 if row["meta_mode"] == "off" else expected_b
+            count = cfg["dev_size"] // cfg["batch_size"] * row["act_steps"]
+            checks[f"{name}:b_update_cadence"] = row["b_weight_updates_per_act"] == [expected_b] * count
+            checks[f"{name}:c_update_cadence"] = row["c_weight_updates_per_act"] == [expected_c] * count
+    if summary.get("step_trace"):
+        trace = json.loads((directory / summary["step_trace"]).read_text())
+        rows = trace["rows"]
+        expected = [(act + 1, call + 1) for act in range(summary["architecture"]["halt_max_steps"]) for call in range(steps)]
+        checks["trace_covers_every_reasoning_call"] = [(r["act_step"], r["reasoning_call"]) for r in rows] == expected
+        checks["trace_counts_match"] = trace["reasoning_steps"] == len(rows) == len(expected)
+        checks["both_levels_write_before_every_call"] = all(r["b_updates_this_act"] == r["c_updates_this_act"] == r["reasoning_call"] for r in rows)
+        checks["sampled_a_changes_every_call"] = all(r["a_max_changes"] is None if i == 0 else all(np.isfinite(v) and v > 0 for v in r["a_max_changes"]) for i, r in enumerate(rows))
+        checks["sampled_c_changes_every_call"] = all(r["c_max_change"] is None if i == 0 else np.isfinite(r["c_max_change"]) and r["c_max_change"] > 0 for i, r in enumerate(rows))
+        checks["trace_a_updates_bounded"] = all(len(r["a_frobenius_ratios"]) == len(summary["dense_matrices"]) and all(np.isfinite(v) and 0 <= v <= cfg["architecture"]["dense_relative_cap"] + 1e-6 for v in r["a_frobenius_ratios"]) for r in rows)
+        checks["trace_c_updates_bounded"] = all(np.isfinite(r["c_frobenius_ratio"]) and 0 <= r["c_frobenius_ratio"] <= cfg["architecture"]["meta_relative_cap"] + 1e-6 for r in rows)
     checks = {k: bool(v) for k, v in checks.items()}
     result = {"status": "passed" if all(checks.values()) else "failed", "passed": sum(checks.values()),
         "total": len(checks), "a_tensors_compared": len(a), "checks": checks,

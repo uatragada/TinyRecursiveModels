@@ -32,7 +32,9 @@ def state_digest(state):
     digest = hashlib.sha256()
     for name, value in sorted(state.items()):
         digest.update(f"{name}:{value.dtype}:{tuple(value.shape)}".encode())
-        digest.update(value.reshape(-1).view(torch.uint8).numpy().tobytes())
+        # hashlib consumes the contiguous NumPy buffer directly. Avoid a second
+        # full tensor-sized Python bytes allocation during checkpoint audits.
+        digest.update(value.reshape(-1).view(torch.uint8).numpy())
     return digest.hexdigest()
 
 

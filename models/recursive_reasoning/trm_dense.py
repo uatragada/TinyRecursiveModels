@@ -197,16 +197,20 @@ def native_a_from_checkpoint(state):
 
 
 class DensePlasticTRM(TinyRecursiveReasoningModel_ACTV1):
-    """Unmodified native recursion, with one dense B action in its final cycle.
+    """Native recursion with fresh dense B weights before each reasoning call.
 
     Modes: dynamic, off, phase (input-independent context), shuffle, reset_memory.
     A can be frozen or jointly trainable. B observations are detached, and memory
     credit is truncated between ACT updates, matching the native carry boundary.
+    The explicit per_act cadence reproduces the historical final-cycle action.
     """
     def __init__(self, config_dict):
         super().__init__(config_dict)
         if self.config.seq_len != 81 or self.config.vocab_size != 11 or not self.config.no_ACT_continue:
             raise ValueError("The dense pilot requires Sudoku and native no_ACT_continue")
+        self.weight_update_cadence = config_dict.get("weight_update_cadence", "per_reasoning_step")
+        if self.weight_update_cadence not in ("per_reasoning_step", "per_act"):
+            raise ValueError("weight_update_cadence must be per_reasoning_step or per_act")
         for layer in self.inner.L_level.layers:
             layer.mlp.down_proj = DenseTemporaryProjection(layer.mlp.down_proj)
         width = config_dict.get("dense_controller_width", 64)
@@ -222,6 +226,8 @@ class DensePlasticTRM(TinyRecursiveReasoningModel_ACTV1):
         self.previous_high, self.previous_probs, self.previous_norms = None, None, None
         self.high, self.phase, self.data = None, None, None
         self.last_action = None
+        self.reasoning_calls_per_act = self.config.H_cycles * (self.config.L_cycles + 1)
+        self.weight_updates_this_act = 0
         self.warmup_calls = (self.config.H_cycles - 1) * (self.config.L_cycles + 1)
         self.inner.register_forward_pre_hook(self._begin_inner)
         self.inner.L_level.register_forward_pre_hook(self._before_reasoning)
@@ -279,18 +285,26 @@ class DensePlasticTRM(TinyRecursiveReasoningModel_ACTV1):
         self.controller.memory = None
         self.controller.reasoning_tokens = None
         self.previous_high, self.previous_probs, self.previous_norms = None, None, None
+        self.weight_updates_this_act = 0
+        self.high, self.phase, self.data = None, None, None
 
     def _begin_inner(self, _module, args):
         self.call, self.action = 0, None
+        self.weight_updates_this_act = 0
         self.high, self.data = args[0].z_H, args[1]
         for port in self.ports:
             port.delta = None
 
     def _before_reasoning(self, _module, args):
         self.call += 1
-        if self.call == self.warmup_calls + 1 and self.mode != "off":
+        every_step = self.weight_update_cadence == "per_reasoning_step"
+        if self.mode != "off" and (every_step or self.call == self.warmup_calls + 1):
             prefix = self.inner.puzzle_emb_len
-            high, low = self.high[:, prefix:], args[0][:, prefix:]
+            # A high-state update receives (z_H, z_L), whereas a low-state
+            # update receives (z_L, z_H + input). Always expose actual z_L.
+            high_step = self.call % (self.config.L_cycles + 1) == 0
+            low_state = args[1] if high_step else args[0]
+            high, low = self.high[:, prefix:], low_state[:, prefix:]
             inputs = self.data["inputs"]
             with torch.no_grad():
                 logits = self.inner.lm_head(self.high)[:, prefix:]
@@ -301,6 +315,14 @@ class DensePlasticTRM(TinyRecursiveReasoningModel_ACTV1):
             self.action = self.generator(context, [p.base.weight for p in self.ports])
             if self.mode == "shuffle":
                 self.action = [value.roll(1, 0) for value in self.action]
+            self.weight_updates_this_act += 1
+            if every_step:
+                # Differences refer to the preceding observation/action, rather
+                # than the preceding ACT. These features carry no gradient.
+                self.previous_high = high.detach().float()
+                self.previous_probs = probabilities.detach()
+                self.previous_norms = torch.stack([
+                    value.detach().square().mean((1, 2)).sqrt() for value in self.action], -1)
         for index, port in enumerate(self.ports):
             port.delta = None if self.action is None else self.action[index]
 
@@ -325,9 +347,14 @@ class DensePlasticTRM(TinyRecursiveReasoningModel_ACTV1):
         self.previous_probs = torch.where(reset[:, None, None], 0., self.previous_probs.detach())
         self.previous_norms = torch.where(reset[:, None], 0., self.previous_norms.detach())
         self.phase = torch.where(reset, 0, carry.steps).long().clamp_max(self.config.halt_max_steps - 1)
-        new_carry, outputs = super().forward(carry, batch)
-        self.previous_high = new_carry.inner_carry.z_H[:, prefix:].float().detach()
-        self.previous_probs = _digit_probabilities(outputs["logits"].detach(), new_carry.current_data["inputs"])
+        try:
+            new_carry, outputs = super().forward(carry, batch)
+        except Exception:
+            self.clear_runtime()
+            raise
+        if self.weight_update_cadence == "per_act":
+            self.previous_high = new_carry.inner_carry.z_H[:, prefix:].float().detach()
+            self.previous_probs = _digit_probabilities(outputs["logits"].detach(), new_carry.current_data["inputs"])
         self.last_action = None if self.action is None else [v.detach() for v in self.action]
         self.previous_norms = (torch.zeros_like(self.previous_norms) if self.action is None else
             torch.stack([v.detach().square().mean((1, 2)).sqrt() for v in self.action], -1))

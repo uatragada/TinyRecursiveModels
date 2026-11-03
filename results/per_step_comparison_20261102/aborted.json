@@ -1,0 +1,8 @@
+{
+  "status": "aborted",
+  "reason": "MemoryError while hashing frozen A before development measurement at update 128 of the first B-only arm.",
+  "completed_training_arms": 0,
+  "trained_arm_test_evaluations": 0,
+  "restart": "results/per_step_comparison_20261102_v2",
+  "remediation": "Batch 16; release runtime state and CUDA cache at completed episodes; hash tensors without copying to Python bytes."
+}

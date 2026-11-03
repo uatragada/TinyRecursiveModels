@@ -1,0 +1,16 @@
+{
+  "status": "passed",
+  "device": "cuda",
+  "reasoning_steps": 336,
+  "projections_per_step": 3,
+  "all_consecutive_applied_matrices_changed": true,
+  "elapsed_seconds": 20.528615199989872,
+  "checkpoint_sha256": "edf62e4452093b24924af580a1e6cbd338ebe961112907750db68e3f3906f014",
+  "trace_sha256": "fbabc92b62092b73a53b70d16e76fe00e72405e7709c3d06a55ab55f0f3112b5",
+  "verifier_sha256": "6ca5b513b317f15629b6491741c287469d641f78f4bb0f2304e8634c92cc121c",
+  "source_sha256": {
+    "models\\recursive_reasoning\\trm_dense.py": "dbc324ebfd7e0b8e0842b37c1d86fd4731a1dee06d6281f68dc8e899a520ff96",
+    "models\\recursive_reasoning\\trm_stacked.py": "70a0783c84dbacf802059a6bbc08846761349f6f2d163e060300591a8aa61a66"
+  },
+  "scope": "Inference replay of one complete validation batch using the final smoke checkpoint. Updates are inspected after casting to each projection's actual input dtype; no optimizer replay or performance comparison."
+}

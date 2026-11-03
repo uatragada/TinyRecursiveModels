@@ -1,0 +1,19 @@
+{
+  "status": "passed",
+  "command": "python -m pytest -q",
+  "passed": 136,
+  "elapsed_seconds": 15.12,
+  "source_sha256": {
+    "tests/test_attention_comparison.py": "93b2f922ae6c55fbc822ab94d2381d6ba9746bccfe090e1e2be8a833f8861cb3",
+    "tests/test_attention_protocol.py": "2b8f98da11e751a7272dce5dab11204d47a87f82cf4fc1b2087583e65fdf32ca",
+    "tests/test_frozen_control.py": "6cc28c04e340a06bd3e9209e314fc443f0be83d18bd5b20f06927a4778529e3c",
+    "tests/test_local_data.py": "47286ab6d1366e5fc4efa2f31ef6cda917035ebaf4cc03ab95c7dc3cb5012a89",
+    "tests/test_local_optimizer.py": "5ca97c46f60ad593b490f5c12fa8b8c0aa0cf6aa089542209b3eefe6662c58f1",
+    "tests/test_local_probe.py": "84e8f0dbb00e211831b34812313cff151a0714e29859725b836f52f115e0beb3",
+    "tests/test_local_train.py": "869124bbe536072fe8144bb4e82d6ae10ee054f4c18d8cfda983c8520bd918a0",
+    "tests/test_step_weight_updates.py": "25248092df18903ee10858fd7f23372a0efb7440121e45978c56a9a3a5b48179",
+    "tests/test_trm_dense.py": "adc1e5a55e5fb72e2b74404b3f54a3af5749c6e4e4d376a1d54238cf1e264a82",
+    "tests/test_trm_plastic.py": "8964dcf0c5ccdc656826697c405a782154f4d2c12459c693f4fd7de49c7944a4",
+    "tests/test_trm_stacked.py": "99817c9ee4fbce32e7299726afd94d4da2788196c2dbca7a1fb542f2d5f8580b"
+  }
+}

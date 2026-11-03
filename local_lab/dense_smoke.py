@@ -23,6 +23,7 @@ from models.recursive_reasoning.trm_stacked import StackedDenseTRM
 from .adam_atan2 import AdamATan2
 from .data import load_data
 from .train import metrics_from_predictions, state_digest, state_snapshot
+from .step_trace import StepWeightTrace
 
 
 def file_sha(path):
@@ -71,6 +72,7 @@ def run(cfg):
     arch = {key: value for key, value in payload["model_config"].items()
             if key in TinyRecursiveReasoningModel_ACTV1Config.model_fields}
     arch.update(batch_size=cfg["batch_size"], **cfg["architecture"])
+    arch.setdefault("weight_update_cadence", "per_reasoning_step")
     with torch.device(device):
         model = (StackedDenseTRM(arch) if hierarchy else DensePlasticTRM(arch)).eval()
         native = TinyRecursiveReasoningModel_ACTV1(arch).eval()
@@ -88,6 +90,7 @@ def run(cfg):
     if any(key.endswith((".u", ".v")) or "static_gates" in key for key in model_state_keys):
         raise AssertionError("A historical low-rank component entered the dense model")
     local_weights_before = model.puzzle_emb.local_weights.detach().cpu().clone()
+    updates_per_act = model.reasoning_calls_per_act if model.weight_update_cadence == "per_reasoning_step" else 1
     def b_state():
         if hierarchy:
             return model.b_state()
@@ -117,7 +120,7 @@ def run(cfg):
                 for key in ("inputs", "labels", "puzzle_identifiers")}
 
     @torch.no_grad()
-    def evaluate(mode, check_native=False, meta_mode="dynamic", check_b=False, meta_read_mode="tokens"):
+    def evaluate(mode, check_native=False, meta_mode="dynamic", check_b=False, meta_read_mode="tokens", capture_steps=False):
         model.set_mode(mode)
         if hierarchy:
             model.set_meta_mode(meta_mode)
@@ -125,8 +128,10 @@ def run(cfg):
         if check_b:
             reference_b.load_state_dict(model.dense_state(), strict=True)
         predictions, labels, inputs, objectives = [], [], [], []
+        update_counts, meta_update_counts = [], []
         initial_matrices = None
         for offset in range(0, cfg["dev_size"], cfg["batch_size"]):
+            trace = StepWeightTrace(model) if capture_steps and offset == 0 else None
             current = batch(development, offset, cfg["batch_size"])
             with torch.device(device):
                 carry = model.initial_carry(current)
@@ -134,7 +139,21 @@ def run(cfg):
                 b_carry = reference_b.initial_carry(current) if check_b else None
             for _ in range(model.config.halt_max_steps):
                 check_budget()
-                carry, outputs = model(carry, current)
+                handle = model.inner.L_level.register_forward_pre_hook(trace.observe) if trace else None
+                try:
+                    carry, outputs = model(carry, current)
+                finally:
+                    if handle is not None:
+                        handle.remove()
+                expected = 0 if mode == "off" else updates_per_act
+                if model.weight_updates_this_act != expected:
+                    raise AssertionError("B skipped a scheduled weight update")
+                update_counts.append(model.weight_updates_this_act)
+                if hierarchy:
+                    expected_c = 0 if meta_mode == "off" else expected
+                    if model.meta_weight_updates_this_act != expected_c:
+                        raise AssertionError("C skipped a scheduled weight update")
+                    meta_update_counts.append(model.meta_weight_updates_this_act)
                 if check_native:
                     native_carry, untouched = native(native_carry, current)
                     if not torch.equal(outputs["logits"], untouched["logits"]):
@@ -149,6 +168,8 @@ def run(cfg):
                     raise AssertionError("A temporary matrix leaked beyond its ACT call")
                 if hierarchy and model.b_write_port.delta is not None:
                     raise AssertionError("C left a temporary matrix installed in B")
+            if trace is not None:
+                write_json(directory / "step_trace.json", trace.finish())
             predictions.append(outputs["logits"].argmax(-1).cpu().numpy())
             labels.append(current["labels"].cpu().numpy())
             inputs.append(current["inputs"].cpu().numpy())
@@ -156,13 +177,15 @@ def run(cfg):
         pred, inp, lab = map(np.concatenate, (predictions, inputs, labels))
         return {"mode": mode, **metrics_from_predictions(pred, inp, lab),
             "task_loss": sum(objectives) / len(pred), "act_steps": model.config.halt_max_steps,
+            "b_weight_updates_per_act": update_counts,
+            "c_weight_updates_per_act": meta_update_counts if hierarchy else None,
             "native_logits_bitwise_equal": True if check_native else None,
             "meta_mode": meta_mode if hierarchy else None,
             "meta_read_mode": meta_read_mode if hierarchy else None,
             "standalone_b_logits_bitwise_equal": True if check_b else None}, pred, initial_matrices
 
     baseline, baseline_predictions, _ = evaluate("off", check_native=True)
-    initial, initial_predictions, matrices = evaluate("dynamic")
+    initial, initial_predictions, matrices = evaluate("dynamic", capture_steps=cfg.get("record_step_updates", False))
     matrix_diagnostics = []
     for index, (matrix, port) in enumerate(zip(matrices, model.ports)):
         matrix_diagnostics.append({"projection": index, "shape": list(matrix.shape[1:]),
@@ -211,6 +234,8 @@ def run(cfg):
                 carry = model.initial_carry(current)
         optimizer.zero_grad(set_to_none=True)
         carry, outputs = model(carry, current)
+        if model.weight_updates_this_act != updates_per_act or (hierarchy and model.meta_weight_updates_this_act != updates_per_act):
+            raise AssertionError("Training skipped a scheduled B/C update")
         objective = loss(outputs["logits"], current["inputs"], current["labels"])
         if not torch.isfinite(objective):
             raise FloatingPointError("Dense training loss is not finite")
@@ -233,7 +258,9 @@ def run(cfg):
         torch.nn.utils.clip_grad_norm_(trainable, 1., error_if_nonfinite=True)
         optimizer.step()
         history.append({"step": step, "task_loss": float(objective.detach()),
-            "gradient_norms": component_norms})
+            "gradient_norms": component_norms,
+            "b_weight_updates": model.weight_updates_this_act,
+            "c_weight_updates": model.meta_weight_updates_this_act if hierarchy else None})
         if hierarchy and model.meta_controller.cross_attention:
             read = model.meta_controller.cross_read
             gradient = read.in_proj_weight.grad.reshape(3, read.num_heads, read.embed_dim // read.num_heads, read.embed_dim)
@@ -283,7 +310,11 @@ def run(cfg):
         "architecture": arch, "b_parameters": sum(p.numel() for p in model.b_parameters),
         "hierarchy": hierarchy, "c_parameters": sum(p.numel() for p in model.c_parameters) if hierarchy else 0,
         "a_parameters": sum(p.numel() for p in model.inner.parameters()),
-        "generated_weights_per_example_per_act": sum(p.base.weight.numel() for p in model.ports),
+        "weight_update_cadence": model.weight_update_cadence,
+        "weight_updates_per_act": updates_per_act,
+        "generated_weights_per_example_per_update": sum(p.base.weight.numel() for p in model.ports),
+        "generated_weights_per_example_per_act": updates_per_act * sum(p.base.weight.numel() for p in model.ports),
+        "step_trace": "step_trace.json" if cfg.get("record_step_updates", False) else None,
         "dense_matrices": matrix_diagnostics, "low_rank_factors_present": False,
         "c_matrix": meta_diagnostics,
         "inter_model_attention": inter_model_attention,
@@ -300,6 +331,18 @@ def run(cfg):
         "peak_cuda_allocated_mib": torch.cuda.max_memory_allocated() / 2**20 if device == "cuda" else None,
         "elapsed_seconds": time.perf_counter() - started}
     write_json(directory / "summary.json", result)
+    cadence_description = (f"Fresh matrices are generated before every one of the {model.reasoning_calls_per_act} "
+        f"reasoning calls per ACT, including the native no-gradient warm-up. A full "
+        f"{model.config.halt_max_steps}-ACT puzzle therefore uses "
+        f"{model.reasoning_calls_per_act * model.config.halt_max_steps} weight-generation steps. "
+        "C, when enabled, writes B before each of those B generations."
+        if model.weight_update_cadence == "per_reasoning_step" else
+        "The explicit historical per_act cadence generates one set of matrices, held over "
+        "the final native cycle; preceding warm-up calls are unmodified.")
+    credit_description = (f"The first {model.warmup_calls} native calls still run without gradient recording; "
+        f"each of the final {model.config.L_cycles + 1} calls can train its own B/C write."
+        if model.weight_update_cadence == "per_reasoning_step" else
+        "Gradient credit reaches the shared final-cycle write, as in the historical protocol.")
     report = f"""# Direct dense weight generation: local smoke
 
 B now directly generates complete temporary matrices for both native TRM MLP
@@ -317,9 +360,8 @@ Historical experiments and their checkpoints remain preserved as baselines.
 A comes from the native-training arm, with all historical unused controller and
 factor tensors discarded. It is frozen throughout this smoke. B reads per-cell
 latent states, prediction changes and Sudoku constraint residuals; a Transformer
-and per-puzzle GRU produce its context. Memory resets on new puzzles. One set of
-dense matrices is used in the final seven native calls of each 21-call ACT update.
-Observations and memory credit are detached at the ACT boundary. Joint A/B
+and per-puzzle GRU produce its context. Memory resets on new puzzles. {cadence_description}
+Observations are detached; memory credit is truncated at the ACT boundary. Joint A/B
 gradients are unit-tested; joint training has not been run for this architecture.
 
 ## Executed checks
@@ -350,8 +392,8 @@ Choose a fresh results directory to rerun; existing artifacts are never overwrit
     (directory / "report.md").write_text(report, encoding="utf-8")
     if hierarchy:
         structured = model.meta_controller.cross_attention
-        config_example = ("local_lab/config_cross_attention_smoke.json" if structured
-                          else "local_lab/config_stack_smoke.json")
+        config_example = cfg.get("config_path", "local_lab/config_cross_attention_smoke.json" if structured
+                                 else "local_lab/config_stack_smoke.json")
         c_read = ("C cross-attends to B's reader output, each encoder block, memory and readout, using stage/slot identifiers. "
             "A causal Transformer then processes a four-step history of those attended observations."
             if structured else "C has a causal Transformer, its own state and four-step B-context history.")
@@ -376,6 +418,9 @@ before B generates A's next updates, avoiding a same-step circular dependency.
 Memory values persist across ACT updates and reset independently for new puzzles;
 temporal gradient credit is truncated at ACT boundaries.
 
+{cadence_description}
+{credit_description}
+
 This run loaded the earlier dense A/B smoke checkpoint, then jointly trained B
 and fresh C while keeping A frozen. B has {result['b_parameters']:,} parameters;
 C adds {result['c_parameters']:,}. The sampled initial C matrix had measured rank
@@ -397,7 +442,7 @@ C adds {result['c_parameters']:,}. The sampled initial C matrix had measured ran
 
 The C-off/shuffled/phase/history-reset rows are inference ablations of the same
 jointly trained checkpoint. They are not separately trained matched controls.
-Eight updates and eight validation puzzles cannot establish an advantage from
+{cfg['steps']} updates and {cfg['dev_size']} validation puzzles cannot establish an advantage from
 stacking. A matched B-only training arm, an equally larger B, multiple seeds and
 held-out adaptation probes remain necessary before a performance claim.
 
@@ -440,6 +485,7 @@ def main():
     parser.add_argument("--config", default="local_lab/config_dense_smoke.json")
     args = parser.parse_args()
     cfg = json.loads((ROOT / args.config).read_text())
+    cfg.setdefault("config_path", args.config)
     if not 1 <= cfg["steps"] <= 32 or not 1 <= cfg["batch_size"] <= 8 or not 1 <= cfg["max_seconds"] <= 300:
         raise ValueError("This entrypoint is restricted to a bounded engineering smoke")
     if cfg["train_size"] % cfg["batch_size"] or cfg["dev_size"] % cfg["batch_size"]:

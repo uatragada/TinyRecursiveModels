@@ -25,6 +25,11 @@ flowchart LR
 
 The within-step order is explicit: first B forms a context, then C modifies B's
 generator, then B generates the next A changes. C has no direct A write port.
+The default now repeats this chain before every native reasoning call, including
+warm-up: 21 times per ACT and 336 times per full H3/L6 puzzle. C's four-step
+history consequently spans reasoning calls. The original October 30 run below
+used one late action per ACT; its configuration keeps that historical cadence
+explicit. See [PER_STEP_WEIGHTS.md](PER_STEP_WEIGHTS.md) for the correction.
 The experiment modifies B's generation head, rather than all of B's weights.
 All updates are generated densely, without low-rank factors. Chunking is only an
 output/memory strategy. During inference the stored A and B base tensors stay

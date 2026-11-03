@@ -136,6 +136,7 @@ class StackedDenseTRM(DensePlasticTRM):
             decoder_width=config_dict.get("meta_decoder_width", 16),
             relative_cap=config_dict.get("meta_relative_cap", .1))
         self.meta_mode, self.last_c_action, self.last_b_context = "dynamic", None, None
+        self.meta_weight_updates_this_act = 0
         self.meta_read_mode = "tokens"
         self.generator.register_forward_pre_hook(self._control_b)
         self.generator.register_forward_hook(self._finish_b, always_call=True)
@@ -214,6 +215,7 @@ class StackedDenseTRM(DensePlasticTRM):
             delta = delta.roll(1, 0)
         self.b_write_port.delta = delta
         self.last_c_action = delta.detach()
+        self.meta_weight_updates_this_act += 1
 
     def _finish_b(self, _module, _args, _output):
         self.b_write_port.delta = None
@@ -223,10 +225,12 @@ class StackedDenseTRM(DensePlasticTRM):
         self.b_write_port.delta = None
         self.meta_controller.clear_runtime()
         self.last_c_action, self.last_b_context = None, None
+        self.meta_weight_updates_this_act = 0
 
     def forward(self, carry, batch):
         self.meta_controller.reset(carry.halted)
         self.last_c_action, self.last_b_context = None, None
+        self.meta_weight_updates_this_act = 0
         try:
             result = super().forward(carry, batch)
         finally:

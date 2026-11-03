@@ -1,0 +1,15 @@
+{
+  "status": "passed",
+  "passed": 6,
+  "total": 6,
+  "checks": {
+    "uniform_stablemax_closed_form": true,
+    "positive_target_stablemax_closed_form": true,
+    "negative_target_stablemax_closed_form": true,
+    "valid_sudoku_recognized": true,
+    "duplicate_digit_grid_rejected": true,
+    "incorrect_given_rejected": true
+  },
+  "metrics_source_sha256": "283c49dfa698d6fa9694c3a065bc7439d9fec9affd884d95ffd3ea00c062bd51",
+  "scope": "NumPy-only closed-form loss and grid-validator checks; no Torch process started."
+}

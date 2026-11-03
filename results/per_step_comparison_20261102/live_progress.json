@@ -1,0 +1,11 @@
+{
+  "seed": 29,
+  "kind": "b",
+  "step": 128,
+  "task_loss": 1.3625497817993164,
+  "gradient_norm": 0.0035805334337055683,
+  "cross_head_gradient_norms": null,
+  "b_weight_updates": 21,
+  "c_weight_updates": 0,
+  "elapsed_seconds": 152.48562550000497
+}

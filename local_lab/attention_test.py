@@ -55,12 +55,21 @@ def panels(cfg):
         left_hashes = {hashlib.sha256(row.tobytes()).hexdigest() for row in result[left]["inputs"]}
         if any(hashlib.sha256(row.tobytes()).hexdigest() in left_hashes for row in result[right]["inputs"]):
             raise ValueError("Overlapping puzzle bytes")
+    if cfg.get("previous_data_dir"):
+        previous = load_data(ROOT / cfg["previous_data_dir"])
+        if not np.array_equal(previous["train"]["inputs"], data["train"]["inputs"]):
+            raise ValueError("The new cache changed the frozen A donor's training pool")
+        for key in ("inputs", "labels"):
+            seen = {hashlib.sha256(row.tobytes()).hexdigest()
+                    for pool in previous.values() for row in pool[key]}
+            if any(hashlib.sha256(row.tobytes()).hexdigest() in seen for row in result["test"][key]):
+                raise ValueError("The final test panel overlaps a previous cached puzzle or solution")
     return result
 
 
-def device_batch(pool, offset=0, size=None):
+def device_batch(pool, offset=0, size=None, device="cuda"):
     stop = None if size is None else offset + size
-    return {key: torch.as_tensor(pool[key][offset:stop], device="cuda", dtype=torch.long)
+    return {key: torch.as_tensor(pool[key][offset:stop], device=device, dtype=torch.long)
             for key in ("inputs", "labels", "puzzle_identifiers")}
 
 
@@ -97,6 +106,25 @@ def release(model):
     torch.cuda.empty_cache()
 
 
+def checkpoint_steps(cfg, steps):
+    interval = cfg.get("dev_every", 0)
+    return list(range(interval, steps, interval)) if interval else []
+
+
+def configured_kinds(cfg):
+    return tuple(cfg.get("kinds", KINDS))
+
+
+def evaluation_calls(cfg, steps):
+    batch = cfg.get("eval_batch_size", cfg["batch_size"])
+    dev = int(np.ceil(cfg["dev_size"] / batch)) * 16
+    test = int(np.ceil(cfg["test_size"] / batch)) * 16
+    seeds = len(cfg["seeds"])
+    ablations = cfg.get("ablations", ABLATIONS)
+    return (seeds * len(configured_kinds(cfg)) * ((2 + len(checkpoint_steps(cfg, steps))) * dev + test)
+            + seeds * len(ablations) * test + dev + test)
+
+
 def run_profile(cfg):
     if not torch.cuda.is_available():
         raise RuntimeError("The bounded full-width comparison requires the local CUDA device")
@@ -123,30 +151,31 @@ def run_profile(cfg):
         torch.cuda.synchronize()
         if index >= 2:
             training_times.append(time.perf_counter() - started)
+    evaluation_current = device_batch(data, size=cfg.get("eval_batch_size", cfg["batch_size"]))
+    with torch.device("cuda"):
+        carry = model.initial_carry(evaluation_current)
     with torch.no_grad():
         for _ in range(8):
             torch.cuda.synchronize()
             started = time.perf_counter()
-            carry, _ = model(carry, current)
+            carry, _ = model(carry, evaluation_current)
             torch.cuda.synchronize()
             eval_times.append(time.perf_counter() - started)
     train_s, eval_s = float(np.median(training_times)), float(np.median(eval_times))
     # Counts include initial dev, final dev/test for all arms and every planned
     # held-out ablation. A-only is conservatively charged the same evaluation rate.
-    per_dev = int(np.ceil(cfg["dev_size"] / cfg["batch_size"])) * 16
-    per_test = int(np.ceil(cfg["test_size"] / cfg["batch_size"])) * 16
     n = len(cfg["seeds"])
-    eval_calls = n * len(KINDS) * (2 * per_dev + per_test) + n * len(ABLATIONS) * per_test + per_dev + per_test
     options = range(cfg["requested_steps"], cfg["minimum_steps"] - 1, -16)
     locked_steps = next((steps for steps in options
-        if 1.5 * (n * len(KINDS) * steps * train_s + eval_calls * eval_s) + 120 <= cfg["max_seconds"]), None)
+        if 1.5 * (n * len(configured_kinds(cfg)) * steps * train_s + evaluation_calls(cfg, steps) * eval_s) + 120 <= cfg["max_seconds"]), None)
+    eval_calls = None if locked_steps is None else evaluation_calls(cfg, locked_steps)
     result = {"config_sha256": config_digest(cfg), "training_step_median_seconds": train_s,
         "evaluation_act_median_seconds": eval_s, "profile_training_times": training_times,
         "profile_eval_times": eval_times, "evaluation_act_calls": eval_calls,
         "locked_steps": locked_steps, "peak_cuda_allocated_mib": torch.cuda.max_memory_allocated() / 2**20,
         "scope": "Training-panel-only timing calibration. Profile models are discarded; all study arms are initialized fresh. No held-out evaluation or tuning.",
         "estimated_study_seconds_with_50_percent_margin": None if locked_steps is None else
-            1.5 * (n * len(KINDS) * locked_steps * train_s + eval_calls * eval_s) + 120}
+            1.5 * (n * len(configured_kinds(cfg)) * locked_steps * train_s + eval_calls * eval_s) + 120}
     write_json(target, result)
     print(json.dumps({"stage": "profile", **result}), flush=True)
     release(model)
@@ -166,17 +195,34 @@ def modes(model, kind, variant):
 
 @torch.no_grad()
 def evaluate(model, pool, cfg, kind, variant, check_budget):
+    model.clear_runtime()
+    gc.collect()
+    if torch.cuda.is_available():
+        torch.cuda.empty_cache()
     modes(model, kind, variant)
     before, frozen = state_digest(actor_state(model)), state_digest(model.a_state())
     logits, cross_weights = [], None
+    device = next(model.parameters()).device
+    eval_batch = cfg.get("eval_batch_size", cfg["batch_size"])
+    b_updates, c_updates = [], []
     started = time.perf_counter()
-    for offset in range(0, len(pool["inputs"]), cfg["batch_size"]):
-        current = device_batch(pool, offset, cfg["batch_size"])
-        with torch.device("cuda"):
+    for offset in range(0, len(pool["inputs"]), eval_batch):
+        current = device_batch(pool, offset, eval_batch, device=device)
+        with torch.device(device):
             carry = model.initial_carry(current)
         for _ in range(16):
             check_budget()
             carry, outputs = model(carry, current)
+            expected = (0 if variant == "a_only" else model.reasoning_calls_per_act
+                        if model.weight_update_cadence == "per_reasoning_step" else 1)
+            if model.weight_updates_this_act != expected:
+                raise AssertionError("Evaluation skipped a scheduled B weight generation")
+            b_updates.append(model.weight_updates_this_act)
+            if isinstance(model, StackedDenseTRM):
+                expected_c = 0 if variant == "c_off" else expected
+                if model.meta_weight_updates_this_act != expected_c:
+                    raise AssertionError("Evaluation skipped a scheduled C weight generation")
+                c_updates.append(model.meta_weight_updates_this_act)
             if any(port.delta is not None for port in model.ports):
                 raise AssertionError("A runtime matrix leaked")
             if isinstance(model, StackedDenseTRM) and model.b_write_port.delta is not None:
@@ -189,10 +235,16 @@ def evaluate(model, pool, cfg, kind, variant, check_budget):
     row = {**metrics_from_predictions(prediction, pool["inputs"], pool["labels"]),
         "task_loss": float(loss(values, torch.as_tensor(pool["inputs"]), torch.as_tensor(pool["labels"]))),
         "seconds": time.perf_counter() - started, "act_steps": 16,
+        "weight_update_cadence": model.weight_update_cadence,
+        "b_weight_updates_per_act": b_updates, "c_weight_updates_per_act": c_updates,
         "actor_unchanged": before == state_digest(actor_state(model)),
         "a_unchanged": frozen == state_digest(model.a_state())}
     if not row["actor_unchanged"] or not row["a_unchanged"]:
         raise AssertionError("Inference changed stored weights")
+    model.clear_runtime()
+    gc.collect()
+    if torch.cuda.is_available():
+        torch.cuda.empty_cache()
     return row, {"logits": values, "predictions": torch.as_tensor(prediction),
         "inputs": torch.as_tensor(pool["inputs"]), "labels": torch.as_tensor(pool["labels"]),
         "base_ids": torch.as_tensor(pool["base_ids"]), "sample_attention": cross_weights}
@@ -227,6 +279,8 @@ def run(cfg, profile):
             "inputs_sha256": hashlib.sha256(pool["inputs"].tobytes()).hexdigest(),
             "labels_sha256": hashlib.sha256(pool["labels"].tobytes()).hexdigest()} for name, pool in data.items()},
         "id_and_exact_puzzle_disjoint": True, "oracle_used": False,
+        "fresh_test_vs_previous_cache": bool(cfg.get("previous_data_dir")),
+        "previous_cache_manifest_sha256": sha(ROOT / cfg["previous_data_dir"] / "manifest.json") if cfg.get("previous_data_dir") else None,
         "source": "Controller train/dev from A-untrained validation split; held-out official test offset specified before any study evaluation."})
     arch, a_state = source_a(cfg)
     a_digest, source_digest = state_digest(a_state), sha(ROOT / cfg["source_checkpoint"])
@@ -241,6 +295,7 @@ def run(cfg, profile):
         write_json(directory / "evaluation_progress.json", rows)
         print(json.dumps({"stage": "evaluation", "kind": kind, "seed": seed, "variant": variant,
             "split": split, "blank_accuracy": row["blank_accuracy"], "seconds": row["seconds"]}), flush=True)
+        return row
     for seed in cfg["seeds"]:
         common_model = build(arch, a_state, seed)
         common = state_snapshot(common_model)
@@ -251,7 +306,7 @@ def run(cfg, profile):
         release(common_model)
         del common_model
         initial_c_hash, stream_hash, parameter_match = None, None, None
-        for kind in KINDS:
+        for kind in configured_kinds(cfg):
             check_budget()
             model = build(arch, a_state, seed, kind, common)
             parameters = actors(model)
@@ -274,7 +329,7 @@ def run(cfg, profile):
             stream = CandidateStream(data["train"], cfg["batch_size"], seed)
             digest, admitted, history, carry = hashlib.sha256(), [], [], None
             torch.cuda.reset_peak_memory_stats()
-            arm_started = time.perf_counter()
+            arm_started, dev_seconds = time.perf_counter(), 0.
             for step in range(1, steps + 1):
                 check_budget()
                 if (step - 1) % 16 == 0:
@@ -290,6 +345,10 @@ def run(cfg, profile):
                 for group in optimizer.param_groups:
                     group["lr"] = cfg["learning_rate"] * factor
                 carry, outputs = model(carry, current)
+                expected = model.reasoning_calls_per_act if model.weight_update_cadence == "per_reasoning_step" else 1
+                if model.weight_updates_this_act != expected or (isinstance(model, StackedDenseTRM)
+                        and model.meta_weight_updates_this_act != expected):
+                    raise AssertionError("Training skipped a scheduled weight generation")
                 objective = loss(outputs["logits"], current["inputs"], current["labels"])
                 if not torch.isfinite(objective):
                     raise FloatingPointError("Nonfinite training loss")
@@ -309,10 +368,30 @@ def run(cfg, profile):
                 optimizer.step()
                 if step == 1 or step % 32 == 0 or step == steps:
                     history.append({"step": step, "task_loss": float(objective.detach()),
-                        "gradient_norm": float(grad_norm), "cross_head_gradient_norms": read_norms})
+                        "gradient_norm": float(grad_norm), "cross_head_gradient_norms": read_norms,
+                        "b_weight_updates": model.weight_updates_this_act,
+                        "c_weight_updates": model.meta_weight_updates_this_act if isinstance(model, StackedDenseTRM) else 0,
+                        "cuda_allocated_mib": torch.cuda.memory_allocated() / 2**20,
+                        "cuda_reserved_mib": torch.cuda.memory_reserved() / 2**20})
                     print(json.dumps({"stage": "training", "seed": seed, "kind": kind,
                         **history[-1], "elapsed_seconds": time.perf_counter() - started}), flush=True)
-            training_seconds = time.perf_counter() - arm_started
+                    write_json(directory / "live_progress.json", {"seed": seed, "kind": kind,
+                        **history[-1], "elapsed_seconds": time.perf_counter() - started})
+                if step % 16 == 0:
+                    if not bool(carry.halted.all()):
+                        raise AssertionError("Runtime cleanup requires all puzzle slots to have completed")
+                    del outputs, objective
+                    model.clear_runtime()
+                    gc.collect()
+                    torch.cuda.empty_cache()
+                if step in checkpoint_steps(cfg, steps):
+                    if not bool(carry.halted.all()):
+                        raise AssertionError("Development evaluation must follow a complete puzzle episode")
+                    tick = time.perf_counter()
+                    record_eval(model, kind, seed, f"step_{step}", "dev")
+                    dev_seconds += time.perf_counter() - tick
+                    modes(model, kind, "normal")
+            training_seconds = time.perf_counter() - arm_started - dev_seconds
             a_unchanged = state_digest(model.a_state()) == a_digest
             if not a_unchanged or any(not torch.isfinite(p).all() for p in parameters):
                 raise AssertionError("A changed or trained parameters are nonfinite")
@@ -330,13 +409,16 @@ def run(cfg, profile):
                 "stream_sha256": digest.hexdigest(), "admitted_base_ids": admitted,
                 "unique_base_puzzles": len(set(admitted)), "augmented_admissions": len(admitted),
                 "a_unchanged": a_unchanged, "training_seconds": training_seconds,
-                "peak_cuda_allocated_mib": torch.cuda.max_memory_allocated() / 2**20, "history": history}
+                "development_evaluation_seconds": dev_seconds,
+                "weight_update_cadence": model.weight_update_cadence,
+                "peak_cuda_allocated_mib": torch.cuda.max_memory_allocated() / 2**20,
+                "peak_cuda_reserved_mib": torch.cuda.max_memory_reserved() / 2**20, "history": history}
             training_rows.append(info)
             write_json(directory / "training_progress.json", training_rows)
             record_eval(model, kind, seed, "normal", "dev")
             record_eval(model, kind, seed, "normal", "test")
             if kind == "cross":
-                for variant in ABLATIONS:
+                for variant in cfg.get("ablations", ABLATIONS):
                     record_eval(model, kind, seed, variant, "test")
             release(model)
             del model, optimizer, parameters, final_state
@@ -345,7 +427,7 @@ def run(cfg, profile):
     result = {"status": "complete", "source_checkpoint_sha256": source_digest,
         "frozen_a_sha256": a_digest, "steps_per_arm": steps, "training": training_rows,
         "evaluations": rows, "elapsed_seconds": time.perf_counter() - started,
-        "scope": "One frozen native A donor; three controller seeds; matched updates/data/A calls; exact active parameter match for larger B versus B+C. No oracle, no joint A training, no safety or mechanistic interpretability claims."}
+        "scope": f"One frozen native A donor; {len(cfg['seeds'])} controller seeds; selected variants {configured_kinds(cfg)}; matched updates/data/A calls across selected variants. No oracle, no joint A training, no safety or mechanistic interpretability claims."}
     write_json(directory / "summary.json", result)
     print(json.dumps({"stage": "complete", "elapsed_seconds": result["elapsed_seconds"]}), flush=True)
 
@@ -358,8 +440,16 @@ def main():
     cfg = json.loads((ROOT / args.config).read_text())
     if cfg["requested_steps"] % 16 or cfg["minimum_steps"] % 16:
         raise ValueError("Training budgets must consist of complete 16-ACT episodes")
-    if cfg["max_seconds"] > 1800 or cfg["batch_size"] > 32:
-        raise ValueError("This local study is capped at 30 minutes and batch 32")
+    cap = 3600 if cfg["architecture"].get("weight_update_cadence") == "per_reasoning_step" else 1800
+    if not 0 < cfg["max_seconds"] <= cap or not 0 < cfg["batch_size"] <= 32 or not 0 < cfg.get("eval_batch_size", cfg["batch_size"]) <= 32:
+        raise ValueError("Study caps: batch 32; per-step studies one hour, historical studies 30 minutes")
+    if cfg.get("dev_every", 0) < 0 or cfg.get("dev_every", 0) % 16:
+        raise ValueError("Development checkpoints must follow complete 16-ACT episodes")
+    if any(variant not in ABLATIONS for variant in cfg.get("ablations", ABLATIONS)):
+        raise ValueError("Unsupported inference ablation")
+    kinds = configured_kinds(cfg)
+    if not kinds or len(set(kinds)) != len(kinds) or any(kind not in KINDS for kind in kinds):
+        raise ValueError("Training kinds must be unique supported variants")
     if args.stage in ("profile", "all"):
         profile = run_profile(cfg)
     else:

@@ -104,7 +104,7 @@ def test_b_gradients_flow_with_full_a_frozen_and_query_labels_cannot_affect_acti
 
 
 def test_native_timing_and_constant_late_matrix_with_cleanup():
-    dense, batch = model(), data()
+    dense, batch = DensePlasticTRM(dict(config(), weight_update_cadence="per_act")).eval(), data()
     seen = []
     handle = dense.ports[0].register_forward_pre_hook(lambda module, args: seen.append(
         None if module.delta is None else module.delta.detach().clone()))
@@ -115,6 +115,7 @@ def test_native_timing_and_constant_late_matrix_with_cleanup():
     assert all(value is None for value in seen[:6])
     assert all(torch.equal(value, seen[6]) for value in seen[6:])
     assert all(port.delta is None for port in dense.ports)
+    assert dense.weight_updates_this_act == 1
 
 
 def test_batch_isolation_and_fresh_puzzle_memory_reset():
@@ -175,3 +176,24 @@ def test_projection_cleanup_if_a_forward_fails():
 def test_invalid_generator_settings_fail_before_running(kwargs):
     with pytest.raises(ValueError):
         DenseWeightGenerator([(4, 4)], **kwargs)
+
+
+@pytest.mark.parametrize("small_chunk", [1, 7])
+def test_larger_generation_chunks_preserve_outputs_and_answer_gradients(small_chunk):
+    torch.manual_seed(31)
+    weights = [torch.randn(17, 19), torch.randn(32, 64)]
+    kwargs = dict(shapes=[tuple(w.shape) for w in weights], width=16,
+                  tile_size=8, decoder_width=8, relative_cap=.03)
+    reference = DenseWeightGenerator(**kwargs, chunk_tiles=small_chunk)
+    combined = DenseWeightGenerator(**kwargs, chunk_tiles=1000)
+    combined.load_state_dict(reference.state_dict(), strict=True)
+    first = torch.randn(2, 16, requires_grad=True)
+    second = first.detach().clone().requires_grad_(True)
+    a, b = reference(first, weights), combined(second, weights)
+    for expected, actual in zip(a, b):
+        torch.testing.assert_close(expected, actual, rtol=1e-5, atol=1e-8)
+    sum(value.square().sum() for value in a).backward()
+    sum(value.square().sum() for value in b).backward()
+    torch.testing.assert_close(first.grad, second.grad, rtol=1e-5, atol=1e-8)
+    for expected, actual in zip(reference.parameters(), combined.parameters()):
+        torch.testing.assert_close(expected.grad, actual.grad, rtol=1e-5, atol=1e-8)
